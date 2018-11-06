@@ -4,10 +4,13 @@ package com.example.ik_2dm3.maps2;
  * Created by Jon Bahillo, Mikel Gamboa, Borja Bueno, Gorka Gomez on 23/10/2018.
  */
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
@@ -15,10 +18,9 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
+import android.util.Log;
 
-import org.osmdroid.api.IMapController;
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-import org.osmdroid.tileprovider.tilesource.XYTileSource;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
@@ -29,12 +31,14 @@ import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     ArrayList<OverlayItem> puntos = new ArrayList<>();
     private MapView myOpenMapView;
     private MapController myMapController;
     private GeoPoint posicionActual;
+    boolean repetido = false;
 
     @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +51,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void cargarMapas() {
-        GeoPoint durango = new GeoPoint(43.1648111, -2.6498017);
+
+        /*Basededatos MDB = new Basededatos(getApplicationContext());
+
+        ArrayList<Posiciones> posicion =  MDB.recuperarposiciones();
+
+        for(int i = 0; i < posicion.size(); i++){
+
+            Log.d("myTag","array1 "+  posicion.get(i).getId());
+        }*/
+
+        //GeoPoint durango = new GeoPoint(43.25860, -2.90272);
+
         myOpenMapView = (MapView) findViewById(R.id.openmapview);
        // myOpenMapView.setBuiltInZoomControls(true);
         myMapController = (MapController) myOpenMapView.getController();
-        myMapController.setCenter(durango);
+        //myMapController.setCenter(durango);
         myMapController.setZoom(30);
-
+        myOpenMapView.setBuiltInZoomControls(false);
 
         myOpenMapView.setMultiTouchControls(true);
        /* myOpenMapView = (MapView) findViewById(R.id.openmapview);
@@ -79,8 +94,39 @@ public class MainActivity extends AppCompatActivity {
 
         /////////////////////////////////////////
         // Añadir un punto en el mapa
-        puntos.add(new OverlayItem("Durango", "Durango", durango));
-        refrescaPuntos();
+        Basededatos MDB = new Basededatos(getApplicationContext());
+
+        ArrayList<Posiciones> posicion =  MDB.recuperarposiciones();
+
+        for(int i = 0; i < posicion.size(); i++){
+
+            Double Latitud = Double.valueOf(posicion.get(i).getLati());
+            Double Longitud = Double.valueOf(posicion.get(i).getLong());
+
+            GeoPoint durango2 = new GeoPoint(Latitud, Longitud);
+
+           /* puntos.add(new OverlayItem(posicion.get(i).getNombre(), posicion.get(i).getNombre(), durango));*/
+
+            OverlayItem durango = new OverlayItem(posicion.get(i).getNombre(), posicion.get(i).getNombre(), durango2);
+
+
+            byte[] decodedString = Base64.decode(posicion.get(i).getImagen(), Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString,
+                    0, decodedString.length);
+
+            Log.d("myTag", "Bitmap "+ decodedByte);
+
+            Drawable d = new BitmapDrawable(getResources(), decodedByte);
+
+
+          //  durango.setMarker(ResourcesCompat.getDrawable(getResources(), R.drawable.sapuabuenote, null));
+            durango.setMarker(d);
+
+            puntos.add(durango);
+            refrescaPuntos();
+            Log.d("myTag","id "+ posicion.get(i).getNombre()+' '+Latitud+' '+Longitud);
+        }
+
 
         /////////////////////////////////////////
         // Detectar cambios de ubicación mediante un listener (OSMUpdateLocation)
@@ -144,9 +190,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void actualizaPosicionActual(Location location) {
         posicionActual = new GeoPoint(location.getLatitude(), location.getLongitude());
-        myMapController.setCenter(posicionActual);
-        if (puntos.size() > 1)
-            puntos.remove(1);
+       // myMapController.setCenter(posicionActual);
+       /* if (puntos.size() > 1)
+            puntos.remove(1);*/
         OverlayItem marcador = new OverlayItem("Estás aquí", "Posicion actual", posicionActual);
         marcador.setMarker(ResourcesCompat.getDrawable(getResources(), R.drawable.sapuabuenote, null));
         puntos.add(marcador);
@@ -167,6 +213,15 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        for (int e= 0; e < puntos.size(); e++){
+            if (puntos.get(e).getSnippet().equals("Posicion actual")){
+                if (repetido == true) {
+                    puntos.remove(e);
+                }else{
+                    repetido = true;
+                }
+            }
+        }
         ItemizedOverlayWithFocus<OverlayItem> capa = new ItemizedOverlayWithFocus<>(this, puntos, tap);
         capa.setFocusItemsOnTap(true);
         myOpenMapView.getOverlays().add(capa);
