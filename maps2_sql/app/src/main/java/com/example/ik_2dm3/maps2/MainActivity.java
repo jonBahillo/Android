@@ -4,6 +4,7 @@ package com.example.ik_2dm3.maps2;
  * Created by Jon Bahillo, Mikel Gamboa, Borja Bueno, Gorka Gomez on 23/10/2018.
  */
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,6 +21,9 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private MapController myMapController;
     private GeoPoint posicionActual;
     boolean repetido = false;
+    Dialog dialog;
 
     @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         if (tengoPermisoEscritura()) {
             cargarMapas();
         }
+        dialog=new Dialog(this);
     }
 
     private void cargarMapas() {
@@ -209,21 +215,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onItemSingleTapUp(int index, OverlayItem item) {
-
-
-
-                try {
-                    //set time in mili
-                    puntos.get(index).setMarker(ResourcesCompat.getDrawable(getResources(), R.drawable.ga, null));
-                    Thread.sleep(5000);
-
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-
-                puntos.get(index).setMarker(ResourcesCompat.getDrawable(getResources(), R.drawable.sapuabuenote, null));
-
-                return true;
+                enseñarPopUp(null, index);
+                    return true;
             }
         };
 
@@ -240,5 +233,30 @@ public class MainActivity extends AppCompatActivity {
         capa.setFocusItemsOnTap(true);
         myOpenMapView.getOverlays().add(capa);
     }
+
+public void enseñarPopUp(View v, int i){
+    TextView tvCerrar;
+    Button btnJugar;
+    dialog.setContentView(R.layout.popup);
+    tvCerrar=(TextView)dialog.findViewById(R.id.txtCerrar);
+    btnJugar=(Button)dialog.findViewById(R.id.btnJuego);
+
+    tvCerrar.setOnClickListener(new View.OnClickListener() {
+
+
+
+        @Override
+        public void onClick(View v) {
+            dialog.dismiss();
+        }
+    });
+
+
+        if (!puntos.get(i).getSnippet().equals("Posicion actual")){
+                dialog.show();
+
+    }
+
+}
 
 }
