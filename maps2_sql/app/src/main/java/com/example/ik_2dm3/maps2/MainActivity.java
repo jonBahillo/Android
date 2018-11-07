@@ -209,6 +209,20 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onItemSingleTapUp(int index, OverlayItem item) {
+
+
+
+                try {
+                    //set time in mili
+                    puntos.get(index).setMarker(ResourcesCompat.getDrawable(getResources(), R.drawable.ga, null));
+                    Thread.sleep(5000);
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+                puntos.get(index).setMarker(ResourcesCompat.getDrawable(getResources(), R.drawable.sapuabuenote, null));
+
                 return true;
             }
         };
