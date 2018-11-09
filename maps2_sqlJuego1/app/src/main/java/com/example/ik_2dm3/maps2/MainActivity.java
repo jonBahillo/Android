@@ -10,7 +10,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
@@ -251,6 +253,8 @@ public void enseñarPopUp(View v, int i, String orden){
     tvCerrar=(TextView)dialog.findViewById(R.id.txtCerrar);
     tvNombre=(TextView)dialog.findViewById(R.id.nombresitio);
     btnJugar=(Button)dialog.findViewById(R.id.btnJuego);
+    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
 
     switch(orden){
         case "1":
