@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">maps2</string>
+    <string name="nombresitio" />
+    <string name="todo">TODO</string>
+    <string name="x">X</string>
+    <string name="ver_informacion">Ver informacion</string>
+</resources>
