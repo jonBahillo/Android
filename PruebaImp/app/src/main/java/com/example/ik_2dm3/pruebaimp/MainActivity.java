@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void iniciar(){
-        /*int inicio=0;
+        int inicio=0;
         final Intent cargaI = new Intent(MainActivity.this, pantallacarga.class);
         if (inicio==0) {
             Handler handler = new Handler();
@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }, 1);
             inicio++;
-        }*/
+        }
         arrayBarajado = barajar(Imagenes.length*2);
         cargarBotones();
 

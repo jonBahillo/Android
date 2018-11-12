@@ -12,16 +12,18 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".pantallacarga"
+            android:screenOrientation="landscape"></activity>
+        <activity android:name=".TextoAudio"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".pantallacarga"
-            android:screenOrientation="landscape"></activity>
-        <activity android:name=".TextoAudio"></activity>
     </application>
 
 </manifest>

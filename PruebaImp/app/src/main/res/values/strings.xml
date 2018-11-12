@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">PruebaImp</string>
     <string name="todo">TODO</string>
+    <string name="gunea5">
+        Ezkurdi Plazan gaude orain, historian zehar durangarrek euren aisialdirako leku modura erabili izan dutelako ezaguna.
+        Puntu honetan gerra hasierara bueltatuko gara. Izan ere, 1936ko irailean , Durangok lehen bonbardaketa bat jasan zuen.
+        Aterpeen atariko horman aztarna bat dago eta antzinako frontoiaren ezker paretaren zati bat gogorarazten du. Horma honetan ere metraila aztarnak ikusi ditzakegu.
+        Beraz, ea aurkitzen duzuen frontoi zati hori!
+    </string>
 </resources>
