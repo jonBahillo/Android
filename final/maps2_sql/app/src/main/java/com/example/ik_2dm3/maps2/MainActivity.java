@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
@@ -270,6 +272,8 @@ public class MainActivity extends AppCompatActivity {
         tvNombre=(TextView)dialog.findViewById(R.id.nombresitio);
         btnJugar=(Button)dialog.findViewById(R.id.btnJuego);
         textView =(TextView )dialog.findViewById(R.id.nombresitio);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         Basededatos MDB = new Basededatos(getApplicationContext());
         final int index = i;
