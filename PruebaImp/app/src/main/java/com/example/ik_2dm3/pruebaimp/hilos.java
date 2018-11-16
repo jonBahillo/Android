@@ -8,6 +8,7 @@ public class hilos extends Thread {
     String sacar;
     String[] palabras;
     boolean finalizado;
+    int milisegundos;
 
     @Override
     public void run(){
@@ -15,7 +16,7 @@ public class hilos extends Thread {
             sacar = palabras[j];
             synchronized (this) {
                 try {
-                    wait(600);
+                    wait(milisegundos);
                     txtview.setText(txtview.getText() + " " + sacar);
                 } catch (InterruptedException e) {
                     Log.d("mytag", "" + e);
