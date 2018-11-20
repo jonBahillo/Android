@@ -20,7 +20,6 @@ public class TextoAudio extends AppCompatActivity {
     MediaPlayer audio5;
     TextView siguiente5;
     boolean boton_mostrar5;
-    int tiempo5 = 600;
     int REQ_JUEGO = 1;
 
     @Override
@@ -32,7 +31,7 @@ public class TextoAudio extends AppCompatActivity {
         }
         setContentView(R.layout.activity_texto_audio);
         siguiente5=findViewById(R.id.txtSig);
-        siguiente5.setVisibility(View.INVISIBLE);
+        //siguiente5.setVisibility(View.INVISIBLE);
         //Reproducimos el audio
         audio5 = MediaPlayer.create(TextoAudio.this, R.raw.ezkurdi);
         audio5.start();
@@ -41,11 +40,14 @@ public class TextoAudio extends AppCompatActivity {
         //Separamos las palabras
         pruebatexto5=texto5.split(" ");
         mostrar5 = findViewById(R.id.txtHistoria);
-        ejecutar_hilo(mostrar5, fuera5, pruebatexto5, boton_mostrar5, tiempo5);
+        ejecutar_hilo(mostrar5, fuera5, pruebatexto5, boton_mostrar5, 600);
         siguiente5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent juego = new Intent(TextoAudio.this, MainActivity.class);
+                Intent juego = new Intent(TextoAudio.this, TextoAudio2.class);
+                if (audio5.isPlaying()){
+                    audio5.stop();
+                }
                 startActivityForResult(juego, REQ_JUEGO);
             }
         });
@@ -59,5 +61,10 @@ public class TextoAudio extends AppCompatActivity {
         hilo.finalizado = terminar;
         hilo.milisegundos = tiempo;
         hilo.start();
+        /*try {
+            boton.setVisibility(View.VISIBLE);
+        }catch (Exception e){
+            Log.d("mytag", "" + e);
+        }*/
     }
 }
