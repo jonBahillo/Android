@@ -22,8 +22,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TextoAudio1" />
-        <activity android:name=".TextoAudio2"></activity>
+        <activity
+            android:name=".TextoAudio1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TextoAudio2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TextoAudio3"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TextoAudio4"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".TextoAudio6"></activity>
     </application>
 
 </manifest>
