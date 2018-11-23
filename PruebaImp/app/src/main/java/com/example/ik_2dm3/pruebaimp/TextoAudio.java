@@ -21,6 +21,7 @@ public class TextoAudio extends AppCompatActivity {
     TextView siguiente5;
     boolean boton_mostrar5;
     int REQ_JUEGO = 1;
+    int dialogos = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +41,11 @@ public class TextoAudio extends AppCompatActivity {
         //Separamos las palabras
         pruebatexto5=texto5.split(" ");
         mostrar5 = findViewById(R.id.txtHistoria);
-        ejecutar_hilo(mostrar5, fuera5, pruebatexto5, boton_mostrar5, 600);
+        ejecutar_hilo(mostrar5, pruebatexto5, boton_mostrar5, 600, dialogos);
         siguiente5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent juego = new Intent(TextoAudio.this, TextoAudio4.class);
+                Intent juego = new Intent(TextoAudio.this, TextoAudio1.class);
                 if (audio5.isPlaying()){
                     audio5.stop();
                 }
@@ -53,13 +54,13 @@ public class TextoAudio extends AppCompatActivity {
         });
     }
 
-    public void ejecutar_hilo(TextView texto_pantalla, String sacar, String[] palabras, boolean terminar, int tiempo) {
-        hilos hilo = new hilos();
-        hilo.palabras = palabras;
-        hilo.sacar = sacar;
-        hilo.txtview = texto_pantalla;
-        hilo.finalizado = terminar;
-        hilo.milisegundos = tiempo;
+    public void ejecutar_hilo(TextView texto_pantalla, String[] palabras, boolean terminar, int tiempo, int numdialogos) {
+        hilos2 hilo = new hilos2();
+        hilo.palabras2_1 = palabras;
+        hilo.txtview2 = texto_pantalla;
+        hilo.finalizado2 = terminar;
+        hilo.milisegundos2 = tiempo;
+        hilo.dialogos = numdialogos;
         hilo.start();
         /*try {
             boton.setVisibility(View.VISIBLE);

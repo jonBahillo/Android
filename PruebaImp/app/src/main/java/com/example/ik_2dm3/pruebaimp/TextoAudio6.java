@@ -18,13 +18,14 @@ public class TextoAudio6 extends AppCompatActivity {
     TextView mostrar6;
     String[] pruebatexto6_1;
     String[] pruebatexto6_2;
-    String fuera6="";
     MediaPlayer audio6;
     TextView siguiente6;
     boolean boton_mostrar6;
     int REQ_JUEGO6 = 1;
-    ImageView cambiartexto;
+    int dialogos = 1;
+    /*ImageView cambiartexto;
     boolean primero = false;
+    String fuera6="";*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +35,14 @@ public class TextoAudio6 extends AppCompatActivity {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
         setContentView(R.layout.activity_texto_audio6);
-        siguiente6=findViewById(R.id.txtSig4);
-        cambiartexto = findViewById(R.id.imgCambiartexto);
+        siguiente6=findViewById(R.id.txtSig6);
         siguiente6.setVisibility(View.INVISIBLE);
-        cambiartexto.setVisibility(View.INVISIBLE);
         //Reproducimos el audio
-        audio6 = MediaPlayer.create(TextoAudio6.this, R.raw.andramari);
+        audio6 = MediaPlayer.create(TextoAudio6.this, R.raw.sanagustin1);
         audio6.start();
-        if (audio6.getCurrentPosition()==28000){
-            audio6.stop(); //pausa
-        }
+        /*if (audio6.getCurrentPosition()==28000){
+            audio6.pause(); //pausa
+        }*/
         //Sacamos el texto palabra a palabra
         texto6_1 = getResources().getString(R.string.gunea6_1);
         //Separamos las palabras
@@ -52,7 +51,7 @@ public class TextoAudio6 extends AppCompatActivity {
         //Separamos las palabras
         pruebatexto6_2=texto6_2.split(" ");
         mostrar6 = findViewById(R.id.txtHistoria6);
-        ejecutar_hilo(mostrar6, pruebatexto6_1, pruebatexto6_2, boton_mostrar6, 565);
+        ejecutar_hilo(mostrar6, pruebatexto6_1, pruebatexto6_2, boton_mostrar6, 565, dialogos);
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -62,7 +61,7 @@ public class TextoAudio6 extends AppCompatActivity {
                 //cambiartexto.setVisibility(View.VISIBLE);
                 //Log.d("mytag", "Hola: " + hilop.texto1);
             }
-        }, 50100);
+        }, 34200);
         siguiente6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +69,6 @@ public class TextoAudio6 extends AppCompatActivity {
                 if (audio6.isPlaying()){
                     audio6.stop();
                 }
-
                 startActivityForResult(juego, REQ_JUEGO6);
             }
         });
@@ -90,13 +88,14 @@ public class TextoAudio6 extends AppCompatActivity {
         });*/
     }
 
-    public void ejecutar_hilo(TextView texto_pantalla, String[] palabras1, String[] palabras2, boolean terminar, int tiempo) {
+    public void ejecutar_hilo(TextView texto_pantalla, String[] palabras1, String[] palabras2, boolean terminar, int tiempo, int numdialogos) {
         hilos2 hilo = new hilos2();
         hilo.palabras2_1 = palabras1;
         hilo.palabras2_2 = palabras2;
         hilo.txtview2 = texto_pantalla;
         hilo.finalizado2 = terminar;
         hilo.milisegundos2 = tiempo;
+        hilo.dialogos = numdialogos;
         hilo.start();
     }
 }
