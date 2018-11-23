@@ -46,10 +46,7 @@ public class Basededatos extends SQLiteOpenHelper {
 
 
     private void copyDataBase(Context context) throws IOException {
-        String myPath = DB_PATH + NOMBRE_BASEDATOS;
-        SQLiteDatabase db = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
-       // Log.d("mytag","db: "+db);
-        if (db != null) {
+
             Log.d("mytag","no existe");
             String DB_PATH = context.getDatabasePath(NOMBRE_BASEDATOS).getPath();
 
@@ -76,7 +73,7 @@ public class Basededatos extends SQLiteOpenHelper {
             myInput.close();
         /*Static.getSharedPreference(context).edit()
                 .putInt("DB_VERSION", DB_VERSION).commit();*/
-        }
+
         }
 
 

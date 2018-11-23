@@ -4,6 +4,7 @@ package com.example.ik_2dm3.maps2;
  * Created by Jon Bahillo, Mikel Gamboa, Borja Bueno, Gorka Gomez on 23/10/2018.
  */
 import android.Manifest;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -22,6 +23,7 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -59,7 +61,9 @@ public class MainActivity extends AppCompatActivity {
             cargarMapas();
         }
         dialog=new Dialog(this);
+        dialog.setCancelable(false);
     }
+
 
     private void cargarMapas() {
 
@@ -274,6 +278,7 @@ public class MainActivity extends AppCompatActivity {
         textView =(TextView )dialog.findViewById(R.id.nombresitio);
 
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCanceledOnTouchOutside(false);
 
         Basededatos MDB = new Basededatos(getApplicationContext());
         final int index = i;
@@ -357,5 +362,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 
 }

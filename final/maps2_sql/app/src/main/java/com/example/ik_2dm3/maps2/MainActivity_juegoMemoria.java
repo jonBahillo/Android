@@ -2,6 +2,8 @@ package com.example.ik_2dm3.maps2;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -67,15 +69,9 @@ public class MainActivity_juegoMemoria extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main_juegomemoria);
+        this.setFinishOnTouchOutside(false);
 
-        Bundle extras = getIntent().getExtras();
 
-        Integer index = extras.getInt("index");
-
-        Intent salir = new Intent();
-        salir.putExtra("index", index.toString() );
-        setResult(RESULT_OK, salir);
-        finish();
 
         //Esconder barra de estado
         if (Build.VERSION.SDK_INT > 16) {
@@ -84,9 +80,15 @@ public class MainActivity_juegoMemoria extends AppCompatActivity {
             //getWindow().addFlags( WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
         dialogo = new Dialog(this);
+        dialogo.setCancelable(false);
         cargarImagenes();
         iniciar();
     }
+    @Override
+    public void onBackPressed() {
+
+    }
+
     public void cargarImagenes(){
         Imagenes = new int[]{
                 R.drawable.fa,
@@ -150,6 +152,8 @@ public class MainActivity_juegoMemoria extends AppCompatActivity {
         dialogo.setContentView(R.layout.popup_juegomemoria);
         Errepikatu = dialogo.findViewById(R.id.btnErrepikatu);
         Aurrera = dialogo.findViewById(R.id.btnAurrera);
+        dialogo.setCanceledOnTouchOutside(false);
+
         Errepikatu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,10 +162,16 @@ public class MainActivity_juegoMemoria extends AppCompatActivity {
                 iniciar();
             }
         });
+
         Aurrera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle extras = getIntent().getExtras();
+
+                Integer index = extras.getInt("index");
+
                 Intent salir = new Intent();
+                salir.putExtra("index", index.toString() );
                 setResult(RESULT_OK, salir);
                 finish();
             }
@@ -205,8 +215,9 @@ public class MainActivity_juegoMemoria extends AppCompatActivity {
                 intentos++;
                 //al llegar a 8 aciertos se ha ganado el juego
                 if(aciertos==8){
-                    //dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                     dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     popup(null);
+
                 }
             }else{//si NO coincide el valor los volvemos a tapar al cabo de un segundo
                 handler.postDelayed(new Runnable() {

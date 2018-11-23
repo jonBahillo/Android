@@ -28,5 +28,6 @@ dependencies {
     implementation 'org.osmdroid:osmdroid-android:5.6.4'
     /*compile 'org.slf4j:slf4j-android:1.7.25'
     compile 'org.osmdroid:osmdroid-server-jdk:6.0.2'*/
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
 
 }

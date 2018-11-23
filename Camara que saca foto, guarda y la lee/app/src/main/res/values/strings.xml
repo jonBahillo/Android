@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PruebaCamara</string>
+    <string name="SacarFoto">Sacar foto</string>
+    <string name="todo">TODO</string>
+    <string name="leerFoto">leer foto</string>
+    <string name="inputPopup">Mete aqui el nombre de tu grupo</string>
+    <string name="Aurrera">Aurrera</string>
+</resources>

@@ -11,6 +11,7 @@
     <uses-feature android:name="android.hardware.location.network"/>
     <uses-feature android:name="android.hardware.wifi"/>
     <uses-feature android:name="android.hardware.location.gps"/>
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
 
     <application
         android:allowBackup="true"
@@ -24,6 +25,8 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
