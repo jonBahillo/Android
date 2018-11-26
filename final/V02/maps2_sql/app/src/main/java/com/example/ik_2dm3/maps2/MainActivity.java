@@ -36,6 +36,8 @@ import org.osmdroid.tileprovider.modules.OfflineTileProvider;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.tileprovider.tilesource.XYTileSource;
 import org.osmdroid.tileprovider.util.SimpleRegisterReceiver;
+import org.osmdroid.util.BoundingBox;
+import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
@@ -56,6 +58,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import android.app.Dialog;
 import static java.lang.Integer.parseInt;
@@ -69,8 +72,12 @@ public class MainActivity extends AppCompatActivity {
     boolean repetido = false;
     Dialog dialog;
     IMapController mapController;
+    List<GeoPoint> pts = new ArrayList<>();
+    protected Paint mPaint = new Paint();
+
 
     private static final int REQ_JUEGO = 1;
+
 
     @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -83,36 +90,53 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         if (tengoPermisoEscritura()) {
-            cargarMapas();
-        }
-        dialog=new Dialog(this);
-    }
-
-    private void cargarMapas() {
-
-       myOpenMapView = (MapView) findViewById(R.id.openmapview);
+            myOpenMapView = (MapView) findViewById(R.id.openmapview);
 
 
 
-       myMapController = (MapController) myOpenMapView.getController();
+            myMapController = (MapController) myOpenMapView.getController();
 
-        myOpenMapView.setTileSource(TileSourceFactory.MAPNIK);
-        myOpenMapView.setMultiTouchControls(true);
+
+            myOpenMapView.setMultiTouchControls(true);
         /*myMapController.setZoom(30);
         myOpenMapView.setMinZoomLevel(18);*/
 
-        myMapController.setZoom(18);
-        myOpenMapView.setMinZoomLevel(17);
-        myOpenMapView.setUseDataConnection(false);
-        myOpenMapView.setTilesScaledToDpi(true);
+            myMapController.setZoom(30);
+            myOpenMapView.setMinZoomLevel(10);
+            //myOpenMapView.setUseDataConnection(false);
+            myOpenMapView.setTilesScaledToDpi(true);
+
+        }
+
+
+        dialog=new Dialog(this);
 
 
 
-        CompassOverlay comOverlay = new CompassOverlay(this, new InternalCompassOrientationProvider(getApplicationContext()), myOpenMapView);
+
+        if (tengoPermisoEscritura()) {
+
+            cargaPuntos();
+        }
+
+    }
+
+
+
+    private void cargarMapas() {
+
+
+
+
+
+
+
+
+
+       /* CompassOverlay comOverlay = new CompassOverlay(this, new InternalCompassOrientationProvider(getApplicationContext()), myOpenMapView);
         comOverlay.enableCompass();
-        myOpenMapView.getOverlays().add(comOverlay);
+        myOpenMapView.getOverlays().add(comOverlay);*/
 
 
         // pts.add(new GeoPoint(43.16814, -2.63781));
@@ -144,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
             GeoPoint durango2 = new GeoPoint(Latitud, Longitud);
 
             if (posicion.get(i).getOrden().equals(Integer.toString(pasado2))){
-                myMapController.setCenter(durango2);
+               // myMapController.setCenter(durango2);
             }
 
             final Handler handler = new Handler();
@@ -203,6 +227,9 @@ public class MainActivity extends AppCompatActivity {
             puntos.add(durango);
             refrescaPuntos();
         }
+
+
+
 
         ////////////////////////////////////
         /*Polyline line = new Polyline();
@@ -277,6 +304,7 @@ public class MainActivity extends AppCompatActivity {
         posicionActual = new GeoPoint(location.getLatitude(), location.getLongitude());
         OverlayItem marcador = new OverlayItem("Estás aquí", "Posicion actual", posicionActual);
         marcador.setMarker(ResourcesCompat.getDrawable(getResources(), R.drawable.sapua, null));
+
         puntos.add(marcador);
         refrescaPuntos();
     }
@@ -308,6 +336,85 @@ public class MainActivity extends AppCompatActivity {
         }
         ItemizedOverlayWithFocus<OverlayItem> capa = new ItemizedOverlayWithFocus<>(this, puntos, tap);
         myOpenMapView.getOverlays().add(capa);
+
+    }
+    public void cargaPuntos(){
+
+
+        cargarMapas();
+        refrescaRuta();
+    }
+
+    private void refrescaRuta() {
+        pts.add(new GeoPoint(43.168050, -2.637930));
+        pts.add(new GeoPoint(43.167420, -2.636408));
+        pts.add(new GeoPoint(43.167100, -2.635620));
+        pts.add(new GeoPoint(43.16697, -2.63523));
+        pts.add(new GeoPoint(43.16686, -2.63486));
+        pts.add(new GeoPoint(43.16656, -2.63314));
+        pts.add(new GeoPoint(43.16651,-2.63301));
+        pts.add(new GeoPoint(43.16651,-2.63301));
+        pts.add(new GeoPoint(43.16562,-2.63289));
+
+
+        GeoPoint durango2 = new GeoPoint(43.16656, -2.63314);
+
+
+        /*pts.add(new GeoPoint(43.167042, -2.635625));
+        pts.add(new GeoPoint(43.166680, -2.635605));
+        pts.add(new GeoPoint(43.166420, -2.635505));
+        pts.add(new GeoPoint(43.166210, -2.635360));
+        pts.add(new GeoPoint(43.166220, -2.635290));
+        pts.add(new GeoPoint(43.166190, -2.635205));
+        pts.add(new GeoPoint(43.166235, -2.635155));
+        pts.add(new GeoPoint(43.166270, -2.635070));
+        pts.add(new GeoPoint(43.166290, -2.634925));
+        pts.add(new GeoPoint(43.166285, -2.634581));
+        pts.add(new GeoPoint(43.166253, -2.634350));
+        pts.add(new GeoPoint(43.166160, -2.633965));
+        pts.add(new GeoPoint(43.166010, -2.633455));
+        pts.add(new GeoPoint(43.16596, -2.63331));
+
+
+        pts.add(new GeoPoint(43.16588, -2.63317));
+        pts.add(new GeoPoint(43.16566, -2.6329));
+        pts.add(new GeoPoint(43.16559, -2.63288));*/
+        pts.add(new GeoPoint(43.16478, -2.63259));
+        pts.add(new GeoPoint(43.1648, -2.6325));
+        pts.add(new GeoPoint(43.16539, -2.63238));
+
+
+
+
+        Polyline line=new Polyline();
+
+        Random rnd = new Random();
+        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+
+
+        line.setColor(color);
+        line.setTitle("Lehenengo gunea: Santa anako arkua");
+        line.setWidth(17f);
+        line.setPoints(pts);
+        line.setGeodesic(true);
+        line.setInfoWindow(new BasicInfoWindow(R.layout.bonuspack_bubble, myOpenMapView));
+        //Note, the info window will not show if you set the onclick listener
+        //line can also attach click listeners to the line
+        /*
+        line.setOnClickListener(new Polyline.OnClickListener() {
+            @Override
+            public boolean onClick(Polyline polyline, MapView mapView, GeoPoint eventPos) {
+                Toast.makeText(context, "Hello world!", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });*/
+
+        
+        myOpenMapView.getOverlayManager().add(line);
+        myMapController.setCenter(durango2);
+
+
+
     }
 
 
