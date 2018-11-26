@@ -50,7 +50,7 @@ public class Basededatos extends SQLiteOpenHelper {
     private void copyDataBase(Context context) throws IOException {
 
         File file = new File(DB_PATH);
-        if(!file.exists()){
+        if(file.exists()){
             String DB_PATH = context.getDatabasePath(NOMBRE_BASEDATOS).getPath();
 
             // Open your local db as the input stream

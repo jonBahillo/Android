@@ -334,8 +334,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+        ruta();
         ItemizedOverlayWithFocus<OverlayItem> capa = new ItemizedOverlayWithFocus<>(this, puntos, tap);
         myOpenMapView.getOverlays().add(capa);
+
 
     }
     public void cargaPuntos(){
@@ -386,31 +388,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Polyline line=new Polyline();
 
-        Random rnd = new Random();
-        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-
-
-        line.setColor(color);
-        line.setTitle("Lehenengo gunea: Santa anako arkua");
-        line.setWidth(17f);
-        line.setPoints(pts);
-        line.setGeodesic(true);
-        line.setInfoWindow(new BasicInfoWindow(R.layout.bonuspack_bubble, myOpenMapView));
-        //Note, the info window will not show if you set the onclick listener
-        //line can also attach click listeners to the line
-        /*
-        line.setOnClickListener(new Polyline.OnClickListener() {
-            @Override
-            public boolean onClick(Polyline polyline, MapView mapView, GeoPoint eventPos) {
-                Toast.makeText(context, "Hello world!", Toast.LENGTH_LONG).show();
-                return false;
-            }
-        });*/
-
-        
-        myOpenMapView.getOverlayManager().add(line);
         myMapController.setCenter(durango2);
 
 
@@ -504,5 +482,32 @@ public class MainActivity extends AppCompatActivity {
             Intent intent= new Intent(getBaseContext(),pantallacarga.class);
             startActivity(intent);
         }
+    }
+    public void ruta(){
+        Polyline line=new Polyline();
+
+        Random rnd = new Random();
+        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+
+
+        line.setColor(color);
+        line.setTitle("Lehenengo gunea: Santa anako arkua");
+        line.setWidth(17f);
+        line.setPoints(pts);
+        line.setGeodesic(true);
+        line.setInfoWindow(new BasicInfoWindow(R.layout.bonuspack_bubble, myOpenMapView));
+        //Note, the info window will not show if you set the onclick listener
+        //line can also attach click listeners to the line
+        /*
+        line.setOnClickListener(new Polyline.OnClickListener() {
+            @Override
+            public boolean onClick(Polyline polyline, MapView mapView, GeoPoint eventPos) {
+                Toast.makeText(context, "Hello world!", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });*/
+
+
+        myOpenMapView.getOverlayManager().add(line);
     }
 }
