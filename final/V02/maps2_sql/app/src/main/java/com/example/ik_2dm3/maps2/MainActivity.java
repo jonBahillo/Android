@@ -301,11 +301,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void actualizaPosicionActual(Location location) {
-        posicionActual = new GeoPoint(location.getLatitude(), location.getLongitude());
+       /* posicionActual = new GeoPoint(location.getLatitude(), location.getLongitude());
         OverlayItem marcador = new OverlayItem("Estás aquí", "Posicion actual", posicionActual);
         marcador.setMarker(ResourcesCompat.getDrawable(getResources(), R.drawable.sapua, null));
 
-        puntos.add(marcador);
+        puntos.add(marcador);*/
         refrescaPuntos();
     }
 
@@ -348,6 +348,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refrescaRuta() {
+
+        //ruta 1
         pts.add(new GeoPoint(43.168050, -2.637930));
         pts.add(new GeoPoint(43.167420, -2.636408));
         pts.add(new GeoPoint(43.167100, -2.635620));
@@ -357,36 +359,110 @@ public class MainActivity extends AppCompatActivity {
         pts.add(new GeoPoint(43.16651,-2.63301));
         pts.add(new GeoPoint(43.16651,-2.63301));
         pts.add(new GeoPoint(43.16562,-2.63289));
-
-
-        GeoPoint durango2 = new GeoPoint(43.16656, -2.63314);
-
-
-        /*pts.add(new GeoPoint(43.167042, -2.635625));
-        pts.add(new GeoPoint(43.166680, -2.635605));
-        pts.add(new GeoPoint(43.166420, -2.635505));
-        pts.add(new GeoPoint(43.166210, -2.635360));
-        pts.add(new GeoPoint(43.166220, -2.635290));
-        pts.add(new GeoPoint(43.166190, -2.635205));
-        pts.add(new GeoPoint(43.166235, -2.635155));
-        pts.add(new GeoPoint(43.166270, -2.635070));
-        pts.add(new GeoPoint(43.166290, -2.634925));
-        pts.add(new GeoPoint(43.166285, -2.634581));
-        pts.add(new GeoPoint(43.166253, -2.634350));
-        pts.add(new GeoPoint(43.166160, -2.633965));
-        pts.add(new GeoPoint(43.166010, -2.633455));
-        pts.add(new GeoPoint(43.16596, -2.63331));
-
-
-        pts.add(new GeoPoint(43.16588, -2.63317));
-        pts.add(new GeoPoint(43.16566, -2.6329));
-        pts.add(new GeoPoint(43.16559, -2.63288));*/
         pts.add(new GeoPoint(43.16478, -2.63259));
         pts.add(new GeoPoint(43.1648, -2.6325));
         pts.add(new GeoPoint(43.16539, -2.63238));
+        pts.add(new GeoPoint(43.16569, -2.63226));
+        pts.add(new GeoPoint(43.16575, -2.63212));
+
+
+        //ruta 2
+        pts.add(new GeoPoint(43.16575, -2.63212));
+        pts.add(new GeoPoint(43.16571, -2.63172));
+        pts.add(new GeoPoint(43.16563, -2.63165));
+        pts.add(new GeoPoint(43.16556, -2.63164));
+        pts.add(new GeoPoint(43.16541,-2.63140));
+        pts.add(new GeoPoint(43.16552,-2.63122));
+        pts.add(new GeoPoint(43.16556,-2.63077));
+        pts.add(new GeoPoint(43.16582,-2.63061));
+
+        //ruta 3
+        pts.add(new GeoPoint(43.16582,-2.63061));
+        pts.add(new GeoPoint(43.16645,-2.63025));
+        pts.add(new GeoPoint(43.16659,-2.63021));
+        pts.add(new GeoPoint(43.16789,-2.62963));
+        pts.add(new GeoPoint(43.16794,-2.62963));
+        pts.add(new GeoPoint(43.16799,-2.62940));
+
+        //ruta 4
+        pts.add(new GeoPoint(43.16799,-2.62940));
+        pts.add(new GeoPoint(43.16794, -2.62964));
+        pts.add(new GeoPoint(43.16793, -2.62975));
+        pts.add(new GeoPoint(43.16782,-2.63035));
+        pts.add(new GeoPoint(43.16775,-2.63034));
+
+        //ruta 5
+        pts.add(new GeoPoint(43.16775,-2.63034));
+        pts.add(new GeoPoint(43.16782,-2.63035));
+        pts.add(new GeoPoint(43.16779,-2.63065));
+        pts.add(new GeoPoint(43.16775,-2.63079));
+        pts.add(new GeoPoint(43.16769,-2.63087));
+        pts.add(new GeoPoint(43.16762,-2.63090));
+
+
+        //ruta 6
+        pts.add(new GeoPoint(43.16762,-2.63090));
+        pts.add(new GeoPoint(43.16764,-2.63090));
+        pts.add(new GeoPoint(43.16763, -2.63097));
+        pts.add(new GeoPoint(43.16770,-2.63137));
+        pts.add(new GeoPoint(43.16758,-2.63142));
+
+        //ruta 7
+        pts.add(new GeoPoint(43.16758,-2.63142));
+        pts.add(new GeoPoint(43.16770,-2.63137));
+        pts.add(new GeoPoint(43.16780,-2.63183));
+        pts.add(new GeoPoint(43.16768,-2.63189));
+
+        //ruta 8
+        pts.add(new GeoPoint(43.16768,-2.63189));
+        pts.add(new GeoPoint(43.16780,-2.63183));
+        pts.add(new GeoPoint(43.16774,-2.63153));
+        pts.add(new GeoPoint(43.16786,-2.63162));
+        pts.add(new GeoPoint(43.16809,-2.63171));
+
+        //ruta 9
+        pts.add(new GeoPoint(43.16809,-2.63171));
+        pts.add(new GeoPoint(43.16816,-2.63186));
+        pts.add(new GeoPoint(43.16827,-2.63236));
+        pts.add(new GeoPoint(43.16900,-2.63237));
+
+        //ruta 10
+        pts.add(new GeoPoint(43.16900,-2.63237));
+        pts.add(new GeoPoint(43.16827,-2.63236));
+        pts.add(new GeoPoint(43.16820,-2.63238));
+        pts.add(new GeoPoint(43.16750,-2.63266));
+
+        //ruta 11
+        pts.add(new GeoPoint(43.16750,-2.63266));
+        pts.add(new GeoPoint(43.16722,-2.63278));
+
+        //ruta 12
+        pts.add(new GeoPoint(43.16722,-2.63278));
+        pts.add(new GeoPoint(43.16683,-2.63291));
+
+        //ruta 13
+        pts.add(new GeoPoint(43.16683,-2.63291));
+        pts.add(new GeoPoint(43.16683,-2.63291));
+
+        //ruta 14
+        pts.add(new GeoPoint(43.16651,-2.63301));
+        pts.add(new GeoPoint(43.16656, -2.63314));
+        pts.add(new GeoPoint(43.16686, -2.63486));
+        pts.add(new GeoPoint(43.16697, -2.63523));
+        pts.add(new GeoPoint(43.167100, -2.635620));
+        pts.add(new GeoPoint(43.167420, -2.636408));
+        pts.add(new GeoPoint(43.168050, -2.637930));
 
 
 
+
+
+
+
+
+
+
+        GeoPoint durango2 = new GeoPoint(43.16656, -2.63314);
 
 
         myMapController.setCenter(durango2);
