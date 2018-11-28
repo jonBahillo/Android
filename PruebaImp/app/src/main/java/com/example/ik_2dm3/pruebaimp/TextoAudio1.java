@@ -22,11 +22,9 @@ public class TextoAudio1 extends AppCompatActivity {
     final int REQ_JUEGO1 = 1;
     int dialogos1 = 1;
     boolean primero = true;
-    boolean parar = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        final hilos2 hilo1_2 = new hilos2();
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         if (Build.VERSION.SDK_INT > 16) {
@@ -34,7 +32,7 @@ public class TextoAudio1 extends AppCompatActivity {
         }
         setContentView(R.layout.activity_texto_audio1);
         siguiente1=findViewById(R.id.txtSig1);
-        siguiente1.setVisibility(View.VISIBLE);
+        siguiente1.setVisibility(View.INVISIBLE);
         //Reproducimos el audio
         audio1 = MediaPlayer.create(TextoAudio1.this, R.raw.santaana1);
         //audio1.setVolume(200,200);
@@ -51,6 +49,12 @@ public class TextoAudio1 extends AppCompatActivity {
                 ejecutar_hilo(mostrar1, pruebatexto1, boton_mostrar1, 850, dialogos1);
             }
         }, 4500);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                siguiente1.setVisibility(View.VISIBLE);
+            }
+        }, 67100);
         siguiente1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +62,6 @@ public class TextoAudio1 extends AppCompatActivity {
                     primero=false;
                     if (audio1.isPlaying()){
                         audio1.stop();
-                        hilo1_2.parar();
                     }
                     Intent juego = new Intent(TextoAudio1.this, pantallacarga.class);
                     startActivityForResult(juego, REQ_JUEGO1);
@@ -82,9 +85,9 @@ public class TextoAudio1 extends AppCompatActivity {
     }
 
     public void onActivityResult (int requestCode, int resultCode, Intent Data){
+        siguiente1.setVisibility(View.INVISIBLE);
         switch (requestCode){
             case REQ_JUEGO1:
-                parar=false;
                 if (resultCode==RESULT_OK){
                     mostrar1.setText("");
                     //Reproducimos el audio
@@ -102,6 +105,12 @@ public class TextoAudio1 extends AppCompatActivity {
                             ejecutar_hilo(mostrar1, pruebatexto1, boton_mostrar1, 850, dialogos1);
                         }
                     }, 1500);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            siguiente1.setVisibility(View.VISIBLE);
+                        }
+                    }, 7800);
 
                 }
                 break;

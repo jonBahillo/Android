@@ -13,7 +13,7 @@ public class pantallacarga extends AppCompatActivity {
         setContentView(R.layout.activity_pantallacarga);
         getSupportActionBar().hide();
 
-        final Intent cartasI = new Intent(pantallacarga.this, TextoAudio1.class);
+        final Intent cartasI = new Intent(pantallacarga.this, TextoAudio3.class);
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

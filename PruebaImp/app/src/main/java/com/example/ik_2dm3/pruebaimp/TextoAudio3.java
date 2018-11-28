@@ -15,11 +15,11 @@ public class TextoAudio3 extends AppCompatActivity {
     String texto3;
     TextView mostrar3;
     String[] pruebatexto3;
-    String fuera3="";
     MediaPlayer audio3;
     TextView siguiente3;
     boolean boton_mostrar3;
-    int REQ_JUEGO3 = 1;
+    final int REQ_JUEGO3 = 1;
+    int dialogos3 = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +30,10 @@ public class TextoAudio3 extends AppCompatActivity {
         }
         setContentView(R.layout.activity_texto_audio3);
         siguiente3=findViewById(R.id.txtSig3);
-        //siguiente5.setVisibility(View.INVISIBLE);
+        siguiente3.setVisibility(View.INVISIBLE);
         //Reproducimos el audio
         audio3 = MediaPlayer.create(TextoAudio3.this, R.raw.aldezaharra);
         audio3.start();
-        if (audio3.getCurrentPosition()==28000){
-            audio3.stop();
-        }
         //Sacamos el texto palabra a palabra
         texto3 = getResources().getString(R.string.gunea3_1);
         //Separamos las palabras
@@ -46,34 +43,74 @@ public class TextoAudio3 extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ejecutar_hilo(mostrar3, fuera3, pruebatexto3, boton_mostrar3, 950);
+                ejecutar_hilo(mostrar3, pruebatexto3, boton_mostrar3, 935, dialogos3);
             }
         }, 4000);
+
+        siguiente3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent juego = new Intent(TextoAudio3.this, pantallacarga.class);
+                startActivityForResult(juego, REQ_JUEGO3);
+            }
+        });
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 audio3.stop();
             }
-        }, 21300);
-        siguiente3.setOnClickListener(new View.OnClickListener() {
+        }, 21000);
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                Intent juego = new Intent(TextoAudio3.this, TextoAudio1.class);
-                if (audio3.isPlaying()){
-                    audio3.stop();
-                }
-                startActivityForResult(juego, REQ_JUEGO3);
+            public void run() {
+                siguiente3.setVisibility(View.VISIBLE);
             }
-        });
+        }, 22000);
     }
 
-    public void ejecutar_hilo(TextView texto_pantalla, String sacar, String[] palabras, boolean terminar, int tiempo) {
-        hilos hilo = new hilos();
-        hilo.palabras = palabras;
-        hilo.sacar = sacar;
-        hilo.txtview = texto_pantalla;
-        hilo.finalizado = terminar;
-        hilo.milisegundos = tiempo;
+    public void ejecutar_hilo(TextView texto_pantalla, String[] palabras, boolean terminar, int tiempo, int numdialogos) {
+        hilos2 hilo = new hilos2();
+        hilo.txtview2 = texto_pantalla;
+        hilo.palabras2_1 = palabras;
+        hilo.finalizado2 = terminar;
+        hilo.milisegundos2 = tiempo;
+        hilo.dialogos = numdialogos;
         hilo.start();
+    }
+
+    public void onActivityResult (int requestCode, int resultCode, Intent Data){
+        switch (requestCode){
+            case REQ_JUEGO3:
+                if (resultCode==RESULT_OK){
+                    siguiente3.setVisibility(View.INVISIBLE);
+                    mostrar3.setText("");
+                    //Reproducimos el audio
+                    audio3 = MediaPlayer.create(TextoAudio3.this, R.raw.aldezaharra);
+                    //audio3.setVolume(200,200);
+                    audio3.seekTo(29600);
+                    //La siguiente parte del audio es en el segundo 59 +-
+                    audio3.start();
+                    //Sacamos el texto palabra a palabra
+                    texto3 = getResources().getString(R.string.gunea3_2);
+                    pruebatexto3=texto3.split(" ");
+                    mostrar3 = findViewById(R.id.txtHistoria3);
+                    final Handler handler = new Handler();
+                    ejecutar_hilo(mostrar3, pruebatexto3, boton_mostrar3, 880, dialogos3);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            siguiente3.setVisibility(View.VISIBLE);
+                        }
+                    }, 19850);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            audio3.stop();
+                        }
+                    }, 19000);
+
+                }
+                break;
+        }
     }
 }

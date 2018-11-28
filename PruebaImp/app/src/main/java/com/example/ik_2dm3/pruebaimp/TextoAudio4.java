@@ -21,13 +21,13 @@ public class TextoAudio4 extends AppCompatActivity {
     TextView mostrar4;
     String[] pruebatexto4_1;
     String[] pruebatexto4_2;
-    String fuera4="";
     MediaPlayer audio4;
     TextView siguiente4;
     boolean boton_mostrar4;
     int REQ_JUEGO4 = 1;
     ImageView cambiartexto;
     boolean primero = false;
+    int dialogos = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class TextoAudio4 extends AppCompatActivity {
         //Separamos las palabras
         pruebatexto4_2=texto4_2.split(" ");
         mostrar4 = findViewById(R.id.txtHistoria4);
-        ejecutar_hilo(mostrar4, pruebatexto4_1, pruebatexto4_2, boton_mostrar4, 565);
+        ejecutar_hilo(mostrar4, pruebatexto4_1, pruebatexto4_2, 565, dialogos);
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -93,13 +93,13 @@ public class TextoAudio4 extends AppCompatActivity {
         });
     }
 
-    public void ejecutar_hilo(TextView texto_pantalla, String[] palabras1, String[] palabras2,boolean terminar, int tiempo) {
+    public void ejecutar_hilo(TextView texto_pantalla, String[] palabras1, String[] palabras2, int tiempo, int numdialogos) {
         hilos2 hilo = new hilos2();
+        hilo.txtview2 = texto_pantalla;
         hilo.palabras2_1 = palabras1;
         hilo.palabras2_2 = palabras2;
-        hilo.txtview2 = texto_pantalla;
-        hilo.finalizado2 = terminar;
         hilo.milisegundos2 = tiempo;
+        hilo.dialogos = numdialogos;
         hilo.start();
     }
 }

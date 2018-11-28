@@ -16,7 +16,6 @@ public class TextoAudio extends AppCompatActivity {
     String texto5;
     TextView mostrar5;
     String[] pruebatexto5;
-    String fuera5="";
     MediaPlayer audio5;
     TextView siguiente5;
     boolean boton_mostrar5;
@@ -45,7 +44,7 @@ public class TextoAudio extends AppCompatActivity {
         siguiente5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent juego = new Intent(TextoAudio.this, TextoAudio1.class);
+                Intent juego = new Intent(TextoAudio.this, TextoAudio7.class);
                 if (audio5.isPlaying()){
                     audio5.stop();
                 }

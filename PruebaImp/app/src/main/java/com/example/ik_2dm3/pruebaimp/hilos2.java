@@ -11,16 +11,9 @@ public class hilos2 extends Thread{
     boolean finalizado2;
     int milisegundos2;
     int dialogos=0;
-    boolean seguir = true;
-
-    public void parar(){
-        seguir=false;
-        Log.d("mytag", "Algo");
-    }
 
     @Override
     public void run(){
-        while (seguir) {
             txtview2.setText("");
             String sacar2;
             ArrayList guardartexto = new ArrayList<String>();
@@ -58,6 +51,5 @@ public class hilos2 extends Thread{
                     }
                 }
             }
-        }
     }
 }
