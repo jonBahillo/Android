@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">PruebaImp</string>
     <string name="todo">TODO</string>
-    <string name="gunea0">
+    <string name="gunea0_1">
         Kaixo lagunok! Nire izena Kalebarria da, izena ezaguna egiten zaizue ezta?
         Irteera honetan Durangoko historia eta kultura ondarea ezagutuko dugu.
         Baita 1937ko martxoaren 31ko bonbardaketak Durangoko hirian utzitako aztarnak ikusteko eta horren ondorioak ezagutzeko aukera izango dugu gaur.
+    </string>
+    <string name="gunea0_2">
         Bidaia honetan zehar lagunduko zaituztet baina... nik ere zuen laguntza behar dut... Ez dut nire maitalea topatzen eta oso triste nago. Agian berak ere Durangoko historiari buruz zer edo zer berria ikasten ari da.
         Beno lagunak, bidaia hasteko prest!?
     </string>

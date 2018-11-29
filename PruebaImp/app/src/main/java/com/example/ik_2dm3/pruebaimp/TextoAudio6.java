@@ -22,10 +22,9 @@ public class TextoAudio6 extends AppCompatActivity {
     TextView siguiente6;
     boolean boton_mostrar6;
     int REQ_JUEGO6 = 1;
-    int dialogos = 1;
-    /*ImageView cambiartexto;
+    int dialogos6 = 2;
+    ImageView cambiartexto6;
     boolean primero = false;
-    String fuera6="";*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +36,11 @@ public class TextoAudio6 extends AppCompatActivity {
         setContentView(R.layout.activity_texto_audio6);
         siguiente6=findViewById(R.id.txtSig6);
         siguiente6.setVisibility(View.INVISIBLE);
+        cambiartexto6 = findViewById(R.id.imgCambiartexto6);
+        cambiartexto6.setVisibility(View.INVISIBLE);
         //Reproducimos el audio
         audio6 = MediaPlayer.create(TextoAudio6.this, R.raw.sanagustin1);
         audio6.start();
-        /*if (audio6.getCurrentPosition()==28000){
-            audio6.pause(); //pausa
-        }*/
         //Sacamos el texto palabra a palabra
         texto6_1 = getResources().getString(R.string.gunea6_1);
         //Separamos las palabras
@@ -51,17 +49,16 @@ public class TextoAudio6 extends AppCompatActivity {
         //Separamos las palabras
         pruebatexto6_2=texto6_2.split(" ");
         mostrar6 = findViewById(R.id.txtHistoria6);
-        ejecutar_hilo(mostrar6, pruebatexto6_1, pruebatexto6_2, boton_mostrar6, 565, dialogos);
+        ejecutar_hilo(mostrar6, pruebatexto6_1, pruebatexto6_2, boton_mostrar6, 565, dialogos6);
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 audio6.pause();
                 siguiente6.setVisibility(View.VISIBLE);
-                //cambiartexto.setVisibility(View.VISIBLE);
-                //Log.d("mytag", "Hola: " + hilop.texto1);
+                cambiartexto6.setVisibility(View.VISIBLE);
             }
-        }, 34200);
+        }, 63200);
         siguiente6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,20 +69,20 @@ public class TextoAudio6 extends AppCompatActivity {
                 startActivityForResult(juego, REQ_JUEGO6);
             }
         });
-        /*cambiartexto.setOnClickListener(new View.OnClickListener() {
+        cambiartexto6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (primero){
                     mostrar6.setText(texto6_2);
-                    cambiartexto.setImageResource(R.drawable.flecha_iz);
+                    cambiartexto6.setImageResource(R.drawable.flecha_iz);
                     primero=false;
                 }else{
                     mostrar6.setText(texto6_1);
-                    cambiartexto.setImageResource(R.drawable.flecha_der);
+                    cambiartexto6.setImageResource(R.drawable.flecha_der);
                     primero=true;
                 }
             }
-        });*/
+        });
     }
 
     public void ejecutar_hilo(TextView texto_pantalla, String[] palabras1, String[] palabras2, boolean terminar, int tiempo, int numdialogos) {

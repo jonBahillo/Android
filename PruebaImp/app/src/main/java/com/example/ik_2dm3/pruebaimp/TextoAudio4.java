@@ -23,8 +23,7 @@ public class TextoAudio4 extends AppCompatActivity {
     String[] pruebatexto4_2;
     MediaPlayer audio4;
     TextView siguiente4;
-    boolean boton_mostrar4;
-    int REQ_JUEGO4 = 1;
+    final int REQ_JUEGO4 = 2;
     ImageView cambiartexto;
     boolean primero = false;
     int dialogos = 2;
@@ -55,7 +54,7 @@ public class TextoAudio4 extends AppCompatActivity {
         //Separamos las palabras
         pruebatexto4_2=texto4_2.split(" ");
         mostrar4 = findViewById(R.id.txtHistoria4);
-        ejecutar_hilo(mostrar4, pruebatexto4_1, pruebatexto4_2, 565, dialogos);
+        ejecutar_hilo(mostrar4, pruebatexto4_1, pruebatexto4_2, 570, dialogos);
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -63,17 +62,12 @@ public class TextoAudio4 extends AppCompatActivity {
                 audio4.pause();
                 siguiente4.setVisibility(View.VISIBLE);
                 cambiartexto.setVisibility(View.VISIBLE);
-                //Log.d("mytag", "Hola: " + hilop.texto1);
             }
-        }, 50100);
+        }, 51000);
         siguiente4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent juego = new Intent(TextoAudio4.this, TextoAudio1.class);
-                if (audio4.isPlaying()){
-                    audio4.stop();
-                }
-
+                Intent juego = new Intent(TextoAudio4.this, pantallacarga.class);
                 startActivityForResult(juego, REQ_JUEGO4);
             }
         });
@@ -101,5 +95,36 @@ public class TextoAudio4 extends AppCompatActivity {
         hilo.milisegundos2 = tiempo;
         hilo.dialogos = numdialogos;
         hilo.start();
+    }
+
+    public void onActivityResult (int requestCode, int resultCode, Intent Data){
+        switch (requestCode){
+            case REQ_JUEGO4:
+                if (resultCode==RESULT_OK){
+                    dialogos=1;
+                    siguiente4.setVisibility(View.INVISIBLE);
+                    cambiartexto.setVisibility(View.INVISIBLE);
+                    mostrar4.setText("");
+                    //Reproducimos el audio
+                    audio4 = MediaPlayer.create(TextoAudio4.this, R.raw.aldezaharra);
+                    //audio3.setVolume(200,200);
+                    audio4.seekTo(52000);
+                    //La siguiente parte del audio es en el segundo 59 +-
+                    audio4.start();
+                    //Sacamos el texto palabra a palabra
+                    texto4_1 = getResources().getString(R.string.gunea4_2);
+                    pruebatexto4_1=texto4_1.split(" ");
+                    mostrar4 = findViewById(R.id.txtHistoria4);
+                    final Handler handler = new Handler();
+                    ejecutar_hilo(mostrar4, pruebatexto4_1, pruebatexto4_2, 570, dialogos);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            siguiente4.setVisibility(View.VISIBLE);
+                        }
+                    }, 20000);
+                }
+                break;
+        }
     }
 }
