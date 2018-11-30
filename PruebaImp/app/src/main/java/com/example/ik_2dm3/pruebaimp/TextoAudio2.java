@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class TextoAudio2 extends AppCompatActivity {
@@ -19,7 +20,9 @@ public class TextoAudio2 extends AppCompatActivity {
     MediaPlayer audio2;
     TextView siguiente2;
     boolean boton_mostrar2;
+    boolean segundo = true;
     final int REQ_JUEGO2 = 1;
+    final int REQ_JUEGO2_2 = 2;
     int dialogos2 = 1;
 
     @Override
@@ -55,7 +58,7 @@ public class TextoAudio2 extends AppCompatActivity {
             public void run() {
                 siguiente2.setVisibility(View.VISIBLE);
             }
-        }, 29000);
+        }, 30000);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -65,8 +68,14 @@ public class TextoAudio2 extends AppCompatActivity {
         siguiente2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent juego = new Intent(TextoAudio2.this, pantallacarga.class);
-                startActivityForResult(juego, REQ_JUEGO2);
+                if (segundo){
+                    Intent juego = new Intent(TextoAudio2.this, pantallacarga.class);
+                    startActivityForResult(juego, REQ_JUEGO2);
+                    segundo = false;
+                }else{
+                    Intent juego = new Intent(TextoAudio2.this, pantallacarga.class);
+                    startActivityForResult(juego, REQ_JUEGO2_2);
+                }
             }
         });
     }
@@ -90,11 +99,10 @@ public class TextoAudio2 extends AppCompatActivity {
                     //Reproducimos el audio
                     audio2 = MediaPlayer.create(TextoAudio2.this, R.raw.kurutziaga);
                     audio2.setVolume(200,200);
-                    audio2.seekTo(49500);
-                    //La siguiente parte del audio es en el segundo 59 +-
-                    Log.d("mytag", "Hola: " + audio2.getCurrentPosition());
+                    audio2.seekTo(49600);
+                    //La siguiente parte del audio es en el segundo 49 +-
+                    //Log.d("mytag", "Hola: " + audio2.getCurrentPosition());
                     audio2.start();
-                    Log.d("mytag", "Hola: " + audio2.getCurrentPosition());
                     //Sacamos el texto palabra a palabra
                     texto2 = getResources().getString(R.string.gunea2_2);
                     pruebatexto2=texto2.split(" ");
@@ -104,10 +112,42 @@ public class TextoAudio2 extends AppCompatActivity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
+                            audio2.pause();
+                        }
+                    }, 10500);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
                             siguiente2.setVisibility(View.VISIBLE);
                         }
                     }, 10800);
 
+                }
+                break;
+            case REQ_JUEGO2_2:
+                if (resultCode==RESULT_OK){
+                    siguiente2.setVisibility(View.INVISIBLE);
+                    mostrar2.setText("");
+                    //Reproducimos el audio
+                    //audio3.setVolume(200,200);
+                    audio2.start();
+                    //Sacamos el texto palabra a palabra
+                    texto2 = getResources().getString(R.string.gunea2_3);
+                    pruebatexto2=texto2.split(" ");
+                    mostrar2 = findViewById(R.id.txtHistoria2);
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            ejecutar_hilo(mostrar2, pruebatexto2, boton_mostrar2, 720, dialogos2);
+                        }
+                    }, 7300);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            siguiente2.setVisibility(View.VISIBLE);
+                        }
+                    }, 22000);
                 }
                 break;
         }

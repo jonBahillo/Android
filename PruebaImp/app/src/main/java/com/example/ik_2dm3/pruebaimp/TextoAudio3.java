@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class TextoAudio3 extends AppCompatActivity {
@@ -18,7 +19,9 @@ public class TextoAudio3 extends AppCompatActivity {
     MediaPlayer audio3;
     TextView siguiente3;
     boolean boton_mostrar3;
+    boolean segundo = true;
     final int REQ_JUEGO3 = 1;
+    final int REQ_JUEGO3_2 = 2;
     int dialogos3 = 1;
 
     @Override
@@ -50,8 +53,15 @@ public class TextoAudio3 extends AppCompatActivity {
         siguiente3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent juego = new Intent(TextoAudio3.this, pantallacarga.class);
-                startActivityForResult(juego, REQ_JUEGO3);
+                if (segundo){
+                    Intent juego = new Intent(TextoAudio3.this, pantallacarga.class);
+                    startActivityForResult(juego, REQ_JUEGO3);
+                    segundo = false;
+                }else{
+                    Intent juego = new Intent(TextoAudio3.this, pantallacarga.class);
+                    startActivityForResult(juego, REQ_JUEGO3_2);
+                }
+
             }
         });
         handler.postDelayed(new Runnable() {
@@ -87,7 +97,7 @@ public class TextoAudio3 extends AppCompatActivity {
                     //Reproducimos el audio
                     audio3 = MediaPlayer.create(TextoAudio3.this, R.raw.aldezaharra);
                     //audio3.setVolume(200,200);
-                    audio3.seekTo(29600);
+                    audio3.seekTo(29700);
                     //La siguiente parte del audio es en el segundo 59 +-
                     audio3.start();
                     //Sacamos el texto palabra a palabra
@@ -109,6 +119,31 @@ public class TextoAudio3 extends AppCompatActivity {
                         }
                     }, 19000);
 
+                }
+                break;
+            case REQ_JUEGO3_2:
+                if (resultCode==RESULT_OK){
+                    ImageView imgsapo;
+                    imgsapo = findViewById(R.id.imageView3);
+                    imgsapo.setImageResource(R.drawable.goienkale);
+                    siguiente3.setVisibility(View.INVISIBLE);
+                    mostrar3.setText("");
+                    //Reproducimos el audio
+                    audio3 = MediaPlayer.create(TextoAudio3.this, R.raw.aldezaharra2);
+                    //audio3.setVolume(200,200);
+                    audio3.start();
+                    //Sacamos el texto palabra a palabra
+                    texto3 = getResources().getString(R.string.gunea3_3);
+                    pruebatexto3=texto3.split(" ");
+                    mostrar3 = findViewById(R.id.txtHistoria3);
+                    final Handler handler = new Handler();
+                    ejecutar_hilo(mostrar3, pruebatexto3, boton_mostrar3, 575, dialogos3);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            siguiente3.setVisibility(View.VISIBLE);
+                        }
+                    }, 47200);
                 }
                 break;
         }

@@ -7,66 +7,32 @@
     tools:context=".TextoAudio7"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtHistoria7"
-        android:layout_width="match_parent"
-        android:layout_height="167dp"
-        android:background="@drawable/recuadro_texto"
-        android:padding="10dp"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/imgCambiartexto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/azul"
-        android:layout_weight="0"
-        android:orientation="vertical">
+        android:layout_height="450dp"
+        android:background="@drawable/santaana"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/azul"
-            android:orientation="horizontal">
-
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="190dp"
-                android:layout_height="273dp"
-
-                android:layout_weight="0"
-                app:srcCompat="@drawable/kalebarria" />
-
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="190dp"
-                android:layout_height="273dp"
-
-                android:layout_weight="0"
-                app:srcCompat="@drawable/goienkale" />
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="120dp"
+            android:layout_height="136dp"
+            android:layout_gravity="bottom"
+            android:layout_weight="0"
+            app:srcCompat="@drawable/kalebarria" />
 
         <TextView
-
             android:id="@+id/txtSig7"
-
-            android:layout_width="369dp"
+            android:layout_width="101dp"
             android:layout_height="34dp"
-
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="5dp"
+            android:layout_gravity="bottom"
             android:layout_weight="0"
+            android:layout_marginLeft="140dp"
             android:background="@drawable/boton"
             android:padding="5dp"
+            android:layout_marginBottom="3dp"
             android:text="@string/siguiente"
             android:textAlignment="center" />
-
     </LinearLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -82,6 +48,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/flecha_iz" />
+
+        <TextView
+            android:id="@+id/txtHistoria7"
+            android:layout_width="0dp"
+            android:layout_height="167dp"
+            android:background="@drawable/recuadro_texto"
+            android:padding="10dp"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/imgCambiartexto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </android.support.constraint.ConstraintLayout>
