@@ -44,7 +44,7 @@ public class TextoAudio extends AppCompatActivity {
         siguiente5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent juego = new Intent(TextoAudio.this, TextoAudio2.class);
+                Intent juego = new Intent(TextoAudio.this, juegoAdivina.class);
                 if (audio5.isPlaying()){
                     audio5.stop();
                 }

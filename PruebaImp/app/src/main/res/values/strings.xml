@@ -72,4 +72,18 @@
         Gure bidaia amaitu egin da, espero dugu gustatu izana eta garrantzitsuaena, Durangoren historia eta kultura ondareari buruz asko ikasi izana. Zuekin elkarlanean aritzean oso ondo sentitu gara eta ederto pasatu dugu. Hurrengora arte lagunak!
     </string>
     <string name="siguiente">Aurrera</string>
+    <string name="pregunta1">
+        Baina ez zarete ohartu zein den nire izenaren jatorria? Zeren izena dut?
+    </string>
+    <string name="erantzuna1">
+        Sartu hemen erantzuna
+    </string>
+    <string name="pregunta2">
+        -	Durangoko alde zaharraren kale baten izena dauka. \n
+        -	G letrarekin hasten da eta E letrarekin  amaitu. \n
+        -	Seguruenik parrandan dago. \n
+    </string>
+    <string name="erantzuna2">
+        Sartu hemen erantzuna
+    </string>
 </resources>

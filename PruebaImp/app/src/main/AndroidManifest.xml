@@ -32,9 +32,21 @@
         <activity
             android:name=".TextoAudio4"
             android:screenOrientation="portrait" />
-        <activity android:name=".TextoAudio6" />
-        <activity android:name=".TextoAudio7" />
-        <activity android:name=".TextoAudio0"></activity>
+        <activity
+            android:name=".TextoAudio6"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TextoAudio7"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TextoAudio0"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".juegoHuecos"
+            android:screenOrientation="landscape" />
+        <activity android:name=".juegoAdivina"
+            android:screenOrientation="landscape"
+            ></activity>
     </application>
 
 </manifest>
