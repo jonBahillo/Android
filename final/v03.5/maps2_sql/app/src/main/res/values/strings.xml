@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">maps2</string>
+    <string name="nombresitio" />
+    <string name="todo">TODO</string>
+    <string name="x">X</string>
+    <string name="ver_informacion">Ver informacion</string>
+    <string name="descFotoAntes">Descripcion foto antes</string>
+    <string name="descFotoAhora">Descripcion foto despues</string>
+    <string name="descFotoSeleccion">transparencia</string>
+    <string name="imageview">image</string>
+    <string name="orain">ORAIN</string>
+    <string name="lehen">LEHEN</string>
+    <string name="fondoV">fondoV</string>
+    <string name="fondoA">fondoA</string>
+</resources>
