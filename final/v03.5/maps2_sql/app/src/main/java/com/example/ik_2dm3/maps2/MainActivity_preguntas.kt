@@ -89,7 +89,29 @@ class MainActivity_preguntas : AppCompatActivity() {
             i++
 
         }
+        btn.setOnClickListener {
+
+            if (checkBox.isChecked && checkBox1.isChecked)
+                popup(null)
+            if (checkBox2.isChecked && checkBox3.isChecked)
+                Toast.makeText(this@MainActivity_preguntas, "Txarto dago", Toast.LENGTH_SHORT).show()
+            if (checkBox2.isChecked)
+                Toast.makeText(this@MainActivity_preguntas, "Txarto dago", Toast.LENGTH_SHORT).show()
+            if (checkBox3.isChecked)
+                Toast.makeText(this@MainActivity_preguntas, "Txarto dago", Toast.LENGTH_SHORT).show()
+            if (checkBox.isChecked && checkBox2.isChecked)
+                Toast.makeText(this@MainActivity_preguntas, "Txarto dago", Toast.LENGTH_SHORT).show()
+            if (checkBox.isChecked && checkBox3.isChecked)
+                Toast.makeText(this@MainActivity_preguntas, "Txarto dago", Toast.LENGTH_SHORT).show()
+            if (checkBox1.isChecked && checkBox2.isChecked)
+                Toast.makeText(this@MainActivity_preguntas, "Txarto dago", Toast.LENGTH_SHORT).show()
+            if (checkBox1.isChecked && checkBox3.isChecked)
+                Toast.makeText(this@MainActivity_preguntas, "Txarto dago", Toast.LENGTH_SHORT).show()
+
+        }
     }
+
+
 
     fun popup(v: View?) {
         var dialogo: Dialog
@@ -116,6 +138,7 @@ class MainActivity_preguntas : AppCompatActivity() {
         }
         dialogo.show()
     }
+
 
     }
 
