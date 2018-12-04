@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -53,7 +54,7 @@ public class TextoAudio7 extends AppCompatActivity {
                 audio7.start();
                 imagensapo.setImageResource(R.drawable.goienkale);
             }
-        }, 22100);
+        }, 25700);
         //Sacamos el texto palabra a palabra
         texto7_1 = getResources().getString(R.string.gunea7_1);
         //Separamos las palabras
@@ -65,13 +66,14 @@ public class TextoAudio7 extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ejecutar_hilo(mostrar7, pruebatexto7_1, pruebatexto7_2, boton_mostrar7, 680, dialogos7);
+                ejecutar_hilo(mostrar7, pruebatexto7_1, pruebatexto7_2, boton_mostrar7, 710, dialogos7);
+                //Log.d("mytag", "Hola: " + pruebatexto7_1[pruebatexto7_1.length-1]);
             }
-        }, 3100);
+        }, 3500);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                audio7.pause();
+                audio7.stop();
                 siguiente7.setVisibility(View.VISIBLE);
                 cambiartexto7.setVisibility(View.VISIBLE);
                 //Log.d("mytag", "Hola: " + hilop.texto1);
