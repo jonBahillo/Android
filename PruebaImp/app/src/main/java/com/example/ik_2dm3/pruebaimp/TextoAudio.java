@@ -44,7 +44,11 @@ public class TextoAudio extends AppCompatActivity {
         siguiente5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< Updated upstream
                 Intent juego = new Intent(TextoAudio.this, TextoAudio7.class);
+=======
+                Intent juego = new Intent(TextoAudio.this, TextoAudio1.class);
+>>>>>>> Stashed changes
                 if (audio5.isPlaying()){
                     audio5.stop();
                 }
