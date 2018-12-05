@@ -16,7 +16,7 @@
         android:background="@color/azul"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/zorionak" />
+        app:srcCompat="@drawable/ZORIONAK" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,32 +63,6 @@
         android:layout_height="match_parent"
         android:background="@color/azul">
 
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="31dp"
-            android:layout_height="31dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="164dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.16"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/prueba2" />
-
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="31dp"
-            android:layout_height="31dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="164dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.913"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/prueba3" />
-
         <TextView
             android:id="@+id/txtHistoria7"
             android:layout_width="match_parent"
@@ -99,10 +73,9 @@
             android:gravity="end"
             android:padding="10dp"
             android:textAlignment="center"
-<<<<<<< Updated upstream
-=======
+
             app:layout_constraintBottom_toBottomOf="parent"
->>>>>>> Stashed changes
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
