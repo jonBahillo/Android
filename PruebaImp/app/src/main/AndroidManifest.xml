@@ -32,6 +32,7 @@
         <activity
             android:name=".TextoAudio4"
             android:screenOrientation="portrait" />
+<<<<<<< Updated upstream
         <activity
             android:name=".TextoAudio6"
             android:screenOrientation="portrait" />
@@ -47,6 +48,16 @@
         <activity android:name=".juegoAdivina"
             android:screenOrientation="landscape"
             ></activity>
+=======
+        <activity android:name=".TextoAudio6"
+            android:screenOrientation="portrait" />
+        <activity android:name=".TextoAudio7"
+            android:screenOrientation="portrait" />
+        <activity android:name=".TextoAudio0"
+            android:screenOrientation="portrait" />
+        <activity android:name=".juegoHuecos"
+            android:screenOrientation="landscape"></activity>
+>>>>>>> Stashed changes
     </application>
 
 </manifest>

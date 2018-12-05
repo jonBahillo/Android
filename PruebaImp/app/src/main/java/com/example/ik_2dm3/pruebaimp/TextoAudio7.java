@@ -27,7 +27,7 @@ public class TextoAudio7 extends AppCompatActivity {
     ImageView cambiartexto7;
     boolean primero7 = false;
     int dialogos7 = 2;
-    ImageView imagensapo;
+    ImageView imagensapo,imagensapa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,8 @@ public class TextoAudio7 extends AppCompatActivity {
         }
         setContentView(R.layout.activity_texto_audio7);
         imagensapo=findViewById(R.id.imageView7);
+        imagensapa=findViewById(R.id.imageView8);
+        imagensapa.setVisibility(View.INVISIBLE);
         siguiente7=findViewById(R.id.txtSig7);
         cambiartexto7 = findViewById(R.id.imgCambiartexto7);
         siguiente7.setVisibility(View.INVISIBLE);
@@ -52,9 +54,15 @@ public class TextoAudio7 extends AppCompatActivity {
                 audio7.release();
                 audio7 = MediaPlayer.create(TextoAudio7.this, R.raw.amaiera2);
                 audio7.start();
-                imagensapo.setImageResource(R.drawable.goienkale);
+                imagensapo.setVisibility(View.INVISIBLE);
+                imagensapa.setVisibility(View.VISIBLE);
+
             }
+<<<<<<< Updated upstream
         }, 25700);
+=======
+        }, 23100);
+>>>>>>> Stashed changes
         //Sacamos el texto palabra a palabra
         texto7_1 = getResources().getString(R.string.gunea7_1);
         //Separamos las palabras
@@ -96,11 +104,17 @@ public class TextoAudio7 extends AppCompatActivity {
                     mostrar7.setText(texto7_2);
                     cambiartexto7.setImageResource(R.drawable.flecha_iz);
                     imagensapo.setImageResource(R.drawable.goienkale);
+                    imagensapa.setVisibility(View.INVISIBLE);
+                    imagensapo.setVisibility(View.VISIBLE);
+
                     primero7=false;
+
                 }else{
                     mostrar7.setText(texto7_1);
                     cambiartexto7.setImageResource(R.drawable.flecha_der);
                     imagensapo.setImageResource(R.drawable.kalebarria);
+                    imagensapo.setVisibility(View.INVISIBLE);
+                    imagensapa.setVisibility(View.VISIBLE);
                     primero7=true;
                 }
             }

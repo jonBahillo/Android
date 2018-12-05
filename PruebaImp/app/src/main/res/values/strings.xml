@@ -72,6 +72,7 @@
         Gure bidaia amaitu egin da, espero dugu gustatu izana eta garrantzitsuaena, Durangoren historia eta kultura ondareari buruz asko ikasi izana. Zuekin elkarlanean aritzean oso ondo sentitu gara eta ederto pasatu dugu. Hurrengora arte lagunak!
     </string>
     <string name="siguiente">Aurrera</string>
+<<<<<<< Updated upstream
     <string name="pregunta1">
         Baina ez zarete ohartu zein den nire izenaren jatorria? Zeren izena dut?
     </string>
@@ -86,4 +87,9 @@
     <string name="erantzuna2">
         Sartu hemen erantzuna
     </string>
+=======
+    <string name="pregunta1">Baina ez zarete ohartu zein den nire izenaren jatorria? Zeren izena dut?</string>
+    <string name="erantzuna">Sartu hemen zure erantzuna</string>
+    <string name="Aurrera">Aurrera</string>
+>>>>>>> Stashed changes
 </resources>
