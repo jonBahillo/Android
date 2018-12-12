@@ -96,7 +96,7 @@ public class TextoAudio2 extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    //audio2.pause();
+                    audio2.pause();
                     /*Intent juego = new Intent(TextoAudio2.this, juegoAdivina.class);
                     startActivityForResult(juego, REQ_JUEGO2);*/
                     segundo = false;
