@@ -155,6 +155,8 @@ public class MainActivity_camara extends AppCompatActivity {
         final EditText input;
         dialogo.setContentView(R.layout.popup_imagen);
         input = dialogo.findViewById(R.id.editText);
+        dialogo.setCancelable(false);
+        dialogo.setCanceledOnTouchOutside(false);
         Aurrera = dialogo.findViewById(R.id.btnAurrera);
         Aurrera.setOnClickListener(new View.OnClickListener() {
             @Override

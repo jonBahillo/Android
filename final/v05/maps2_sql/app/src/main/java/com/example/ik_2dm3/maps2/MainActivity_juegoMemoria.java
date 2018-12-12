@@ -63,6 +63,7 @@ public class MainActivity_juegoMemoria extends AppCompatActivity {
     Drawable imagenvuelta1;
     Drawable imagenvuelta2;
     Dialog dialogo;
+    Button saltar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +86,13 @@ public class MainActivity_juegoMemoria extends AppCompatActivity {
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
             //getWindow().addFlags( WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
+        saltar=findViewById(R.id.btnsaltar_juego);
+        saltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popup(null);
+            }
+        });
         dialogo = new Dialog(this);
         cargarImagenes();
         iniciar();
