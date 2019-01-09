@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 public class MainActivity_ini extends AppCompatActivity {
 
     private Button btnRutaPredef, btnRutaLibre;
@@ -80,13 +82,16 @@ public class MainActivity_ini extends AppCompatActivity {
 
                 Log.d("mytag", "aaa " + pasado);
 
-                if (pasado == 1) {
+                if (pasado > 1) {
                     TextView tvCerrar;
+                    Button btnbai, btnez;
 
                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     dialog.setContentView(R.layout.popup_ini);
 
                     tvCerrar=(TextView)dialog.findViewById(R.id.txtCerrar);
+                    btnbai=(Button)dialog.findViewById(R.id.btnbai);
+                    btnez=(Button)dialog.findViewById(R.id.btnez);
 
                     tvCerrar.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -94,6 +99,43 @@ public class MainActivity_ini extends AppCompatActivity {
                             dialog.dismiss();
                         }
                     });
+
+                    btnbai.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+
+                            if (mp.isPlaying()) {
+                                mp.stop();
+                            }
+                            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                            startActivity(intent);
+                            dialog.dismiss();
+                        }
+                    });
+
+                    btnez.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            try {
+                                Basededatos MDB = new Basededatos(getApplicationContext());
+                                MDB.borrarbasedatos(getApplicationContext());
+
+
+                                if (mp.isPlaying()) {
+                                    mp.stop();
+                                }
+                                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                                startActivity(intent);
+                                dialog.dismiss();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+
 
                     dialog.show();
 

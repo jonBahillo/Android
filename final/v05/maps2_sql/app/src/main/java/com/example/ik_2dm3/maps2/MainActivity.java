@@ -455,7 +455,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
+               // dialog.dismiss();
                 finish();
                 System.exit(0);
             }

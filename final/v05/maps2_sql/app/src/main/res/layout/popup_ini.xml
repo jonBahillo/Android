@@ -32,7 +32,7 @@
         android:textSize="25sp" />
 
         <Button
-            android:id="@+id/btnberriarazi"
+            android:id="@+id/btnbai"
             android:layout_width="60dp"
             android:layout_height="50dp"
             android:layout_marginLeft="67dp"
@@ -43,7 +43,7 @@
             android:textSize="18sp" />
 
     <Button
-        android:id="@+id/btnJuego2"
+        android:id="@+id/btnez"
         android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_marginLeft="210dp"
