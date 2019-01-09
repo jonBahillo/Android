@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="320dp"
+    android:layout_height="280dp"
+    android:background="@color/azul"
+    android:padding="7dp"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTexto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_weight="1"
+        android:contentDescription="@string/todo"
+        android:text="Hola que ase" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnErrepikatu"
+                android:backgroundTint="@color/naranja"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="0"
+                android:background="@drawable/boton"
+                android:text="Errepikatu"
+                android:textColor="@color/negro"
+                tools:ignore="NestedWeights" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnAurrera"
+                android:backgroundTint="@color/naranja"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/boton"
+                android:text="Aurrera"
+                android:textColor="@color/negro"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+    <!--android:textColor="@color/azul"-->
