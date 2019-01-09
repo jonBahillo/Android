@@ -18,7 +18,6 @@ public class TextoAudio3 extends AppCompatActivity {
     String[] pruebatexto3;
     MediaPlayer audio3;
     TextView siguiente3;
-    boolean boton_mostrar3;
     boolean segundo = true;
     final int REQ_JUEGO3 = 1;
     final int REQ_JUEGO3_2 = 2;
@@ -46,7 +45,7 @@ public class TextoAudio3 extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ejecutar_hilo(mostrar3, pruebatexto3, boton_mostrar3, 935, dialogos3);
+                ejecutar_hilo(mostrar3, pruebatexto3, 935, dialogos3);
             }
         }, 4000);
 
@@ -78,11 +77,10 @@ public class TextoAudio3 extends AppCompatActivity {
         }, 22000);
     }
 
-    public void ejecutar_hilo(TextView texto_pantalla, String[] palabras, boolean terminar, int tiempo, int numdialogos) {
+    public void ejecutar_hilo(TextView texto_pantalla, String[] palabras, int tiempo, int numdialogos) {
         hilos2 hilo = new hilos2();
         hilo.txtview2 = texto_pantalla;
         hilo.palabras2_1 = palabras;
-        hilo.finalizado2 = terminar;
         hilo.milisegundos2 = tiempo;
         hilo.dialogos = numdialogos;
         hilo.start();
@@ -105,7 +103,7 @@ public class TextoAudio3 extends AppCompatActivity {
                     pruebatexto3=texto3.split(" ");
                     mostrar3 = findViewById(R.id.txtHistoria3);
                     final Handler handler = new Handler();
-                    ejecutar_hilo(mostrar3, pruebatexto3, boton_mostrar3, 880, dialogos3);
+                    ejecutar_hilo(mostrar3, pruebatexto3, 880, dialogos3);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -137,7 +135,7 @@ public class TextoAudio3 extends AppCompatActivity {
                     pruebatexto3=texto3.split(" ");
                     mostrar3 = findViewById(R.id.txtHistoria3);
                     final Handler handler = new Handler();
-                    ejecutar_hilo(mostrar3, pruebatexto3, boton_mostrar3, 575, dialogos3);
+                    ejecutar_hilo(mostrar3, pruebatexto3, 575, dialogos3);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {

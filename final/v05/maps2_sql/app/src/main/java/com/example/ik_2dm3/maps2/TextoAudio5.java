@@ -20,7 +20,6 @@ public class TextoAudio5 extends AppCompatActivity {
     String[] pruebatexto5;
     MediaPlayer audio5;
     TextView siguiente5;
-    boolean boton_mostrar5;
     int REQ_JUEGO5 = 1;
     int dialogos = 1;
 
@@ -42,7 +41,7 @@ public class TextoAudio5 extends AppCompatActivity {
         //Separamos las palabras
         pruebatexto5=texto5.split(" ");
         mostrar5 = findViewById(R.id.txtHistoria);
-        ejecutar_hilo(mostrar5, pruebatexto5, boton_mostrar5, 600, dialogos);
+        ejecutar_hilo(mostrar5, pruebatexto5, 600, dialogos);
         siguiente5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,11 +93,10 @@ public class TextoAudio5 extends AppCompatActivity {
 
         }
     }
-            public void ejecutar_hilo(TextView texto_pantalla, String[] palabras, boolean terminar, int tiempo, int numdialogos) {
+            public void ejecutar_hilo(TextView texto_pantalla, String[] palabras, int tiempo, int numdialogos) {
         hilos2 hilo = new hilos2();
         hilo.palabras2_1 = palabras;
         hilo.txtview2 = texto_pantalla;
-        hilo.finalizado2 = terminar;
         hilo.milisegundos2 = tiempo;
         hilo.dialogos = numdialogos;
         hilo.start();

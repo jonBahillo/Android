@@ -23,7 +23,6 @@ public class TextoAudio2 extends AppCompatActivity {
     String[] pruebatexto2;
     MediaPlayer audio2;
     TextView siguiente2;
-    boolean boton_mostrar2;
     boolean segundo = true;
     boolean finalizar = false;
     final int REQ_JUEGO2 = 1;
@@ -55,7 +54,7 @@ public class TextoAudio2 extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ejecutar_hilo(mostrar2, pruebatexto2, boton_mostrar2, 800, dialogos2);
+                ejecutar_hilo(mostrar2, pruebatexto2, 800, dialogos2);
             }
         }, 2500);
         handler.postDelayed(new Runnable() {
@@ -131,11 +130,10 @@ public class TextoAudio2 extends AppCompatActivity {
         });
     }
 
-    public void ejecutar_hilo(TextView texto_pantalla, String[] palabras, boolean terminar, int tiempo, int numdialogos) {
+    public void ejecutar_hilo(TextView texto_pantalla, String[] palabras, int tiempo, int numdialogos) {
         hilos2 hilo = new hilos2();
         hilo.txtview2 = texto_pantalla;
         hilo.palabras2_1 = palabras;
-        hilo.finalizado2 = terminar;
         hilo.milisegundos2 = tiempo;
         hilo.dialogos = numdialogos;
         hilo.start();
@@ -210,7 +208,7 @@ public class TextoAudio2 extends AppCompatActivity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            ejecutar_hilo(mostrar2, pruebatexto2, boton_mostrar2, 720, dialogos2);
+                            ejecutar_hilo(mostrar2, pruebatexto2, 720, dialogos2);
                         }
                     }, 7300);
                     handler.postDelayed(new Runnable() {

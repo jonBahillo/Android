@@ -9,7 +9,6 @@ public class hilos2 extends Thread{
     TextView txtview2;
     String[] palabras2_1;
     String[] palabras2_2;
-    boolean finalizado2;
     int milisegundos2;
     int dialogos=0;
 

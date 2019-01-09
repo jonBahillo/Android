@@ -24,7 +24,6 @@ public class TextoAudio6 extends AppCompatActivity {
     String[] pruebatexto6_2;
     MediaPlayer audio6;
     TextView siguiente6;
-    boolean boton_mostrar6;
     int REQ_JUEGO6 = 1;
     int dialogos6 = 2;
     ImageView cambiartexto6;
@@ -53,7 +52,7 @@ public class TextoAudio6 extends AppCompatActivity {
         //Separamos las palabras
         pruebatexto6_2=texto6_2.split(" ");
         mostrar6 = findViewById(R.id.txtHistoria6);
-        ejecutar_hilo(mostrar6, pruebatexto6_1, pruebatexto6_2, boton_mostrar6, 565, dialogos6);
+        ejecutar_hilo(mostrar6, pruebatexto6_1, pruebatexto6_2, 565, dialogos6);
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -124,12 +123,11 @@ public class TextoAudio6 extends AppCompatActivity {
 
         }
     }
-    public void ejecutar_hilo(TextView texto_pantalla, String[] palabras1, String[] palabras2, boolean terminar, int tiempo, int numdialogos) {
+    public void ejecutar_hilo(TextView texto_pantalla, String[] palabras1, String[] palabras2, int tiempo, int numdialogos) {
         hilos2 hilo = new hilos2();
         hilo.palabras2_1 = palabras1;
         hilo.palabras2_2 = palabras2;
         hilo.txtview2 = texto_pantalla;
-        hilo.finalizado2 = terminar;
         hilo.milisegundos2 = tiempo;
         hilo.dialogos = numdialogos;
         hilo.start();
