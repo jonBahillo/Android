@@ -22,11 +22,19 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/circulo"/>
 
+    <TextView
+        android:layout_width="252dp"
+        android:layout_height="151dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="45dp"
+        android:text="@string/jarraitu"
+        android:textAlignment="center"
+        android:textSize="25sp" />
+
         <Button
             android:id="@+id/btnberriarazi"
             android:layout_width="60dp"
             android:layout_height="50dp"
-            android:layout_marginTop="100dp"
             android:layout_marginLeft="67dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/botonse"
@@ -39,7 +47,6 @@
         android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_marginLeft="210dp"
-        android:layout_marginTop="60dp"
         android:layout_gravity="center_vertical"
         android:background="@drawable/botonse"
         android:text="@string/Ez"
