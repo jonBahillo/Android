@@ -25,8 +25,9 @@
 
     <ImageView
         android:id="@+id/imageView14"
-        android:layout_width="645dp"
+        android:layout_width="50dp"
         android:layout_height="60dp"
+        android:layout_marginLeft="300dp"
         android:src="@drawable/settings"
         android:onClick="settings" />
 

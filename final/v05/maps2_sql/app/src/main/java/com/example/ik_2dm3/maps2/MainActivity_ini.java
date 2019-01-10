@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainActivity_ini extends AppCompatActivity {
 
@@ -72,15 +73,32 @@ public class MainActivity_ini extends AppCompatActivity {
                }
             }
         });
+        btnRutaLibre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                Basededatos MDB = new Basededatos(getApplicationContext());
+
+                MDB.borrarbasedatos(getApplicationContext());
+                MDB.campiarposicion();
+
+                if (mp.isPlaying()) {
+                    mp.stop();
+                }
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+         });
+
         btnRutaPredef.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
                 Basededatos MDB = new Basededatos(getApplicationContext());
                 Integer pasado = MDB.recuperarpasado();
-
-                Log.d("mytag", "aaa " + pasado);
 
                 if (pasado > 1) {
                     TextView tvCerrar;
@@ -104,7 +122,6 @@ public class MainActivity_ini extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
 
-
                             if (mp.isPlaying()) {
                                 mp.stop();
                             }
@@ -117,7 +134,6 @@ public class MainActivity_ini extends AppCompatActivity {
                     btnez.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
                             try {
                                 Basededatos MDB = new Basededatos(getApplicationContext());
                                 MDB.borrarbasedatos(getApplicationContext());
@@ -140,12 +156,18 @@ public class MainActivity_ini extends AppCompatActivity {
                     dialog.show();
 
                 } else {
-
+                    try {
                     if (mp.isPlaying()) {
                         mp.stop();
                     }
+
+                    MDB.borrarbasedatos(getApplicationContext());
+
                     Intent intent = new Intent(getBaseContext(), MainActivity.class);
                     startActivity(intent);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

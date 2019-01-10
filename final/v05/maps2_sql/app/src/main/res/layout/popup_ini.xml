@@ -23,6 +23,7 @@
         android:background="@drawable/circulo"/>
 
     <TextView
+        android:id="@+id/txtmostrar"
         android:layout_width="252dp"
         android:layout_height="151dp"
         android:layout_gravity="center_vertical"

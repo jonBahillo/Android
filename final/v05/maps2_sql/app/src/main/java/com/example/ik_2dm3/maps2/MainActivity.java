@@ -45,6 +45,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Dialog;
+import android.widget.Toast;
+
+import static android.os.Build.VERSION_CODES.N;
 import static java.lang.Integer.parseInt;
 
 public class MainActivity extends AppCompatActivity {
@@ -90,9 +93,16 @@ public class MainActivity extends AppCompatActivity {
         myOpenMapView.setMultiTouchControls(true);
        /* myMapController.setZoom(30);
         myOpenMapView.setMinZoomLevel(18);*/
+        Basededatos MDB = new Basededatos(getApplicationContext());
+        ArrayList<Posiciones> elegir =  MDB.recuperarposicionesuno(0);
 
-        myMapController.setZoom(18);
-        myOpenMapView.setMinZoomLevel(17);
+        if (elegir.get(0).getPasado() != 0 ) {
+            myMapController.setZoom(18);
+            myOpenMapView.setMinZoomLevel(17);
+        }else{
+            myMapController.setZoom(17);
+            myOpenMapView.setMinZoomLevel(16);
+        }
         myOpenMapView.setUseDataConnection(false);
         myOpenMapView.setTilesScaledToDpi(true);
 
@@ -110,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
         /////////////////////////////////////////
         // Añadir un punto en el mapa
-        Basededatos MDB = new Basededatos(getApplicationContext());
+       // Basededatos MDB = new Basededatos(getApplicationContext());
         Integer pasado2 =  MDB.recuperarpasado();
         ArrayList<Posiciones> posicion =  MDB.recuperarposiciones();
 
@@ -121,8 +131,18 @@ public class MainActivity extends AppCompatActivity {
 
             GeoPoint durango2 = new GeoPoint(Latitud, Longitud);
 
-            if (posicion.get(i).getOrden().equals(Integer.toString(pasado2))){
-                myMapController.setCenter(durango2);
+            ArrayList<Posiciones> elegir2 =  MDB.recuperarposicionesuno(0);
+
+            if (elegir2.get(0).getPasado() != 0 ) {
+                if (posicion.get(i).getOrden().equals(Integer.toString(pasado2))){
+                    myMapController.setCenter(durango2);
+                }
+            }else{
+                GeoPoint dura = new GeoPoint(43.16710, -2.63120);
+                myMapController.setCenter(dura);
+                /*Context context = getApplicationContext();
+                Toast.makeText(context, "Hello world, I am a toast.", Toast.LENGTH_SHORT).show();*/
+
             }
 
             final Handler handler = new Handler();
@@ -171,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (posicion.get(i).getPasado() == 1.0 && (!posicion.get(i).getOrden().equals("0"))){
 
-                        durango.setMarker(getDrawable(R.drawable.icongreen));
+                    durango.setMarker(getDrawable(R.drawable.icongreen));
 
                 }else{
                     durango.setMarker(d);
@@ -241,7 +261,6 @@ public class MainActivity extends AppCompatActivity {
                         myOpenMapView.getOverlayManager().add(line);
                     }
                 }
-
             }
         }
 
@@ -303,7 +322,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onItemSingleTapUp(int index, OverlayItem item) {
                 String orden=puntos.get(index).getSnippet();
-                enseñarPopUp(null, index, orden);
+                //Log.d("mytag","aaa "+ index +" "+ orden);
+                if (orden != "Posicion actual") {
+                    enseñarPopUp(null, index, orden);
+                }
                 return true;
             }
         };
@@ -327,6 +349,53 @@ public class MainActivity extends AppCompatActivity {
     public void enseñarPopUp(View v, final int i, String orden){
         Basededatos MDB = new Basededatos(getApplicationContext());
         Integer pasado =  MDB.recuperarpasado();
+
+        ArrayList<Posiciones> elegir =  MDB.recuperarposicionesuno(0);
+
+        if (elegir.get(0).getPasado() == 0 &&  i != 0 ){
+            if (i != 13){
+                TextView tvCerrar, txtmostrar;
+                Button btnbai, btnez;
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setContentView(R.layout.popup_ini);
+
+                tvCerrar=(TextView)dialog.findViewById(R.id.txtCerrar);
+                txtmostrar = (TextView)dialog.findViewById(R.id.txtmostrar);
+                btnbai=(Button)dialog.findViewById(R.id.btnbai);
+                btnez=(Button)dialog.findViewById(R.id.btnez);
+
+                txtmostrar.setText("Hasi nahi duzu puntu honetatik?");
+
+                tvCerrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                btnbai.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Basededatos MDB = new Basededatos(getApplicationContext());
+                    for (int x = 0; x < i ; x++){
+                        MDB.campiarposicion(x);
+                    }
+                        Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                        startActivity(intent);
+                        dialog.dismiss();
+                    }
+                });
+
+                btnez.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        }
 
         if ( i != 0 && i <= pasado){
         TextView tvCerrar,tvNombre;
@@ -359,7 +428,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         tvCerrar.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
@@ -376,8 +444,10 @@ public class MainActivity extends AppCompatActivity {
                 String activity = "com.example.ik_2dm3.maps2."+posicion.get(0).getTexto();
                // String  activity = "com.example.ik_2dm3.maps2.TextoAudio0";
                 Intent intent= null;
+
                 try {
-                    intent = new Intent(getBaseContext(), Class.forName(activity));
+
+                intent = new Intent(getBaseContext(), Class.forName(activity));
 
                 intent.putExtra("index", index);
                 startActivityForResult(intent, REQ_JUEGO);
@@ -420,7 +490,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setContentView(R.layout.setting);
 
-        tvCerrar=(TextView)dialog.findViewById(R.id.txtCerrar);
+        tvCerrar    =   (TextView)dialog.findViewById(R.id.txtCerrar);
         btnberriarazi =  (Button)dialog.findViewById(R.id.btnberriarazi);
         btnsalir =  (Button)dialog.findViewById(R.id.btnsalir);
 
@@ -442,7 +512,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         tvCerrar.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -456,8 +525,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                // dialog.dismiss();
-                finish();
-                System.exit(0);
+                /*finish();
+                System.exit(0);*/
+                Intent intent = new Intent(getBaseContext(), MainActivity_ini.class);
+                startActivity(intent);
+
             }
         });
 

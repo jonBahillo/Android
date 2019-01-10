@@ -112,7 +112,6 @@ public class Basededatos extends SQLiteOpenHelper {
 
         Cursor c = db.rawQuery("SELECT * FROM Posiciones, Juegos where Orden ='" + IDentrada + "' and Juego = Juegos.ID", null);
 
-
         if(c != null) {
             c.moveToFirst();
         }
@@ -225,4 +224,19 @@ public class Basededatos extends SQLiteOpenHelper {
         myInput.close();
 
     }
+
+    public void campiarposicion(){
+
+        String myPath = DB_PATH + NOMBRE_BASEDATOS;
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
+
+        ContentValues cv = new ContentValues();
+        cv.put("Pasado",0);
+
+        db.update("Posiciones", cv, "ID = 0", null);
+
+        db.close();
+
+    }
+
 }
