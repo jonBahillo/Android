@@ -41,9 +41,12 @@ public class pantallacarga extends AppCompatActivity {
                 @Override
                 public void run() {
                   // finish();
-                    Intent intent= new Intent(getBaseContext(),MainActivity.class);
-                    // intent.putExtra("index", parseInt(returnValue));
-                    startActivity(intent);
+                    Bundle extras = getIntent().getExtras();
+                    Integer index = extras.getInt("index");
+                    Intent salir = new Intent(pantallacarga.this, TextoAudio0.class);
+                    salir.putExtra("index", index.toString());
+                    setResult(RESULT_OK, salir);
+                    finish();
                 }
             }, 1600);
 

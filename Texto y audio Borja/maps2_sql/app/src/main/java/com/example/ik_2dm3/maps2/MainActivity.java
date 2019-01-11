@@ -371,7 +371,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Basededatos MDB = new Basededatos(getApplicationContext());
                 ArrayList<Posiciones> posicion =  MDB.recuperarposicionesuno(i);
+                Intent intent = new Intent(getBaseContext(), TextoAudio0.class);
+                intent.putExtra("numero", posicion.get(0).getTexto());
+                intent.putExtra("index", index);
+                startActivityForResult(intent, REQ_JUEGO);
 
+                /*
                // String activity = "com.example.ik_2dm3.maps2."+posicion.get(0).getJuegonombre();
                 String activity = "com.example.ik_2dm3.maps2."+posicion.get(0).getTexto();
                // String  activity = "com.example.ik_2dm3.maps2.TextoAudio0";
@@ -383,7 +388,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQ_JUEGO);
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
-                }
+                }*/
+
             }
         });
 

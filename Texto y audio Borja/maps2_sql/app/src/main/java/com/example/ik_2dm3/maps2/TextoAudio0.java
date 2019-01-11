@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -19,6 +20,7 @@ public class TextoAudio0 extends AppCompatActivity {
 
     String texto1;
     String texto2;
+    String pantalla = "";
     String[] pruebatexto1;
     String[] pruebatexto2;
     MediaPlayer audio;
@@ -53,8 +55,13 @@ public class TextoAudio0 extends AppCompatActivity {
         cambiartexto = findViewById(R.id.imgCambiartexto);
         siguiente.setVisibility(View.INVISIBLE);
         cambiartexto.setVisibility(View.INVISIBLE);
+        final Bundle extras = getIntent().getExtras();
+        pantalla = extras.getString("numero");
+        actividad = Integer.parseInt(pantalla);
+        //Log.d("mytag", "Toma error:" + actividad);
         switch (actividad) {
             case 0:
+                /////////////TIENE BOTON DE SIGUIENTE TEXTO
                 //Reproducimos el audio
                 audio = MediaPlayer.create(TextoAudio0.this, R.raw.sarrera);
                 audio.start();
@@ -98,7 +105,7 @@ public class TextoAudio0 extends AppCompatActivity {
                 siguiente.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Basededatos MDB = new Basededatos(getApplicationContext());
+                        /*Basededatos MDB = new Basededatos(getApplicationContext());
 
                         Bundle extras = getIntent().getExtras();
 
@@ -107,7 +114,7 @@ public class TextoAudio0 extends AppCompatActivity {
                         ArrayList<Posiciones> posicion =  MDB.recuperarposicionesuno(index);
 
                         String activity = "com.example.ik_2dm3.maps2."+posicion.get(0).getJuegonombre();
-                        // String  activity = "com.example.ik_2dm3.maps2.TextoAudio0";
+                        String  activity = "com.example.ik_2dm3.maps2.TextoAudio0";
                         Intent intent= null;
                         try {
                             intent = new Intent(getBaseContext(), Class.forName(activity));
@@ -116,10 +123,10 @@ public class TextoAudio0 extends AppCompatActivity {
                             startActivityForResult(intent, REQ_JUEGO0);
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
-                        }
+                        }*/
 
-                /*Intent juego = new Intent(TextoAudio0.this, pantallacarga.class);
-                startActivityForResult(juego, REQ_JUEGO0);*/
+                Intent juego = new Intent(TextoAudio0.this, pantallacarga.class);
+                startActivityForResult(juego, REQ_JUEGO0);
                     }
                 });
                 break;
@@ -136,6 +143,7 @@ public class TextoAudio0 extends AppCompatActivity {
                 pruebatexto1 = texto1.split(" ");
                 pruebatexto2 = texto2.split(" ");
                 mostrar = findViewById(R.id.txtHistoria);
+                cambiartexto.setVisibility(View.INVISIBLE);
                 dialogos = 1;
                 final Handler handler1 = new Handler();
                 handler1.postDelayed(new Runnable() {
@@ -158,7 +166,7 @@ public class TextoAudio0 extends AppCompatActivity {
                             if (audio.isPlaying()){
                                 audio.stop();
                             }
-                            Basededatos MDB = new Basededatos(getApplicationContext());
+                            /*Basededatos MDB = new Basededatos(getApplicationContext());
                             Bundle extras = getIntent().getExtras();
                             Integer index = extras.getInt("index");
                             ArrayList<Posiciones> posicion =  MDB.recuperarposicionesuno(index);
@@ -171,9 +179,9 @@ public class TextoAudio0 extends AppCompatActivity {
                                 startActivityForResult(intent, REQ_JUEGO1);
                             } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
-                            }
-                    /*Intent juego = new Intent(TextoAudio1.this, pantallacarga2.class);
-                    startActivityForResult(juego, REQ_JUEGO1);*/
+                            }*/
+                    Intent juego = new Intent(TextoAudio0.this, pantallacarga2.class);
+                    startActivityForResult(juego, REQ_JUEGO1);
                         }else{
                             primero=false;
                             Intent juego = new Intent(TextoAudio0.this, pantallacarga.class);
@@ -208,7 +216,7 @@ public class TextoAudio0 extends AppCompatActivity {
                     public void run() {
                         siguiente.setVisibility(View.VISIBLE);
                     }
-                }, 6800);//30000);
+                }, 30000);//30000);
                 handler2.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -219,7 +227,7 @@ public class TextoAudio0 extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         if (segundo){
-                            Basededatos MDB = new Basededatos(getApplicationContext());
+                            /*Basededatos MDB = new Basededatos(getApplicationContext());
                             Bundle extras = getIntent().getExtras();
                             Integer index = extras.getInt("index");
                             ArrayList<Posiciones> posicion =  MDB.recuperarposicionesuno(index);
@@ -232,13 +240,16 @@ public class TextoAudio0 extends AppCompatActivity {
                                 startActivityForResult(intent, REQ_JUEGO2);
                             } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
-                            }
+                            }*/
                             audio.pause();
-                    /*Intent juego = new Intent(TextoAudio2.this, juegoAdivina.class);
-                    startActivityForResult(juego, REQ_JUEGO2);*/
+                            Bundle extras = getIntent().getExtras();
+                            Integer index = extras.getInt("index");
+                            Intent juego = new Intent(TextoAudio0.this, juegoAdivina.class);
+                            juego.putExtra("index", index);
+                            startActivityForResult(juego, REQ_JUEGO2);
                             segundo = false;
                         }else{
-                            Basededatos MDB = new Basededatos(getApplicationContext());
+                            /*Basededatos MDB = new Basededatos(getApplicationContext());
 
                             Bundle extras = getIntent().getExtras();
 
@@ -256,9 +267,9 @@ public class TextoAudio0 extends AppCompatActivity {
                                 startActivityForResult(intent, REQ_JUEGO2_2);
                             } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
-                            }
-                    /*Intent juego = new Intent(TextoAudio2.this, pantallacarga2.class);
-                    startActivityForResult(juego, REQ_JUEGO2_2);*/
+                            }*/
+                            Intent juego = new Intent(TextoAudio0.this, pantallacarga2.class);
+                            startActivityForResult(juego, REQ_JUEGO2_2);
                         }
                         if(finalizar){
                             Intent juego = new Intent(TextoAudio0.this, pantallacarga.class);
@@ -285,16 +296,18 @@ public class TextoAudio0 extends AppCompatActivity {
                         ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 935, dialogos);
                     }
                 }, 4000);
-
+                Log.d("mytag", "Disfruta del error:" + REQ_JUEGO3);
                 siguiente.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (segundo){
-                            Intent juego = new Intent(TextoAudio0.this, pantallacarga.class);
+                            Integer index = extras.getInt("index");
+                            Intent juego = new Intent(TextoAudio0.this, juegoHuecos.class);
+                            juego.putExtra("index", index);
                             startActivityForResult(juego, REQ_JUEGO3);
                             segundo = false;
                         }else{
-                            Intent juego = new Intent(TextoAudio0.this, pantallacarga.class);
+                            Intent juego = new Intent(TextoAudio0.this, juegoAdivina.class);
                             startActivityForResult(juego, REQ_JUEGO3_2);
                         }
 
@@ -314,8 +327,6 @@ public class TextoAudio0 extends AppCompatActivity {
                 }, 22000);
                 break;
             case 4:
-                /////////MIRAR LOS PRUEBATEXTO
-                /////////MIRAR HILO
                 /////////TIENE BOTON DE SIGUIENTE TEXTO
                 //Reproducimos el audio
                 audio = MediaPlayer.create(TextoAudio0.this, R.raw.andramari);
@@ -325,10 +336,9 @@ public class TextoAudio0 extends AppCompatActivity {
                 }
                 //Sacamos el texto palabra a palabra
                 texto1 = getResources().getString(R.string.gunea4_1_1);
-                //Separamos las palabras
-                pruebatexto1=texto1.split(" ");
                 texto2 = getResources().getString(R.string.gunea4_1_2);
                 //Separamos las palabras
+                pruebatexto1=texto1.split(" ");
                 pruebatexto2=texto2.split(" ");
                 mostrar = findViewById(R.id.txtHistoria);
                 dialogos = 2;
@@ -365,9 +375,8 @@ public class TextoAudio0 extends AppCompatActivity {
                 });
                 break;
             case 5:
-
-                /////////MIRAR HILO
                 /////////NO TIENE BOTON DE SIGUIENTE TEXTO
+                cambiartexto.setVisibility(View.INVISIBLE);
                 //Reproducimos el audio
                 audio = MediaPlayer.create(TextoAudio0.this, R.raw.ezkurdi);
                 audio.start();
@@ -383,12 +392,12 @@ public class TextoAudio0 extends AppCompatActivity {
                 siguiente.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Basededatos MDB = new Basededatos(getApplicationContext());
+                        /*Basededatos MDB = new Basededatos(getApplicationContext());
                         Bundle extras = getIntent().getExtras();
                         Integer index = extras.getInt("index");
                         ArrayList<Posiciones> posicion =  MDB.recuperarposicionesuno(index);
                         String activity = "com.example.ik_2dm3.maps2."+posicion.get(0).getJuegonombre();
-                        // String  activity = "com.example.ik_2dm3.maps2.TextoAudio0";
+                         String  activity = "com.example.ik_2dm3.maps2.TextoAudio0";
                         Intent intent= null;
                         try {
                             intent = new Intent(TextoAudio0.this, Class.forName(activity));
@@ -399,12 +408,12 @@ public class TextoAudio0 extends AppCompatActivity {
                             startActivityForResult(intent, REQ_JUEGO5);
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
+                        }*/
+                        Intent juego = new Intent(TextoAudio0.this, juegoAdivina.class);
+                        if (audio.isPlaying()){
+                        audio.stop();
                         }
-                /*Intent juego = new Intent(TextoAudio5.this, juegoAdivina.class);
-                if (audio5.isPlaying()){
-                    audio5.stop();
-                }
-                startActivityForResult(juego, REQ_JUEGO);*/
+                        startActivityForResult(juego, REQ_JUEGO5);
                     }
                 });
                 break;
@@ -435,7 +444,7 @@ public class TextoAudio0 extends AppCompatActivity {
                 siguiente.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Basededatos MDB = new Basededatos(getApplicationContext());
+                        /*Basededatos MDB = new Basededatos(getApplicationContext());
 
                         Bundle extras = getIntent().getExtras();
 
@@ -453,12 +462,12 @@ public class TextoAudio0 extends AppCompatActivity {
                             startActivityForResult(intent, REQ_JUEGO6);
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
+                        }*/
+                        Intent juego = new Intent(TextoAudio0.this, MainActivity_juegoimagenesdiferentes.class);
+                        if (audio.isPlaying()){
+                        audio.stop();
                         }
-               /*Intent juego = new Intent(TextoAudio6.this, TextoAudio1.class);
-                if (audio6.isPlaying()){
-                    audio6.stop();
-                }
-                startActivityForResult(juego, REQ_JUEGO6);*/
+                        startActivityForResult(juego, REQ_JUEGO6);
                     }
                 });
                 cambiartexto.setOnClickListener(new View.OnClickListener() {
@@ -539,37 +548,37 @@ public class TextoAudio0 extends AppCompatActivity {
                 }
                 break;
             case REQ_JUEGO2:
-                if (resultCode==resultCode){
-                    /*mostrar2.setText("");
+                if (resultCode==RESULT_OK){
+                    mostrar.setText("");
                     //Reproducimos el audio
                     //audio2 = MediaPlayer.create(TextoAudio2.this, R.raw.kurutziaga);
                     //audio2.setVolume(200,200);
                     //audio2.seekTo(49600);
                     //La siguiente parte del audio es en el segundo 49 +-
                     //Log.d("mytag", "Hola: " + audio2.getCurrentPosition());
-                    if (audio2!= null) {
-                        audio2.stop();
+                    if (audio!= null) {
+                        audio.stop();
                     }
-                    audio2.start();
+                    audio.start();
 
                     //Sacamos el texto palabra a palabra
-                    texto2 = getResources().getString(R.string.gunea2_2);
-                    pruebatexto2=texto2.split(" ");
-                    mostrar2 = findViewById(R.id.txtHistoria2);
+                    texto1 = getResources().getString(R.string.gunea2_2);
+                    pruebatexto1=texto1.split(" ");
+                    mostrar = findViewById(R.id.txtHistoria);
                     final Handler handler = new Handler();
-                    ejecutar_hilo(mostrar2, pruebatexto2, boton_mostrar2, 850, dialogos2);
+                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 850, dialogos);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            audio2.pause();
+                            audio.pause();
                         }
                     }, 10500);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            siguiente2.setVisibility(View.VISIBLE);
+                            siguiente.setVisibility(View.VISIBLE);
                         }
-                    }, 10800);*/
+                    }, 10800);
                     returnValue = data.getStringExtra("index");
 
                     MDB = new Basededatos(getApplicationContext());
@@ -591,9 +600,10 @@ public class TextoAudio0 extends AppCompatActivity {
                     //audio3.setVolume(200,200);
                     audio.start();
                     //Sacamos el texto palabra a palabra
-                    texto2 = getResources().getString(R.string.gunea2_3);
-                    pruebatexto2=texto2.split(" ");
+                    texto1 = getResources().getString(R.string.gunea2_3);
+                    pruebatexto1=texto1.split(" ");
                     mostrar = findViewById(R.id.txtHistoria);
+
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -611,6 +621,7 @@ public class TextoAudio0 extends AppCompatActivity {
                 }
                 break;
             case REQ_JUEGO3:
+                Log.d("mytag", "Disfruta del error 2:" + resultCode + "   " + RESULT_OK);
                 if (resultCode==RESULT_OK){
                     ////////////MIRAR PRUEBATEXTO2
                     siguiente.setVisibility(View.INVISIBLE);
@@ -620,7 +631,7 @@ public class TextoAudio0 extends AppCompatActivity {
                     //audio3.setVolume(200,200);
                     //audio3.seekTo(29700);
                     //La siguiente parte del audio es en el segundo 59 +-
-                    audio.start();
+                    //audio.start();
                     //Sacamos el texto palabra a palabra
                     texto1 = getResources().getString(R.string.gunea3_2);
                     pruebatexto1=texto1.split(" ");
@@ -636,7 +647,7 @@ public class TextoAudio0 extends AppCompatActivity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            audio.stop();
+                            //audio.stop();
                         }
                     }, 19000);
 

@@ -24,6 +24,7 @@
     <string name="Irten">IRTEN</string>
     <string name="Bai">BAI</string>
     <string name="Ez">EZ</string>
+    <string name="jarraitu">Partida bat hasita dago jarraitu nahi duzu?</string>
 
     <string name="gunea0_1">
         Kaixo lagunok! Nire izena Kalebarria da, izena ezaguna egiten zaizue ezta?
@@ -37,17 +38,16 @@
 
     <string name="gunea1">
         Heldu gara bidaiaren lehenengo gune interesgarrira, Santa Anako arkuan gaude. Ezagutzen zenuten?
-        <!--Antzina Durango inguratzen zuen harresiaren 6 ateetatik gelditzen den ondare bakarra da Santa Anako arku hau. Santa Anako arkuari “Merkatuko portalea” esaten zioten lehen, izan ere,  XVII.mendean eraiki zuten eta garaipen arku itxura du baita barrokoa da ere.
+        Antzina Durango inguratzen zuen harresiaren 6 ateetatik gelditzen den ondare bakarra da Santa Anako arku hau. Santa Anako arkuari “Merkatuko portalea” esaten zioten lehen, izan ere,  XVII.mendean eraiki zuten eta garaipen arku itxura du baita barrokoa da ere.
         Lehen aipatu dugun moduan, merkatuko portalea zen  beraz, denboran atzera eginez, garai horretara bidaiatuko dugu eta trueke jolas bat egingo dugu.
-    -->
     </string>
     <string name="gunea1_2">
         Ederto! Hurrengo gunera abiatuko gara! Animo!
     </string>
 
     <string name="gunea2_1">
-        Bigarren gunean gaude. <!--,  Kurutziaga kalea bonbardaketa jasan zuen lehenengo gunea izan zen eta kalte oso larriak jasan zituen kaleak.
-        Orain asmakizun jolas bat plateatuko dizuet eta horretarako kaletik zehar ibili beharko zarete.-->
+        Bigarren gunean gaude.Kurutziaga kalea bonbardaketa jasan zuen lehenengo gunea izan zen eta kalte oso larriak jasan zituen kaleak.
+        Orain asmakizun jolas bat plateatuko dizuet eta horretarako kaletik zehar ibili beharko zarete.
     </string>
     <string name="gunea2_2">
         Animo! Bilatu kaletik zehar eta topatzen dituzuenean atera argazkiak!

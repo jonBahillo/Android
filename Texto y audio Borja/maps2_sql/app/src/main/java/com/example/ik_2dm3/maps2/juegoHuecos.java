@@ -2,17 +2,22 @@ package com.example.ik_2dm3.maps2;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import javax.xml.transform.Result;
 
 public class juegoHuecos extends AppCompatActivity {
 
@@ -36,7 +41,7 @@ public class juegoHuecos extends AppCompatActivity {
         audioJuego.seekTo(19000);
         audioJuego.start();
         tv= findViewById(R.id.galdera);
-        aurrera= findViewById(R.id.aurrerabtn);
+        aurrera= (Button)findViewById(R.id.aurrerabtn);
         erantzuna= findViewById(R.id.erantzuna);
         aurrera.setVisibility(View.INVISIBLE);
         erantzuna.setVisibility(View.INVISIBLE);
@@ -67,15 +72,11 @@ public class juegoHuecos extends AppCompatActivity {
     public void popup (View v){
         Button Errepikatu;
         Button Aurrera;
-        dialogo.setContentView(R.layout.popup);
+        //dialogo.setContentView(R.layout.popup_juegomemoria);
+        dialogo.setContentView(R.layout.popup_juego);
         Errepikatu = dialogo.findViewById(R.id.btnErrepikatu);
         Aurrera = dialogo.findViewById(R.id.btnAurrera);
-        Aurrera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        dialogo.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         Errepikatu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +86,28 @@ public class juegoHuecos extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Aurrera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogo.dismiss();
+                Bundle extras = getIntent().getExtras();
+                Integer index = extras.getInt("index");
+                Intent salir = new Intent(juegoHuecos.this, TextoAudio0.class);
+                salir.putExtra("index", index.toString());
+                setResult(RESULT_OK, salir);
+                finish();
+            }
+        });
         dialogo.show();
     }
 }
+/*
+                dialogo.dismiss();
+                Bundle extras = getIntent().getExtras();
+                Integer index = extras.getInt("index");
+                Intent salir = new Intent(juegoHuecos.this, TextoAudio0.class);
+                salir.putExtra("index", index.toString());
+                setResult(RESULT_OK, salir);
+                //Log.d("mytag", "Error:" +);
+                finish();
+                */
