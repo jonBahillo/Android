@@ -553,9 +553,9 @@ public class TextoAudio0 extends AppCompatActivity {
                 if (resultCode==RESULT_OK){
                     mostrar.setText("");
                     //Reproducimos el audio
-                    //audio2 = MediaPlayer.create(TextoAudio2.this, R.raw.kurutziaga);
+                    audio = MediaPlayer.create(TextoAudio0.this, R.raw.kurutziaga);
                     //audio2.setVolume(200,200);
-                    //audio2.seekTo(49600);
+                    audio.seekTo(49600);
                     //La siguiente parte del audio es en el segundo 49 +-
                     //Log.d("mytag", "Hola: " + audio2.getCurrentPosition());
                     if (audio!= null) {
@@ -623,17 +623,18 @@ public class TextoAudio0 extends AppCompatActivity {
                 }
                 break;
             case REQ_JUEGO3:
+                ////////////AQUI PETA POR EL AUDIO
                 Log.d("mytag", "Disfruta del error 2:" + resultCode + "   " + RESULT_OK);
                 if (resultCode==RESULT_OK){
                     ////////////MIRAR PRUEBATEXTO2
                     siguiente.setVisibility(View.INVISIBLE);
                     mostrar.setText("");
                     //Reproducimos el audio
-                    //audio3 = MediaPlayer.create(TextoAudio0.this, R.raw.aldezaharra);
+                    audio = MediaPlayer.create(TextoAudio0.this, R.raw.aldezaharra);
                     //audio3.setVolume(200,200);
-                    //audio3.seekTo(29700);
+                    audio.seekTo(29700);
                     //La siguiente parte del audio es en el segundo 59 +-
-                    //audio.start();
+                    audio.start();
                     //Sacamos el texto palabra a palabra
                     texto1 = getResources().getString(R.string.gunea3_2);
                     pruebatexto1=texto1.split(" ");
@@ -649,7 +650,7 @@ public class TextoAudio0 extends AppCompatActivity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            //audio.stop();
+                            audio.stop();
                         }
                     }, 19000);
 
