@@ -307,7 +307,9 @@ public class TextoAudio0 extends AppCompatActivity {
                             startActivityForResult(juego, REQ_JUEGO3);
                             segundo = false;
                         }else{
+                            Integer index = extras.getInt("index");
                             Intent juego = new Intent(TextoAudio0.this, juegoAdivina.class);
+                            juego.putExtra("index", index);
                             startActivityForResult(juego, REQ_JUEGO3_2);
                         }
 
@@ -657,7 +659,7 @@ public class TextoAudio0 extends AppCompatActivity {
                 if (resultCode==RESULT_OK){
                     ////////////MIRAR PRUEBATEXTO2
                     ImageView imgsapo;
-                    imgsapo = findViewById(R.id.imageView3);
+                    imgsapo = findViewById(R.id.sapo);
                     imgsapo.setImageResource(R.drawable.goienkale);
                     siguiente.setVisibility(View.INVISIBLE);
                     mostrar.setText("");

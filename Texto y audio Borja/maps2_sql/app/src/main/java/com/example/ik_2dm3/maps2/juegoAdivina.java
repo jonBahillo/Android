@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -88,6 +89,7 @@ public class juegoAdivina extends AppCompatActivity {
             public void onClick(View v) {
                 dialogo.dismiss();
                 Bundle extras = getIntent().getExtras();
+                Log.d("mytag", "Jon cabron:" + extras.getInt("index"));
                 Integer index = extras.getInt("index");
                 Intent salir = new Intent(juegoAdivina.this, TextoAudio0.class);
                 salir.putExtra("index", index.toString());
