@@ -174,11 +174,9 @@ public class MainActivity_juegoMemoria extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Bundle extras = getIntent().getExtras();
-
                 Integer index = extras.getInt("index");
-
-                Intent salir = new Intent();
-                salir.putExtra("index", index.toString() );
+                Intent salir = new Intent(MainActivity_juegoMemoria.this, TextoAudio0.class);
+                salir.putExtra("index", index.toString());
                 setResult(RESULT_OK, salir);
                 dialogo.dismiss();
                 finish();

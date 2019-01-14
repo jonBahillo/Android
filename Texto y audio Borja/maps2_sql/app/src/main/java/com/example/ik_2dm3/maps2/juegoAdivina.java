@@ -87,13 +87,12 @@ public class juegoAdivina extends AppCompatActivity {
         Aurrera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialogo.dismiss();
                 Bundle extras = getIntent().getExtras();
-                Log.d("mytag", "Jon cabron:" + extras.getInt("index"));
                 Integer index = extras.getInt("index");
                 Intent salir = new Intent(juegoAdivina.this, TextoAudio0.class);
                 salir.putExtra("index", index.toString());
                 setResult(RESULT_OK, salir);
+                dialogo.dismiss();
                 finish();
             }
         });
