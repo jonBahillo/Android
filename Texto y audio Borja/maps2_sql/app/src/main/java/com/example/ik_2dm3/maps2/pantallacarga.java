@@ -43,7 +43,7 @@ public class pantallacarga extends AppCompatActivity {
                   // finish();
                     Bundle extras = getIntent().getExtras();
                     Integer index = extras.getInt("index");
-                    Intent salir = new Intent(pantallacarga.this, TextoAudio0.class);
+                    Intent salir = new Intent(pantallacarga.this, MainActivity.class);
                     salir.putExtra("index", index.toString());
                     setResult(RESULT_OK, salir);
                     finish();

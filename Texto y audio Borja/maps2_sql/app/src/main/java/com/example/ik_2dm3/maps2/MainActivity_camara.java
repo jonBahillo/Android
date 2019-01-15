@@ -66,15 +66,13 @@ public class MainActivity_camara extends AppCompatActivity {
         btnvolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                Intent intent= new Intent(getBaseContext(),pantallacarga.class);
-
-                // intent.putExtra("index", parseInt(returnValue));
-                startActivity(intent);
+                Bundle extras = getIntent().getExtras();
+                Integer index = extras.getInt("index");
+                Intent salir = new Intent(getBaseContext(), TextoAudio0.class);
+                salir.putExtra("index", index.toString());
+                setResult(RESULT_OK, salir);
+                dialogo.dismiss();
                 finish();
-
-
             }
         });
 
