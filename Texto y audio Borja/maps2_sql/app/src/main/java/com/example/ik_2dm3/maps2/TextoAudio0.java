@@ -133,6 +133,7 @@ public class TextoAudio0 extends AppCompatActivity {
             case 1:
                 /////////NO TIENE BOTON DE SIGUIENTE TEXTO
                 //Reproducimos el audio
+                mostrar.setText("");
                 audio = MediaPlayer.create(TextoAudio0.this, R.raw.santaana1);
                 //audio1.setVolume(200,200);
                 audio.start();
@@ -180,11 +181,17 @@ public class TextoAudio0 extends AppCompatActivity {
                             } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
                             }*/
-                    Intent juego = new Intent(TextoAudio0.this, pantallacarga2.class);
-                    startActivityForResult(juego, REQ_JUEGO1);
+                            Bundle extras = getIntent().getExtras();
+                            Integer index = extras.getInt("index");
+                            Intent juego = new Intent(TextoAudio0.this, MainActivity_juegoMemoria.class);
+                            juego.putExtra("index", index);
+                            startActivityForResult(juego, REQ_JUEGO1);
                         }else{
                             primero=false;
-                            Intent juego = new Intent(TextoAudio0.this, pantallacarga.class);
+                            Bundle extras = getIntent().getExtras();
+                            Integer index = extras.getInt("index");
+                            Intent juego = new Intent(TextoAudio0.this, MainActivity_juegoMemoria.class);
+                            juego.putExtra("index", index);
                             startActivityForResult(juego, REQ_JUEGO1);
                         }
                     }
@@ -241,8 +248,8 @@ public class TextoAudio0 extends AppCompatActivity {
                             } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
                             }*/
+                            siguiente.setVisibility(View.INVISIBLE);
                             audio.pause();
-                            Bundle extras = getIntent().getExtras();
                             Integer index = extras.getInt("index");
                             Intent juego = new Intent(TextoAudio0.this, MainActivity_juegoMemoria.class);
                             juego.putExtra("index", index);
@@ -268,9 +275,9 @@ public class TextoAudio0 extends AppCompatActivity {
                             } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
                             }*/
-                            Bundle extras = getIntent().getExtras();
+                            siguiente.setVisibility(View.INVISIBLE);
                             Integer index = extras.getInt("index");
-                            Intent juego = new Intent(TextoAudio0.this, MainActivity_juegoMemoria.class);
+                            Intent juego = new Intent(TextoAudio0.this, MainActivity_camara.class);
                             juego.putExtra("index", index);
                             startActivityForResult(juego, REQ_JUEGO2_2);
                         }
@@ -284,6 +291,9 @@ public class TextoAudio0 extends AppCompatActivity {
             case 3:
                 /////////NO TIENE BOTON DE SIGUIENTE TEXTO
                 //Reproducimos el audio
+                if (siguiente.isCursorVisible()){
+                    siguiente.setVisibility(View.INVISIBLE);
+                }
                 audio = MediaPlayer.create(TextoAudio0.this, R.raw.aldezaharra);
                 audio.start();
                 //Sacamos el texto palabra a palabra
@@ -560,13 +570,10 @@ public class TextoAudio0 extends AppCompatActivity {
                         }
                     }, 7800);*/
                     returnValue = data.getStringExtra("index");
-
                     MDB = new Basededatos(getApplicationContext());
-
                     MDB.campiarposicion(parseInt(returnValue));
-
                     /*Intent intent= new Intent(getBaseContext(),pantallacarga.class);*/
-                    Intent intent1= new Intent(getBaseContext(), MainActivity_camara.class);
+                    Intent intent1= new Intent(getBaseContext(), MainActivity.class);
                     // intent.putExtra("index", parseInt(returnValue));
                     startActivity(intent1);
                     finish();
@@ -585,7 +592,6 @@ public class TextoAudio0 extends AppCompatActivity {
                         audio.stop();
                     }
                     audio.start();
-
                     //Sacamos el texto palabra a palabra
                     texto1 = getResources().getString(R.string.gunea2_2);
                     pruebatexto1=texto1.split(" ");
@@ -604,16 +610,25 @@ public class TextoAudio0 extends AppCompatActivity {
                             siguiente.setVisibility(View.VISIBLE);
                         }
                     }, 10800);
-                    returnValue = data.getStringExtra("index");
-
+                    /*siguiente.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Bundle extras = getIntent().getExtras();
+                            Integer index = extras.getInt("index");
+                            Intent juego= new Intent(getBaseContext(),MainActivity_juegoMemoria.class);
+                            juego.putExtra("index", index);
+                            if (audio.isPlaying()){
+                                audio.stop();
+                            }
+                            startActivity(juego);
+                            finish();
+                        }
+                    });*/
+                    /*returnValue = data.getStringExtra("index");
                     MDB = new Basededatos(getApplicationContext());
-
-                    MDB.campiarposicion(parseInt(returnValue));
-
-                    Intent intent2= new Intent(getBaseContext(),MainActivity.class);
+                    MDB.campiarposicion(parseInt(returnValue));*/
+                    //Intent intent2= new Intent(getBaseContext(),MainActivity.class);
                     // intent.putExtra("index", parseInt(returnValue));
-                    startActivity(intent2);
-                    finish();
                 }
                 break;
             case REQ_JUEGO2_2:
@@ -642,6 +657,20 @@ public class TextoAudio0 extends AppCompatActivity {
                             siguiente.setVisibility(View.VISIBLE);
                         }
                     }, 22000);
+                    siguiente.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Bundle extras = getIntent().getExtras();
+                            Integer index = extras.getInt("index");
+                            Intent juego= new Intent(getBaseContext(),MainActivity.class);
+                            juego.putExtra("index", index);
+                            if (audio.isPlaying()){
+                                audio.stop();
+                            }
+                            startActivity(juego);
+                            finish();
+                        }
+                    });
                     finalizar = true;
                 }
                 break;
@@ -676,6 +705,19 @@ public class TextoAudio0 extends AppCompatActivity {
                             audio.stop();
                         }
                     }, 19000);
+                    siguiente.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Bundle extras = getIntent().getExtras();
+                            Integer index = extras.getInt("index");
+                            Intent juego = new Intent(TextoAudio0.this, MainActivity_camara.class);
+                            juego.putExtra("index", index);
+                            if (audio.isPlaying()){
+                                audio.stop();
+                            }
+                            startActivityForResult(juego, REQ_JUEGO3);
+                        }
+                    });
 
                 }
                 break;
@@ -717,7 +759,7 @@ public class TextoAudio0 extends AppCompatActivity {
                             if (audio.isPlaying()){
                                 audio.stop();
                             }
-                            startActivityForResult(juego, REQ_JUEGO5);
+                            startActivityForResult(juego, REQ_JUEGO3_2);
                             segundo = false;
                         }
                     });
