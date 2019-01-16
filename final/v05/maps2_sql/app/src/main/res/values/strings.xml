@@ -16,6 +16,16 @@
     <string name="inputPopup">Sartu taldearen izena</string>
     <string name="Aurrera">Aurrera</string>
 
+    <string name="berriarazi">Berriarazi</string>
+    <string name="Textua">TEXTUA</string>
+    <string name="Handia">Textu handia</string>
+    <string name="Txikia">Textu txikia</string>
+    <string name="Galeria">GALERIA</string>
+    <string name="Irten">IRTEN</string>
+    <string name="Bai">BAI</string>
+    <string name="Ez">EZ</string>
+    <string name="jarraitu">Partida bat hasita dago jarraitu nahi duzu?</string>
+
     <string name="gunea0_1">
         Kaixo lagunok! Nire izena Kalebarria da, izena ezaguna egiten zaizue ezta?
         Irteera honetan Durangoko historia eta kultura ondarea ezagutuko dugu.

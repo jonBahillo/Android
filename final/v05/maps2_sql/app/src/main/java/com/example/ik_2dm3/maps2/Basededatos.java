@@ -3,13 +3,9 @@ package com.example.ik_2dm3.maps2;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.database.AbstractCursor;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.io.File;
@@ -18,14 +14,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import static android.opengl.Matrix.length;
 
 public class Basededatos extends SQLiteOpenHelper {
     private final Object Context = this;
     private static final int DATABASE_VERSION = 1;
     private static String DB_PATH = "/data/data/com.example.ik_2dm3.maps2/databases/";
     private static final String NOMBRE_BASEDATOS = "database.db";
-
 
     public Basededatos(Context context) {
         super(context, NOMBRE_BASEDATOS, null, DATABASE_VERSION);
@@ -46,7 +40,6 @@ public class Basededatos extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-
 
     private void copyDataBase(Context context) throws IOException {
 
@@ -75,8 +68,6 @@ public class Basededatos extends SQLiteOpenHelper {
 
         }
        }
-
-
 
     public ArrayList<Posiciones> recuperarposiciones(){
         ArrayList<Posiciones> posiciones = new ArrayList<Posiciones>();
@@ -120,7 +111,6 @@ public class Basededatos extends SQLiteOpenHelper {
         SQLiteDatabase db = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
 
         Cursor c = db.rawQuery("SELECT * FROM Posiciones, Juegos where Orden ='" + IDentrada + "' and Juego = Juegos.ID", null);
-
 
         if(c != null) {
             c.moveToFirst();
@@ -181,8 +171,6 @@ public class Basededatos extends SQLiteOpenHelper {
         return rutas;
     }
 
-
-
     public int  recuperarpasado(){
 
         String myPath = DB_PATH + NOMBRE_BASEDATOS;
@@ -210,6 +198,42 @@ public class Basededatos extends SQLiteOpenHelper {
         cv.put("Pasado",1);
 
         db.update("Posiciones", cv, "ID="+id, null);
+
+        db.close();
+
+    }
+
+    public void borrarbasedatos(Context context) throws IOException {
+
+        String DB_PATH = context.getDatabasePath(NOMBRE_BASEDATOS).getPath();
+
+        InputStream myInput = context.getAssets().open(NOMBRE_BASEDATOS);
+
+        String outFileName = DB_PATH;
+
+        OutputStream myOutput = new FileOutputStream(outFileName);
+
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = myInput.read(buffer)) > 0) {
+            myOutput.write(buffer, 0, length);
+        }
+
+        myOutput.flush();
+        myOutput.close();
+        myInput.close();
+
+    }
+
+    public void campiarposicion(){
+
+        String myPath = DB_PATH + NOMBRE_BASEDATOS;
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
+
+        ContentValues cv = new ContentValues();
+        cv.put("Pasado",0);
+
+        db.update("Posiciones", cv, "ID = 0", null);
 
         db.close();
 

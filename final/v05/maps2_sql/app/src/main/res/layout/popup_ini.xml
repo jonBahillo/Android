@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="340dp"
+    android:layout_height="400dp"
+    android:background="@drawable/circulopopup_ini"
+    android:padding="5dp"
+    android:layout_gravity="center"
+    >
+
+    <TextView
+        android:id="@+id/txtCerrar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:text="@string/x"
+        android:textColor="@color/negro"
+        android:textStyle="bold"
+        android:layout_gravity="end"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/circulo"/>
+
+    <TextView
+        android:id="@+id/txtmostrar"
+        android:layout_width="252dp"
+        android:layout_height="151dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="45dp"
+        android:text="@string/jarraitu"
+        android:textAlignment="center"
+        android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/btnbai"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="67dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/botonse"
+            android:text="@string/Bai"
+            android:textColor="@color/blanco"
+            android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnez"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="210dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/botonse"
+        android:text="@string/Ez"
+        android:textColor="@color/blanco"
+        android:textSize="18sp"
+        />
+
+</LinearLayout>

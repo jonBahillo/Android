@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity_ini">
+
+    <Button
+        android:id="@+id/btnRutaPredef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="44dp"
+        android:text="@string/btnRutaPredef"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnRutaLibre"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnRutaLibre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="44dp"
+        android:text="@string/btnRutaLibre"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnRutaPredef" />
+
+    <ImageView
+        android:id="@+id/imgOcultar"
+        android:layout_width="76dp"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:color/transparent"
+        android:contentDescription="@string/todo" />
+
+    <ImageView
+        android:id="@+id/imgFondo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:color/holo_blue_dark"
+        android:contentDescription="TODO" />
+
+    <ImageView
+        android:id="@+id/imgLogoDE"
+        android:layout_width="240dp"
+        android:layout_height="182dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgMapaDurango"
+        app:layout_constraintEnd_toEndOf="@+id/imgFondo"
+        app:layout_constraintHorizontal_bias="0.544"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgFondo"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/plogo" />
+
+    <ImageView
+        android:id="@+id/imgMapaDurango"
+        android:layout_width="match_parent"
+        android:layout_height="509dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgFondo"
+        app:layout_constraintEnd_toEndOf="@+id/imgFondo"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/imgFondo"
+        app:layout_constraintTop_toTopOf="@+id/imgFondo"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/mapadurango" />
+
+    <ImageView
+        android:id="@+id/imgTLogo"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/imgLogoDE"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/tlogo" />
+
+    <ImageView
+        android:id="@+id/imgTX"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/txurdi" />
+
+</android.support.constraint.ConstraintLayout>

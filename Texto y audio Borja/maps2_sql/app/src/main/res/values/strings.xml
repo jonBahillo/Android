@@ -1,0 +1,119 @@
+<resources>
+    <string name="app_name">Durango ezagutzen</string>
+    <string name="nombresitio" />
+    <string name="todo">Guztia</string>
+    <string name="x">X</string>
+    <string name="ver_informacion">Sartu</string>
+    <string name="descFotoAntes">Descripcion foto antes</string>
+    <string name="descFotoAhora">Descripcion foto despues</string>
+    <string name="descFotoSeleccion">transparencia</string>
+    <string name="imageview">image</string>
+    <string name="orain">ORAIN</string>
+    <string name="lehen">LEHEN</string>
+    <string name="fondoV">fondoV</string>
+    <string name="fondoA">fondoA</string>
+    <string name="SacarFoto">Atera argazkia</string>
+    <string name="inputPopup">Sartu taldearen izena</string>
+    <string name="Aurrera">Aurrera</string>
+
+    <string name="berriarazi">Berriarazi</string>
+    <string name="Textua">TEXTUA</string>
+    <string name="Handia">Textu handia</string>
+    <string name="Txikia">Textu txikia</string>
+    <string name="Galeria">GALERIA</string>
+    <string name="Irten">IRTEN</string>
+    <string name="Bai">BAI</string>
+    <string name="Ez">EZ</string>
+    <string name="jarraitu">Partida bat hasita dago jarraitu nahi duzu?</string>
+
+    <string name="gunea0_1">
+        Kaixo lagunok! Nire izena Kalebarria da, izena ezaguna egiten zaizue ezta?
+        Irteera honetan Durangoko historia eta kultura ondarea ezagutuko dugu.
+        Baita 1937ko martxoaren 31ko bonbardaketak Durangoko hirian utzitako aztarnak ikusteko eta horren ondorioak ezagutzeko aukera izango dugu gaur.
+    </string>
+    <string name="gunea0_2">
+        Bidaia honetan zehar lagunduko zaituztet baina... nik ere zuen laguntza behar dut... Ez dut nire maitalea topatzen eta oso triste nago. Agian berak ere Durangoko historiari buruz zer edo zer berria ikasten ari da.
+        Beno lagunak, bidaia hasteko prest!?
+    </string>
+
+    <string name="gunea1">
+        Heldu gara bidaiaren lehenengo gune interesgarrira, Santa Anako arkuan gaude. Ezagutzen zenuten?
+        Antzina Durango inguratzen zuen harresiaren 6 ateetatik gelditzen den ondare bakarra da Santa Anako arku hau. Santa Anako arkuari “Merkatuko portalea” esaten zioten lehen, izan ere,  XVII.mendean eraiki zuten eta garaipen arku itxura du baita barrokoa da ere.
+        Lehen aipatu dugun moduan, merkatuko portalea zen  beraz, denboran atzera eginez, garai horretara bidaiatuko dugu eta trueke jolas bat egingo dugu.
+    </string>
+    <string name="gunea1_2">
+        Ederto! Hurrengo gunera abiatuko gara! Animo!
+    </string>
+
+    <string name="gunea2_1">
+        Bigarren gunean gaude.Kurutziaga kalea bonbardaketa jasan zuen lehenengo gunea izan zen eta kalte oso larriak jasan zituen kaleak.
+        Orain asmakizun jolas bat plateatuko dizuet eta horretarako kaletik zehar ibili beharko zarete.
+    </string>
+    <string name="gunea2_2">
+        Animo! Bilatu kaletik zehar eta topatzen dituzuenean atera argazkiak!
+    </string>
+    <string name="gunea2_3">
+        Oso lan ona egiten ari zarete baina… Oraindik ez dugu nire maitalea topatu… Jarrai dezagun ibiltzen lagunak!
+    </string>
+
+    <string name="gunea3_1">
+        Bonbardaketaren harira, Alde Zaharreko kaleak: Komentukalea,  Kalebarria, Goienkalea, Artekalea eta Barrenkalea ere zauri hauen lekuko dira.
+    </string>
+    <string name="gunea3_2">
+        Oso triste nago nire maitalea ez dugulako aurkitzen, lagunduko didazue bera aurkitzen? Horretarako asmakizun bat egingo dizuet. Belarriak ireki!
+    </string>
+    <string name="gunea3_3">
+        Kaixo lagunok! Mila esker nire lagun Kalebarriari laguntzeagatik eta ni aurkitzeagatik. Egia esanda… pixka bat galduta nengoen, Durangoko historian hainbeste murgildu naiz ezen ez nintzen gai Durangoko kaleetatik irtetzeko.
+        Orain, zuen laguntzailea izango naiz gelditzen den ibilbidean. Prest?
+        Alde Zaharreko kaleen izenak ezagutuko ditugu eta banan-banan begiztatuko ditugu. Lehenengoa Komentukale da, hurrengoa Kalebarria, gero Goienkale nire kalea!, ondoren Artekale eta azkenik Barrenkale dago. Goazen horiek ikustera!
+    </string>
+    <string name="gunea4_1_1">
+        Ibilbidearen 4. gunera heldu gara, Andra Mariko Basilika.
+        Irudikatu dezagun orain leku hau martxoaren 31 asteazken hartan. Elizkizunaz gain, egun horretan basilikako portikoan egin zen merkatua.Horregatik, eliza ez-ezik ingurua ere jendez beteta zegoen.
+    </string>
+    <string name="gunea4_1_2">
+        Duragoko bonbardaketaren ondorioz Andra Mariko basilikak kalte ugari pairatu zituen, basilikaren portiko eta eliza guztia ondatuz, elizaren atzeko aldea izan ezik. Hala ere, herritar guztien laguntzaz berriro eraikitzea lortu zuten.
+        Orain, lagunduko didazue “Plaza de Santamaria” jartzen duen plaka aurkitzen? Bertan metrailak edo balak oraindik ikus daitezke. Aurkitu ondoren atera argazki bat!
+    </string>
+    <string name="gunea4_2">
+        Beno, irteera honetan dena ez da izango informazioa barneratzea beraz, aurkitu portikoan dagoen laberintoa eta jolastu denon artean, taldekide guztiek heldu behar zarte jomugara, denok ez bazarete heltzen jolasa ez da burutua izango! Animo!
+    </string>
+    <string name="gunea5">
+        Ezkurdi Plazan gaude orain, historian zehar durangarrek euren aisialdirako leku modura erabili izan dutelako ezaguna.
+        Puntu honetan gerra hasierara bueltatuko gara. Izan ere, 1936ko irailean , Durangok lehen bonbardaketa bat jasan zuen.
+        Aterpeen atariko horman aztarna bat dago eta antzinako frontoiaren ezker paretaren zati bat gogorarazten du. Horma honetan ere metraila aztarnak ikusi ditzakegu.
+        Beraz, ea aurkitzen duzuen frontoi zati hori!
+    </string>
+    <string name="gunea6_1">
+        Gure bidaia bukatzear dago, azkenengo gunera heldu gara eta gune honetan bi eraikin landuko ditugu. Lehenik eta behin San Agustin kultur gunea daukagu. Honetan zuzeneko ikuskizun ugari eskaintzen dira urtean zehar: antzerkia, musika, dantza eta hainbat kultura jarduera.
+        Hala ere, beti ez du izan  eginkizun bera, aspaldian San Agustingo komentua izan zen XVII.mendean altxatu zuten.
+    </string>
+    <string name="gunea6_2">
+        Bigarren eraikina Arte eta Historiako museoa da. Puntu honetan gerraren eragin eta ondorioz hitz egitea egokitzen zaigu; besteak beste, kale-ospitaleei buruz. Eraikin hau, bonbardaketaren ostean, gerrako fronteetan zauritu ziren miliziarrak sendatzeko erabili zen.
+        Gaur egun, artelan modernoak eta historikoki interesgarriak diren elementuak erakusten ditu. Barnean, XV.mendeko Durangoren maketa bat dago ikusgai.
+        Beno lagunak! Bidaia bukatzeko eta bisitatu ditugun gune guztiak gogoratzeko memoria jolas bat egingo dugu. Ezetz asmatu nolakoak ziren bisitatu ditugun eraikin eta guneak aitzinean!
+    </string>
+    <string name="gunea7_1">
+        Eskerrik asko bidaian niri laguntzeagatik, azkenean nire maitalea topatu dugu eta orain, biak batera ikerketa gehiago egin ahal izango ditugu. Espero dugu gure hurrengo ikerketan zuek ere parte hartzea!
+    </string>
+    <string name="gunea7_2">
+        Gure bidaia amaitu egin da, espero dugu gustatu izana eta garrantzitsuaena, Durangoren historia eta kultura ondareari buruz asko ikasi izana. Zuekin elkarlanean aritzean oso ondo sentitu gara eta ederto pasatu dugu. Hurrengora arte lagunak!
+    </string>
+    <string name="siguiente">Aurrera</string>
+    <string name="pregunta1">
+        Baina ez zarete ohartu zein den nire izenaren jatorria? Zeren izena dut?
+    </string>
+    <string name="erantzuna1">
+        Sartu hemen erantzuna
+    </string>
+    <string name="pregunta2">
+        -	Durangoko alde zaharraren kale baten izena dauka. \n
+        -	G letrarekin hasten da eta E letrarekin  amaitu. \n
+        -	Seguruenik parrandan dago. \n
+    </string>
+    <string name="erantzuna2">
+        Sartu hemen erantzuna
+    </string>
+    <string name="btnRutaPredef">Hasi hasieratik</string>
+    <string name="btnRutaLibre">Aukeratu ze puntutik hasi</string>
+</resources>
