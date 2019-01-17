@@ -21,6 +21,7 @@ public class TextoAudio0 extends AppCompatActivity {
     String texto1;
     String texto2;
     String pantalla = "";
+    String pruebatxt = "";
     String[] pruebatexto1;
     String[] pruebatexto2;
     MediaPlayer audio;
@@ -42,6 +43,7 @@ public class TextoAudio0 extends AppCompatActivity {
     final int REQ_JUEGO7 = 10;
     int dialogos;
     int actividad;
+    Runnable run;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +87,7 @@ public class TextoAudio0 extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 850, dialogos);
+                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 850, dialogos, pruebatxt);
                     }
                 }, 2900);
                 cambiartexto.setOnClickListener(new View.OnClickListener() {
@@ -150,7 +152,7 @@ public class TextoAudio0 extends AppCompatActivity {
                 handler1.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 850, dialogos);
+                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 850, dialogos, pruebatxt);
                     }
                 }, 4500);
                 handler1.postDelayed(new Runnable() {
@@ -215,7 +217,7 @@ public class TextoAudio0 extends AppCompatActivity {
                 handler2.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 800, dialogos);
+                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 800, dialogos, pruebatxt);
                     }
                 }, 2500);
                 handler2.postDelayed(new Runnable() {
@@ -307,7 +309,7 @@ public class TextoAudio0 extends AppCompatActivity {
                 handler3.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 935, dialogos);
+                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 935, dialogos, pruebatxt);
                     }
                 }, 4000);
                 Log.d("mytag", "Disfruta del error:" + REQ_JUEGO3);
@@ -358,7 +360,7 @@ public class TextoAudio0 extends AppCompatActivity {
                 pruebatexto2=texto2.split(" ");
                 mostrar = findViewById(R.id.txtHistoria);
                 dialogos = 2;
-                ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 570, dialogos);
+                ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 570, dialogos, pruebatxt);
                 final Handler handler4 = new Handler();
                 handler4.postDelayed(new Runnable() {
                     @Override
@@ -396,6 +398,7 @@ public class TextoAudio0 extends AppCompatActivity {
             case 5:
                 /////////NO TIENE BOTON DE SIGUIENTE TEXTO
                 cambiartexto.setVisibility(View.INVISIBLE);
+                final Handler handler5_1 = new Handler();
                 //Reproducimos el audio
                 audio = MediaPlayer.create(TextoAudio0.this, R.raw.ezkurdi);
                 audio.start();
@@ -407,8 +410,11 @@ public class TextoAudio0 extends AppCompatActivity {
                 pruebatexto2 = texto2.split(" ");
                 mostrar = findViewById(R.id.txtHistoria);
                 dialogos = 1;
-                ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 600, dialogos);
-                final Handler handler5_1 = new Handler();
+                //hilo_bueno(mostrar, pruebatexto1, pruebatexto2, 600,dialogos, run);
+                ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 600, dialogos, pruebatxt);
+                for (int i=0; i<=pruebatexto1.length; i++){
+                    mostrar.setText(pruebatxt);
+                }
                 handler5_1.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -463,7 +469,7 @@ public class TextoAudio0 extends AppCompatActivity {
                 handler6.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 565, dialogos);
+                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 565, dialogos, pruebatxt);
                     }
                 }, 2);
                 dialogos = 2;
@@ -598,7 +604,7 @@ public class TextoAudio0 extends AppCompatActivity {
                     pruebatexto1=texto1.split(" ");
                     mostrar = findViewById(R.id.txtHistoria);
                     final Handler handler = new Handler();
-                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 850, dialogos);
+                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 850, dialogos, pruebatxt);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -649,7 +655,7 @@ public class TextoAudio0 extends AppCompatActivity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 720, dialogos);
+                            ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 720, dialogos, pruebatxt);
                         }
                     }, 7300);
                     handler.postDelayed(new Runnable() {
@@ -693,7 +699,7 @@ public class TextoAudio0 extends AppCompatActivity {
                     pruebatexto1=texto1.split(" ");
                     mostrar = findViewById(R.id.txtHistoria);
                     final Handler handler = new Handler();
-                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 880, dialogos);
+                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 880, dialogos, pruebatxt);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -743,7 +749,7 @@ public class TextoAudio0 extends AppCompatActivity {
                     texto1 = getResources().getString(R.string.gunea3_3);
                     pruebatexto1=texto1.split(" ");
                     mostrar = findViewById(R.id.txtHistoria);
-                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 575, dialogos);
+                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 575, dialogos, pruebatxt);
                     handler3_2.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -788,7 +794,7 @@ public class TextoAudio0 extends AppCompatActivity {
                     texto1 = getResources().getString(R.string.gunea4_2);
                     pruebatexto1=texto1.split(" ");
                     mostrar = findViewById(R.id.txtHistoria);
-                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 570, dialogos);
+                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 570, dialogos, pruebatxt);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -835,13 +841,64 @@ public class TextoAudio0 extends AppCompatActivity {
                 break;
         }
     }
-    public void ejecutar_hilo(TextView texto_pantalla, String[] palabras1, String[] palabras2, int tiempo, int numdialogos) {
+    public void ejecutar_hilo(TextView texto_pantalla, String[] palabras1, String[] palabras2, int tiempo, int numdialogos, String prueba) {
         hilos2 hilo = new hilos2();
         hilo.txtview2 = texto_pantalla;
         hilo.palabras2_1 = palabras1;
         hilo.palabras2_2 = palabras2;
         hilo.milisegundos2 = tiempo;
         hilo.dialogos = numdialogos;
+        hilo.algo = prueba;
         hilo.start();
     }
+    /*public void hilo_bueno(TextView cuadro_texto1, String[] frase1_1, String[] frase2_1, int tiempo1, int dialogos1, Runnable runnable){
+        final TextView cuadro_texto = cuadro_texto1;
+        final String[] frase1 = frase1_1;
+        final String[] frase2 = frase2_1;
+        final int tiempo = tiempo1;
+        final int dialogos = dialogos1;
+        Runnable runn = runnable;
+        runn = new Runnable() {
+            String sacar2;
+            ArrayList guardartexto = new ArrayList<String>();
+            @Override
+            public void run() {
+                if (dialogos == 1) {
+                    for (int j = 0; j < frase1.length; j++) {
+                        sacar2 = frase1[j];
+                        synchronized (this) {
+                            try {
+                                wait(tiempo);
+                                cuadro_texto.setText(cuadro_texto.getText() + " " + sacar2);
+                            } catch (InterruptedException e) {
+                                Log.d("mytag", "" + e);
+                            }
+                        }
+                    }
+                } else if (dialogos == 2) {
+                    for (int j = 0; j < frase1.length; j++) {
+                        sacar2 = frase1[j];
+                        synchronized (this) {
+                            try {
+                                wait(tiempo);
+                                cuadro_texto.setText(cuadro_texto.getText() + " " + sacar2);
+                                if (j == frase1.length - 1) {
+                                    guardartexto.add(cuadro_texto.getText());
+                                    cuadro_texto.setText("");
+                                    for (int i = 0; i < frase2.length; i++) {
+                                        sacar2 = frase2[i];
+                                        wait(tiempo);
+                                        cuadro_texto.setText(cuadro_texto.getText() + " " + sacar2);
+                                    }
+                                }
+                            } catch (Exception e) {
+                                Log.d("mytag", "" + e);
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        runn.run();
+    }*/
 }

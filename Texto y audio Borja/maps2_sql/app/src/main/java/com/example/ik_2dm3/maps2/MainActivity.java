@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         myMapController.setZoom(18);
         myOpenMapView.setMinZoomLevel(17);
         myOpenMapView.setUseDataConnection(false);
-        myOpenMapView.setTilesScaledToDpi(true);
+        //myOpenMapView.setTilesScaledToDpi(true);
 
 
         ///////////////////////////////////
