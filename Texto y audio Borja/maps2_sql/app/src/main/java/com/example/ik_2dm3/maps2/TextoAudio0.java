@@ -275,6 +275,7 @@ public class TextoAudio0 extends AppCompatActivity {
                             } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
                             }*/
+                            ////////////////ESTO CREO QUE SOBRA
                             siguiente.setVisibility(View.INVISIBLE);
                             Integer index = extras.getInt("index");
                             Intent juego = new Intent(TextoAudio0.this, MainActivity_camara.class);
@@ -321,7 +322,7 @@ public class TextoAudio0 extends AppCompatActivity {
                             segundo = false;
                         }else{
                             Integer index = extras.getInt("index");
-                            Intent juego = new Intent(TextoAudio0.this, juegoAdivina.class);
+                            Intent juego = new Intent(TextoAudio0.this, MainActivity.class);
                             juego.putExtra("index", index);
                             startActivityForResult(juego, REQ_JUEGO3_2);
                         }
@@ -710,12 +711,12 @@ public class TextoAudio0 extends AppCompatActivity {
                         public void onClick(View v) {
                             Bundle extras = getIntent().getExtras();
                             Integer index = extras.getInt("index");
-                            Intent juego = new Intent(TextoAudio0.this, MainActivity_camara.class);
+                            Intent juego = new Intent(TextoAudio0.this, juegoAdivina.class);
                             juego.putExtra("index", index);
                             if (audio.isPlaying()){
                                 audio.stop();
                             }
-                            startActivityForResult(juego, REQ_JUEGO3);
+                            startActivityForResult(juego, REQ_JUEGO3_2);
                         }
                     });
 
@@ -804,7 +805,7 @@ public class TextoAudio0 extends AppCompatActivity {
                             if (audio.isPlaying()){
                                 audio.stop();
                             }
-                            startActivityForResult(juego, REQ_JUEGO5);
+                            startActivity(juego);
                             segundo = false;
                         }
                     });
