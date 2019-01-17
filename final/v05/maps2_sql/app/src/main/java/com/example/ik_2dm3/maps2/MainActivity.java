@@ -6,6 +6,7 @@ package com.example.ik_2dm3.maps2;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,6 +19,7 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -52,12 +54,17 @@ import static java.lang.Integer.parseInt;
 
 public class MainActivity extends AppCompatActivity {
     ArrayList<OverlayItem> puntos = new ArrayList<>();
+    ArrayList<OverlayItem> puntos2 = new ArrayList<>();
+
     private MapView myOpenMapView;
     private MapController myMapController;
     private GeoPoint posicionActual;
     boolean repetido = false;
     Dialog dialog;
     IMapController mapController;
+    public boolean dialodobo=false;
+    public int indexfinal;
+    public String ordenfinal;
 
     Polyline line=new Polyline();
     Polyline linepasado =new Polyline();
@@ -74,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT > 16) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
-
 
         setContentView(R.layout.activity_main);
 
@@ -107,16 +113,18 @@ public class MainActivity extends AppCompatActivity {
         myOpenMapView.setTilesScaledToDpi(true);
 
 
-        ///////////////////////////////////
-        //Centrar en la posición actual
-        /*final MyLocationNewOverlay myLocationoverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(getApplicationContext()), myOpenMapView);
-        myOpenMapView.getOverlays().add(myLocationoverlay); //No añadir si no quieres una marca
-        myLocationoverlay.enableMyLocation();
-        myLocationoverlay.runOnFirstFix(new Runnable() {
-            public void run() {
-                myMapController.animateTo(myLocationoverlay.getMyLocation());
-            }
-        });*/
+       /* if (elegir.get(0).getPasado() != 0 ) {
+            ///////////////////////////////////
+            //Centrar en la posición actual
+           final MyLocationNewOverlay myLocationoverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(getApplicationContext()), myOpenMapView);
+            myOpenMapView.getOverlays().add(myLocationoverlay); //No añadir si no quieres una marca
+            myLocationoverlay.enableMyLocation();
+            myLocationoverlay.runOnFirstFix(new Runnable() {
+                public void run() {
+                    myMapController.animateTo(myLocationoverlay.getMyLocation());
+                }
+            });
+        }*/
 
         /////////////////////////////////////////
         // Añadir un punto en el mapa
@@ -144,24 +152,35 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(context, "Hello world, I am a toast.", Toast.LENGTH_SHORT).show();*/
 
             }
+            SharedPreferences myPreferences
+                    = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+            /*Bundle extras = getIntent().getExtras();
+            boolean geolocalizacion = extras.getBoolean("geolocalizacion");*/
+            boolean geolocalizacion = myPreferences.getBoolean("geolocalizacion", true);
 
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    ///////////////////////////////////
-                    //Centrar en la posición actual
-                   /* final MyLocationNewOverlay myLocationoverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(getApplicationContext()), myOpenMapView);
-                    myOpenMapView.getOverlays().add(myLocationoverlay); //No añadir si no quieres una marca
-                    myLocationoverlay.enableMyLocation();
-                    myLocationoverlay.runOnFirstFix(new Runnable() {
+            //Log.d("mytag","geolocalizacion "+ geolocalizacion);
+            if (geolocalizacion == true) {
+                if (elegir.get(0).getPasado() != 0) {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
                         public void run() {
-                            myMapController.animateTo(myLocationoverlay.getMyLocation());
-                        }
-                    });*/
-                }
-            },2000);
+                            ///////////////////////////////////////////
+                            //Centrar en la posición actual
+                            final MyLocationNewOverlay myLocationoverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(getApplicationContext()), myOpenMapView);
+                            myOpenMapView.getOverlays().add(myLocationoverlay); //No añadir si no quieres una marca
+                            myLocationoverlay.enableMyLocation();
+                            myLocationoverlay.runOnFirstFix(new Runnable() {
+                                public void run() {
+                                    myMapController.animateTo(myLocationoverlay.getMyLocation());
+                                }
+                            });
 
+
+                        }
+                    }, 3700);
+                }
+            }
             OverlayItem durango = new OverlayItem(posicion.get(i).getNombre(), posicion.get(i).getOrden(), durango2);
 
             byte[] decodedString;
@@ -211,14 +230,19 @@ public class MainActivity extends AppCompatActivity {
                 if (Build.VERSION.SDK_INT >= 23 && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
                     ultimaPosicionConocida = locationManager.getLastKnownLocation(provider);
                 if (ultimaPosicionConocida != null) {
-                    actualizaPosicionActual(ultimaPosicionConocida);
+
+                    ArrayList<Posiciones> posicionuno =  MDB.recuperarposicionesuno(0);
+                    if(posicionuno.get(0).getPasado() != 0.0){
+                       // Log.d("mytag","getPasado "+posicionuno.get(0).getPasado());
+                        actualizaPosicionActual(ultimaPosicionConocida);
+                    }
                 }
                 //Pedir nuevas ubicaciones
                 locationManager.requestLocationUpdates(provider, 0, 0, detectaPosicion);
                 break;
             }
         } else {
-            // No tengo permiso de ubicación
+            // No tengo permiso de ubicación :(
         }
 
         ArrayList<Rutas> rutas =  MDB.recuperarruta();
@@ -234,9 +258,8 @@ public class MainActivity extends AppCompatActivity {
             if (pasado != 13){
                  pasadonumero = pasado - 1;
             }else{
-                pasadonumero=  pasado;
+                pasadonumero =  pasado;
             }
-
                 if(posiciones.get(0).getPasado() == 1 || posiciones.get(0).getOrden().equals(Integer.toString(pasadonumero))){
                     if (posiciones.get(0).getOrden().equals(Integer.toString(pasadonumero))){
                         ptspasado.add(new GeoPoint(Latitud, Longitud));
@@ -273,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         } else {
-            // El usuario no ha dado permiso
+            // El usuario no ha dado permiso :(
         }
     }
 
@@ -304,10 +327,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void actualizaPosicionActual(Location location) {
+        dialog=new Dialog(this);
+        Basededatos MDB = new Basededatos(getApplicationContext());
         posicionActual = new GeoPoint(location.getLatitude(), location.getLongitude());
         OverlayItem marcador = new OverlayItem("Estás aquí", "Posicion actual", posicionActual);
         marcador.setMarker(ResourcesCompat.getDrawable(getResources(), R.drawable.sapua, null));
         puntos.add(marcador);
+
+        ArrayList<Posiciones> posicion =  MDB.recuperarposiciones();
+
+        for(int A = 0; A < posicion.size(); A++) {
+
+            Double Latitud = Double.valueOf(posicion.get(A).getLati());
+            Double Longitud = Double.valueOf(posicion.get(A).getLong());
+
+            GeoPoint distant = new GeoPoint(Latitud, Longitud);
+            float distanceInMeters = posicionActual.distanceTo(distant);
+            int index = A;
+            String orden=puntos.get(index).getSnippet();
+            if (distanceInMeters <=15 && posicion.get(A).getPasado() == 0.0){
+                //Log.d("mytag","aaa "+distanceInMeters);
+                if (orden != "Posicion actual") {
+                    if (dialodobo == false) {
+                        dialodobo = true;
+                        indexfinal = index; ordenfinal = orden;
+                        //Log.d("mytag", "primero ");
+                        enseñarPopUp(null, index, orden);
+                    }
+                }
+            }else if(dialodobo == true && indexfinal == A && ordenfinal.equals(orden)){
+                //Log.d("mytag","a "+distanceInMeters);
+                dialodobo = false;
+            }
+        }
         refrescaPuntos();
     }
 
@@ -321,10 +373,36 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onItemSingleTapUp(int index, OverlayItem item) {
+                Basededatos MDB = new Basededatos(getApplicationContext());
                 String orden=puntos.get(index).getSnippet();
-                //Log.d("mytag","aaa "+ index +" "+ orden);
-                if (orden != "Posicion actual") {
+                SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                boolean geolocalizacion = myPreferences.getBoolean("geolocalizacion", false);
+
+
+                ArrayList<Posiciones> elegir =  MDB.recuperarposicionesuno(0);
+
+                if (elegir.get(0).getPasado() == 0.0 ) {
+                    //Log.d("mytag", "getPasado2 " + elegir.get(0).getPasado());
+                    //Log.d("mytag", "segundo ");
                     enseñarPopUp(null, index, orden);
+                }else {
+                    if (orden != "Posicion actual") {
+
+                        ArrayList<Posiciones> posicion = MDB.recuperarposicionesuno(index);
+
+                        Double Latitud = Double.valueOf(posicion.get(0).getLati());
+                        Double Longitud = Double.valueOf(posicion.get(0).getLong());
+
+                        GeoPoint distant = new GeoPoint(Latitud, Longitud);
+                        float distanceInMeters = posicionActual.distanceTo(distant);
+                        //  Log.d("mytag", "distanceInMeters " + distanceInMeters +"geolocalizacion "+geolocalizacion+"getPasado "+posicion.get(0).getPasado() +"index "+index);
+                        //|| (posicion.get(0).getPasado() == 0.0 && index != 0)
+                        Log.d("mytag", "distanceInMeters " + distanceInMeters);
+                        if (distanceInMeters <= 15 || geolocalizacion == false) {
+                           // Log.d("mytag", "tercero ");
+                            enseñarPopUp(null, index, orden);
+                        }
+                    }
                 }
                 return true;
             }
@@ -339,9 +417,22 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+
         myOpenMapView.getOverlayManager().add(line);
         myOpenMapView.getOverlayManager().add(linepasado);
-        ItemizedOverlayWithFocus<OverlayItem> capa = new ItemizedOverlayWithFocus<>(this, puntos, tap);
+
+        puntos2.clear();
+        for (int m = puntos.size()-1; m >= 0; m--){
+            puntos2.add(puntos.get(m));
+           // Log.d("mytag", "punt "+ puntos.get(m).getSnippet());
+        }
+
+       /* for(int l=0;l < puntos2.size(); l++){
+            Log.d("mytag", "puntos2 "+ puntos2.get(l).getSnippet());
+        }
+        Log.d("mytag","----------------------------------------------------");*/
+
+        ItemizedOverlayWithFocus<OverlayItem> capa = new ItemizedOverlayWithFocus<>(this, puntos2, tap);
         myOpenMapView.getOverlays().add(capa);
 
     }
