@@ -2,10 +2,12 @@ package com.example.ik_2dm3.maps2;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,10 +30,15 @@ public class MainActivity_ini extends AppCompatActivity {
     private MediaPlayer mp;
     Dialog dialog;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
+        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor myEditor = myPreferences.edit();
+        myEditor.putBoolean("geolocalizacion", geolocalizacion);
+        myEditor.commit();
 
         if (Build.VERSION.SDK_INT > 16) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -61,6 +68,8 @@ public class MainActivity_ini extends AppCompatActivity {
         geo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor myEditor = myPreferences.edit();
                contador++;
                if (contador == 5 && geolocalizacion){
                    Toast.makeText(getBaseContext(), "has desactivado la geolocalizacion",Toast.LENGTH_SHORT).show();
@@ -71,6 +80,9 @@ public class MainActivity_ini extends AppCompatActivity {
                    geolocalizacion=true;
                    contador=0;
                }
+
+                myEditor.putBoolean("geolocalizacion", geolocalizacion);
+                myEditor.commit();
             }
         });
         btnRutaLibre.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +98,7 @@ public class MainActivity_ini extends AppCompatActivity {
                     mp.stop();
                 }
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                //intent.putExtra("geolocalizacion", geolocalizacion);
                 startActivity(intent);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -126,6 +139,7 @@ public class MainActivity_ini extends AppCompatActivity {
                                 mp.stop();
                             }
                             Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                            //intent.putExtra("geolocalizacion", geolocalizacion);
                             startActivity(intent);
                             dialog.dismiss();
                         }
@@ -143,6 +157,7 @@ public class MainActivity_ini extends AppCompatActivity {
                                     mp.stop();
                                 }
                                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                                //intent.putExtra("geolocalizacion", geolocalizacion);
                                 startActivity(intent);
                                 dialog.dismiss();
                             } catch (IOException e) {
@@ -164,6 +179,7 @@ public class MainActivity_ini extends AppCompatActivity {
                     MDB.borrarbasedatos(getApplicationContext());
 
                     Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                    //intent.putExtra("geolocalizacion", geolocalizacion);
                     startActivity(intent);
                     } catch (IOException e) {
                         e.printStackTrace();
