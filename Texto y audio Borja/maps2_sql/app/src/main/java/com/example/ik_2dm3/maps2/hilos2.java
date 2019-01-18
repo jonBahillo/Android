@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class hilos2 extends Thread{
     TextView txtview2;
-    String algo = "";
     String[] palabras2_1;
     String[] palabras2_2;
     int milisegundos2;
@@ -24,8 +23,8 @@ public class hilos2 extends Thread{
                     synchronized (this) {
                         try {
                             wait(milisegundos2);
-                            //txtview2.setText(txtview2.getText() + " " + sacar2);
-                            algo = txtview2.getText() + " " + sacar2;
+                            txtview2.setText(txtview2.getText() + " " + sacar2);
+                            //algo = txtview2.getText() + " " + sacar2;
                         } catch (InterruptedException e) {
                             Log.d("mytag", "" + e);
                         }
@@ -40,11 +39,10 @@ public class hilos2 extends Thread{
                             txtview2.setText(txtview2.getText() + " " + sacar2);
                             if (j == palabras2_1.length - 1) {
                                 guardartexto.add(txtview2.getText());
-                                algo = "";
                                 for (int i = 0; i < palabras2_2.length; i++) {
                                     sacar2 = palabras2_2[i];
                                     wait(milisegundos2);
-                                    algo = txtview2.getText() + " " + sacar2;
+                                    txtview2.setText(txtview2.getText() + " " + sacar2);
                                 }
                             }
                         } catch (Exception e) {
@@ -55,3 +53,20 @@ public class hilos2 extends Thread{
             }
     }
 }
+/*txtview2.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            for (int j = 0; j < palabras2_1.length; j++) {
+                                sacar2 = palabras2_1[j];
+                                synchronized (this) {
+                                    try {
+                                        wait(milisegundos2);
+                                        txtview2.setText(txtview2.getText() + " " + sacar2);
+                                        //algo = txtview2.getText() + " " + sacar2;
+                                    } catch (InterruptedException e) {
+                                        Log.d("mytag", "" + e);
+                                    }
+                                }
+                            }
+                    }
+                });*/
