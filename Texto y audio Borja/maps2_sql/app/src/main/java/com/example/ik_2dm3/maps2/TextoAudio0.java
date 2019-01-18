@@ -42,7 +42,6 @@ public class TextoAudio0 extends AppCompatActivity {
     final int REQ_JUEGO7 = 10;
     int dialogos;
     int actividad;
-    Runnable run;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +72,6 @@ public class TextoAudio0 extends AppCompatActivity {
                 pruebatexto1=texto1.split(" ");
                 pruebatexto2=texto2.split(" ");
                 mostrar = findViewById(R.id.txtHistoria);
-                dialogos = 2;
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -86,7 +84,7 @@ public class TextoAudio0 extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 850, dialogos);
+                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 850, 2);
                     }
                 }, 2900);
                 cambiartexto.setOnClickListener(new View.OnClickListener() {
@@ -134,7 +132,6 @@ public class TextoAudio0 extends AppCompatActivity {
             case 1:
                 /////////NO TIENE BOTON DE SIGUIENTE TEXTO
                 //Reproducimos el audio
-                mostrar.setText("");
                 audio = MediaPlayer.create(TextoAudio0.this, R.raw.santaana1);
                 //audio1.setVolume(200,200);
                 audio.start();
@@ -146,12 +143,11 @@ public class TextoAudio0 extends AppCompatActivity {
                 pruebatexto2 = texto2.split(" ");
                 mostrar = findViewById(R.id.txtHistoria);
                 cambiartexto.setVisibility(View.INVISIBLE);
-                dialogos = 1;
                 final Handler handler1 = new Handler();
                 handler1.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 850, dialogos);
+                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 850, 1);
                     }
                 }, 4500);
                 handler1.postDelayed(new Runnable() {
@@ -211,12 +207,11 @@ public class TextoAudio0 extends AppCompatActivity {
                 //Separamos las palabras
                 pruebatexto1=texto1.split(" ");
                 mostrar = findViewById(R.id.txtHistoria);
-                dialogos = 1;
                 final Handler handler2 = new Handler();
                 handler2.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 800, dialogos);
+                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 800, 1);
                     }
                 }, 2500);
                 handler2.postDelayed(new Runnable() {
@@ -303,12 +298,11 @@ public class TextoAudio0 extends AppCompatActivity {
                 //Separamos las palabras
                 pruebatexto1=texto1.split(" ");
                 mostrar = findViewById(R.id.txtHistoria);
-                dialogos = 1;
                 final Handler handler3 = new Handler();
                 handler3.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 935, dialogos);
+                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 935, 1);
                     }
                 }, 4000);
                 Log.d("mytag", "Disfruta del error:" + REQ_JUEGO3);
@@ -358,8 +352,7 @@ public class TextoAudio0 extends AppCompatActivity {
                 pruebatexto1=texto1.split(" ");
                 pruebatexto2=texto2.split(" ");
                 mostrar = findViewById(R.id.txtHistoria);
-                dialogos = 2;
-                ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 570, dialogos);
+                ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 575, 2);
                 final Handler handler4 = new Handler();
                 handler4.postDelayed(new Runnable() {
                     @Override
@@ -408,9 +401,9 @@ public class TextoAudio0 extends AppCompatActivity {
                 pruebatexto1 = texto1.split(" ");
                 pruebatexto2 = texto2.split(" ");
                 mostrar = findViewById(R.id.txtHistoria);
-                dialogos = 1;
+
                 //hilo_bueno(mostrar, pruebatexto1, pruebatexto2, 600,dialogos, run);
-                ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 600, dialogos);
+                ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 600, 1);
                 handler5_1.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -465,10 +458,9 @@ public class TextoAudio0 extends AppCompatActivity {
                 handler6.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 565, dialogos);
+                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 565, 2);
                     }
                 }, 2);
-                dialogos = 2;
                 handler6.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -600,7 +592,7 @@ public class TextoAudio0 extends AppCompatActivity {
                     pruebatexto1=texto1.split(" ");
                     mostrar = findViewById(R.id.txtHistoria);
                     final Handler handler = new Handler();
-                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 850, dialogos);
+                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 850, 1);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -651,7 +643,7 @@ public class TextoAudio0 extends AppCompatActivity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 720, dialogos);
+                            ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 720, 1);
                         }
                     }, 7300);
                     handler.postDelayed(new Runnable() {
@@ -679,7 +671,6 @@ public class TextoAudio0 extends AppCompatActivity {
                 break;
             case REQ_JUEGO3:
                 ////////////AQUI PETA POR EL AUDIO
-                Log.d("mytag", "Disfruta del error 2:" + resultCode + "   " + RESULT_OK);
                 if (resultCode==RESULT_OK){
                     ////////////MIRAR PRUEBATEXTO2
                     siguiente.setVisibility(View.INVISIBLE);
@@ -695,7 +686,7 @@ public class TextoAudio0 extends AppCompatActivity {
                     pruebatexto1=texto1.split(" ");
                     mostrar = findViewById(R.id.txtHistoria);
                     final Handler handler = new Handler();
-                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 880, dialogos);
+                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 880, 1);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -745,7 +736,7 @@ public class TextoAudio0 extends AppCompatActivity {
                     texto1 = getResources().getString(R.string.gunea3_3);
                     pruebatexto1=texto1.split(" ");
                     mostrar = findViewById(R.id.txtHistoria);
-                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 575, dialogos);
+                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 575, 1);
                     handler3_2.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -790,7 +781,7 @@ public class TextoAudio0 extends AppCompatActivity {
                     texto1 = getResources().getString(R.string.gunea4_2);
                     pruebatexto1=texto1.split(" ");
                     mostrar = findViewById(R.id.txtHistoria);
-                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 570, dialogos);
+                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2, 570, 1);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {

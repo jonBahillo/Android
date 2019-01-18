@@ -7,8 +7,10 @@ import java.util.ArrayList;
 
 public class hilos2 extends Thread{
     TextView txtview2;
+    String algo = "";
     String[] palabras2_1;
     String[] palabras2_2;
+    String[] palabras2_3;
     int milisegundos2;
     int dialogos=0;
 
@@ -24,7 +26,6 @@ public class hilos2 extends Thread{
                         try {
                             wait(milisegundos2);
                             txtview2.setText(txtview2.getText() + " " + sacar2);
-                            //algo = txtview2.getText() + " " + sacar2;
                         } catch (InterruptedException e) {
                             Log.d("mytag", "" + e);
                         }
@@ -39,6 +40,7 @@ public class hilos2 extends Thread{
                             txtview2.setText(txtview2.getText() + " " + sacar2);
                             if (j == palabras2_1.length - 1) {
                                 guardartexto.add(txtview2.getText());
+                                txtview2.setText("");
                                 for (int i = 0; i < palabras2_2.length; i++) {
                                     sacar2 = palabras2_2[i];
                                     wait(milisegundos2);
@@ -50,23 +52,37 @@ public class hilos2 extends Thread{
                         }
                     }
                 }
-            }
-    }
-}
-/*txtview2.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            for (int j = 0; j < palabras2_1.length; j++) {
-                                sacar2 = palabras2_1[j];
-                                synchronized (this) {
-                                    try {
+            } else if (dialogos == 3){
+                for (int j = 0; j < palabras2_1.length; j++) {
+                    int k = 0;
+                    sacar2 = palabras2_1[j];
+                    synchronized (this) {
+                        try {
+                            wait(milisegundos2);
+                            txtview2.setText(txtview2.getText() + " " + sacar2);
+                            if (j == palabras2_1.length - 1) {
+                                guardartexto.add(txtview2.getText());
+                                txtview2.setText("");
+                                for (int i = 0; i < palabras2_2.length; i++) {
+                                    sacar2 = palabras2_2[i];
+                                    wait(milisegundos2);
+                                    txtview2.setText(txtview2.getText() + " " + sacar2);
+                                    k++;
+                                } if (k == palabras2_2.length - 1){
+                                    guardartexto.add(txtview2.getText());
+                                    txtview2.setText("");
+                                    for (int i = 0; i < palabras2_3.length; i++) {
+                                        sacar2 = palabras2_3[i];
                                         wait(milisegundos2);
                                         txtview2.setText(txtview2.getText() + " " + sacar2);
-                                        //algo = txtview2.getText() + " " + sacar2;
-                                    } catch (InterruptedException e) {
-                                        Log.d("mytag", "" + e);
                                     }
                                 }
                             }
+                        } catch (Exception e) {
+                            Log.d("mytag", "" + e);
+                        }
                     }
-                });*/
+                }
+            }
+    }
+}
