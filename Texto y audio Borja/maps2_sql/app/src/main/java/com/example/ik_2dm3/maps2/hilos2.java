@@ -68,7 +68,7 @@ public class hilos2 extends Thread{
                                     wait(milisegundos2);
                                     txtview2.setText(txtview2.getText() + " " + sacar2);
                                     k++;
-                                } if (k == palabras2_2.length - 1){
+                                } if (k == palabras2_2.length){
                                     guardartexto.add(txtview2.getText());
                                     txtview2.setText("");
                                     for (int i = 0; i < palabras2_3.length; i++) {
