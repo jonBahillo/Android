@@ -1,6 +1,9 @@
 package com.example.ik_2dm3.maps2;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import java.util.ArrayList;
 
@@ -29,6 +33,7 @@ public class TextoAudio0 extends AppCompatActivity {
     TextView mostrar;
     TextView siguiente;
     ImageView cambiartexto;
+    ImageView cambiartexto2;
     boolean primero = false;
     boolean segundo = true;
     boolean finalizar = false;
@@ -42,8 +47,20 @@ public class TextoAudio0 extends AppCompatActivity {
     final int REQ_JUEGO5 = 8;
     final int REQ_JUEGO6 = 9;
     final int REQ_JUEGO7 = 10;
+    final int REQ_JUEGO8 = 11;
     int dialogos;
     int actividad;
+    int vartexto = 3;
+    BroadcastReceiver br = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)){
+                Log.d("mytag", "A");
+            } else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)){
+                audio.stop();
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +70,14 @@ public class TextoAudio0 extends AppCompatActivity {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
         setContentView(R.layout.activity_texto_audio0);
+        registerReceiver(br, new IntentFilter(Intent.ACTION_SCREEN_ON));
+        registerReceiver(br, new IntentFilter(Intent.ACTION_SCREEN_OFF));
         siguiente=findViewById(R.id.txtSig);
         cambiartexto = findViewById(R.id.imgCambiartexto);
+        cambiartexto2 = findViewById(R.id.imgCambiartexto2);
         siguiente.setVisibility(View.INVISIBLE);
         cambiartexto.setVisibility(View.INVISIBLE);
+        cambiartexto2.setVisibility(View.INVISIBLE);
         final Bundle extras = getIntent().getExtras();
         pantalla = extras.getString("numero");
         actividad = Integer.parseInt(pantalla);
@@ -132,14 +153,14 @@ public class TextoAudio0 extends AppCompatActivity {
                 });
                 break;
             case 1:
-                /////////NO TIENE BOTON DE SIGUIENTE TEXTO
+                ////////CAMBIAR TEXTOS Y PONER BOTON
                 //Reproducimos el audio
                 audio = MediaPlayer.create(TextoAudio0.this, R.raw.santaana1);
                 //audio1.setVolume(200,200);
                 audio.start();
                 //Sacamos el texto palabra a palabra
                 texto1 = getResources().getString(R.string.gunea1);
-                texto2 = "";
+                texto2 = getResources().getString(R.string.gunea1_2);
                 //Separamos las palabras
                 pruebatexto1 = texto1.split(" ");
                 pruebatexto2 = texto2.split(" ");
@@ -149,15 +170,30 @@ public class TextoAudio0 extends AppCompatActivity {
                 handler1.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2,  pruebatexto3, 850, 1);
+                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2,  pruebatexto3, 850, 2);
                     }
                 }, 4500);
                 handler1.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         siguiente.setVisibility(View.VISIBLE);
+                        cambiartexto.setVisibility(View.VISIBLE);
                     }
                 }, 67100);//67100);
+                cambiartexto.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (primero){
+                            mostrar.setText(texto2);
+                            cambiartexto.setImageResource(R.drawable.flecha_iz);
+                            primero=false;
+                        }else{
+                            mostrar.setText(texto1);
+                            cambiartexto.setImageResource(R.drawable.flecha_der);
+                            primero=true;
+                        }
+                    }
+                });
                 siguiente.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -204,11 +240,16 @@ public class TextoAudio0 extends AppCompatActivity {
                 if (audio.getCurrentPosition()==28000){
                     audio.pause();
                 }
+                cambiartexto.setVisibility(View.INVISIBLE);
                 //Sacamos el texto palabra a palabra
                 texto1 = getResources().getString(R.string.gunea2_1);
                 //Separamos las palabras
                 pruebatexto1=texto1.split(" ");
                 mostrar = findViewById(R.id.txtHistoria);
+                ////////////MIRAR TAMAÑOS DE LETRA
+                /*mostrar.getTextSize();
+                mostrar.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                mostrar.setTextSize(10);*/
                 final Handler handler2 = new Handler();
                 handler2.postDelayed(new Runnable() {
                     @Override
@@ -274,11 +315,11 @@ public class TextoAudio0 extends AppCompatActivity {
                                 e.printStackTrace();
                             }*/
                             ////////////////ESTO CREO QUE SOBRA
-                            siguiente.setVisibility(View.INVISIBLE);
+                            /*siguiente.setVisibility(View.INVISIBLE);
                             Integer index = extras.getInt("index");
                             Intent juego = new Intent(TextoAudio0.this, MainActivity_camara.class);
                             juego.putExtra("index", index);
-                            startActivityForResult(juego, REQ_JUEGO2_2);
+                            startActivityForResult(juego, REQ_JUEGO2_2);*/
                         }
                         if(finalizar){
                             Intent juego = new Intent(TextoAudio0.this, pantallacarga.class);
@@ -307,7 +348,7 @@ public class TextoAudio0 extends AppCompatActivity {
                         ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2,  pruebatexto3, 935, 1);
                     }
                 }, 4000);
-                Log.d("mytag", "Disfruta del error:" + REQ_JUEGO3);
+                //Log.d("mytag", "Disfruta del error:" + REQ_JUEGO3);
                 siguiente.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -354,7 +395,7 @@ public class TextoAudio0 extends AppCompatActivity {
                 pruebatexto1=texto1.split(" ");
                 pruebatexto2=texto2.split(" ");
                 mostrar = findViewById(R.id.txtHistoria);
-                ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2,  pruebatexto3, 575, 2);
+                ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2,  pruebatexto3, 565, 2);
                 final Handler handler4 = new Handler();
                 handler4.postDelayed(new Runnable() {
                     @Override
@@ -398,20 +439,21 @@ public class TextoAudio0 extends AppCompatActivity {
                 audio.start();
                 //Sacamos el texto palabra a palabra
                 texto1 = getResources().getString(R.string.gunea5);
-                texto2 = "";
+                texto2 = getResources().getString(R.string.gunea5_2);
                 //Separamos las palabras
                 pruebatexto1 = texto1.split(" ");
                 pruebatexto2 = texto2.split(" ");
                 mostrar = findViewById(R.id.txtHistoria);
 
                 //hilo_bueno(mostrar, pruebatexto1, pruebatexto2, 600,dialogos, run);
-                ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2,  pruebatexto3, 600, 1);
+                ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2,  pruebatexto3, 605, 2);
                 handler5_1.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         siguiente.setVisibility(View.VISIBLE);
+                        cambiartexto.setVisibility(View.VISIBLE);
                     }
-                }, 37500);
+                }, 38000);
                 siguiente.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -442,9 +484,24 @@ public class TextoAudio0 extends AppCompatActivity {
                         segundo = false;
                     }
                 });
+                cambiartexto.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (primero){
+                            mostrar.setText(texto2);
+                            cambiartexto.setImageResource(R.drawable.flecha_iz);
+                            primero=false;
+                        }else{
+                            mostrar.setText(texto1);
+                            cambiartexto.setImageResource(R.drawable.flecha_der);
+                            primero=true;
+                        }
+                    }
+                });
                 break;
             case 6:
                 /////////TIENE BOTON DE SIGUIENTE TEXTO
+                ////////PONER BOTON PARA CAMBIAR ENTRE LOS 3 TEXTOS
                 //Reproducimos el audio
                 audio = MediaPlayer.create(TextoAudio0.this, R.raw.sanagustin1);
                 audio.start();
@@ -469,29 +526,141 @@ public class TextoAudio0 extends AppCompatActivity {
                 handler6.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        audio.pause();
+                        siguiente.setVisibility(View.VISIBLE);
+                        cambiartexto.setVisibility(View.VISIBLE);
+                    }
+                }, 85100);
+                siguiente.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        /*Basededatos MDB = new Basededatos(getApplicationContext());
+
+                        Bundle extras = getIntent().getExtras();
+
+                        Integer index = extras.getInt("index");
+
+                        ArrayList<Posiciones> posicion =  MDB.recuperarposicionesuno(index);
+
+                        String activity = "com.example.ik_2dm3.maps2."+posicion.get(0).getJuegonombre();
+                        // String  activity = "com.example.ik_2dm3.maps2.TextoAudio0";
+                        Intent intent= null;
+                        try {
+                            intent = new Intent(getBaseContext(), Class.forName(activity));
+
+                            intent.putExtra("index", index);
+                            startActivityForResult(intent, REQ_JUEGO6);
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }*/
+                        Integer index = extras.getInt("index");
+                        Intent juego = new Intent(TextoAudio0.this, MainActivity.class);
+                        juego.putExtra("index", index);
+                        if (audio.isPlaying()){
                         audio.stop();
+                        }
+                        startActivityForResult(juego, REQ_JUEGO6);
+                    }
+                });
+
+                cambiartexto.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        switch (vartexto){
+                            case 1:
+
+                                break;
+                            case 2:
+                                mostrar.setText(texto1);
+                                cambiartexto.setVisibility(View.INVISIBLE);
+                                //cambiartexto.setImageResource(R.drawable.flecha_iz);
+                                cambiartexto2.setImageResource(R.drawable.flecha_der);
+                                vartexto = 1;
+                                break;
+                            case 3:
+                                mostrar.setText(texto2);
+                                cambiartexto2.setVisibility(View.VISIBLE);
+                                cambiartexto2.setImageResource(R.drawable.flecha_der);
+                                vartexto = 2;
+                                break;
+                        }
+                    }
+                });
+                cambiartexto2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        switch (vartexto){
+                            case 1:
+                                mostrar.setText(texto2);
+                                cambiartexto.setVisibility(View.VISIBLE);
+                                cambiartexto2.setImageResource(R.drawable.flecha_iz);
+                                cambiartexto2.setImageResource(R.drawable.flecha_der);
+                                vartexto = 2;
+                                break;
+                            case 2:
+                                mostrar.setText(texto3);
+                                cambiartexto.setVisibility(View.VISIBLE);
+                                cambiartexto.setImageResource(R.drawable.flecha_iz);
+                                cambiartexto2.setVisibility(View.INVISIBLE);
+                                vartexto = 3;
+                                break;
+                            case 3:
+
+                                break;
+                        }
+                    }
+                });
+                break;
+            case 7:
+                final Handler handler7 = new Handler();
+                //Sacamos el texto palabra a palabra
+                texto1 = getResources().getString(R.string.gunea6_2);
+                //Separamos las palabras
+                pruebatexto1=texto1.split(" ");
+                texto2 = getResources().getString(R.string.gunea6_3);
+                //Separamos las palabras
+                pruebatexto2=texto2.split(" ");
+                mostrar = findViewById(R.id.txtHistoria);
+                handler7.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
                         audio = MediaPlayer.create(TextoAudio0.this, R.raw.sanagustin2);
                         audio.start();
-                        ejecutar_hilo(mostrar, pruebatexto2, pruebatexto1,  pruebatexto3, 590, 1);
+                        ejecutar_hilo(mostrar, pruebatexto1, pruebatexto1,  pruebatexto3, 590, 1);
                     }
-                }, 33800);
-                handler6.postDelayed(new Runnable() {
+                }, 1);
+                handler7.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         audio.stop();
                         audio = MediaPlayer.create(TextoAudio0.this, R.raw.sanagustin3);
                         audio.start();
-                        ejecutar_hilo(mostrar, pruebatexto3, pruebatexto2,  pruebatexto1, 590, 1);
+                        ejecutar_hilo(mostrar, pruebatexto2, pruebatexto1,  pruebatexto3, 590, 1);
                     }
-                }, 70300);
-                handler6.postDelayed(new Runnable() {
+                }, 31800);
+                handler7.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        audio.pause();
+                        audio.stop();
+                        audio.release();
                         siguiente.setVisibility(View.VISIBLE);
                         cambiartexto.setVisibility(View.VISIBLE);
                     }
-                }, 106400);
+                }, 53000);
+                cambiartexto.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (primero){
+                            mostrar.setText(texto2);
+                            cambiartexto.setImageResource(R.drawable.flecha_iz);
+                            primero=false;
+                        }else{
+                            mostrar.setText(texto1);
+                            cambiartexto.setImageResource(R.drawable.flecha_der);
+                            primero=true;
+                        }
+                    }
+                });
                 siguiente.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -518,27 +687,13 @@ public class TextoAudio0 extends AppCompatActivity {
                         Intent juego = new Intent(TextoAudio0.this, MainActivity_juegoimagenesdiferentes.class);
                         juego.putExtra("index", index);
                         if (audio.isPlaying()){
-                        audio.stop();
+                            audio.stop();
                         }
-                        startActivityForResult(juego, REQ_JUEGO6);
-                    }
-                });
-                cambiartexto.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (primero){
-                            mostrar.setText(texto2);
-                            cambiartexto.setImageResource(R.drawable.flecha_iz);
-                            primero=false;
-                        }else{
-                            mostrar.setText(texto1);
-                            cambiartexto.setImageResource(R.drawable.flecha_der);
-                            primero=true;
-                        }
+                        startActivityForResult(juego, REQ_JUEGO7);
                     }
                 });
                 break;
-            case 7:
+            case 8:
 
                 break;
 
@@ -693,7 +848,7 @@ public class TextoAudio0 extends AppCompatActivity {
                 }
                 break;
             case REQ_JUEGO3:
-                ////////////AQUI PETA POR EL AUDIO
+
                 if (resultCode==RESULT_OK){
                     ////////////MIRAR PRUEBATEXTO2
                     siguiente.setVisibility(View.INVISIBLE);
@@ -739,6 +894,7 @@ public class TextoAudio0 extends AppCompatActivity {
                 }
                 break;
             case REQ_JUEGO3_2:
+                ///////////MIRAR TEXTOS Y PONER BOTON PARA CAMBIAR ENTRE ELLOS
                 if (resultCode==RESULT_OK){
                     ImageView imgsapo;
                     imgsapo = findViewById(R.id.sapo);
@@ -758,14 +914,17 @@ public class TextoAudio0 extends AppCompatActivity {
                     //Sacamos el texto palabra a palabra
                     texto1 = getResources().getString(R.string.gunea3_3);
                     pruebatexto1=texto1.split(" ");
+                    texto2 = getResources().getString(R.string.gunea3_4);
+                    pruebatexto2=texto2.split(" ");
                     mostrar = findViewById(R.id.txtHistoria);
-                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2,  pruebatexto3, 575, 1);
+                    ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2,  pruebatexto3, 585, 2);
                     handler3_2.postDelayed(new Runnable() {
                         @Override
                         public void run() {
+                            cambiartexto.setVisibility(View.VISIBLE);
                             siguiente.setVisibility(View.VISIBLE);
                         }
-                    }, 47200);
+                    }, 45700);
                     siguiente.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -778,6 +937,20 @@ public class TextoAudio0 extends AppCompatActivity {
                             }
                             startActivityForResult(juego, REQ_JUEGO3_2);
                             segundo = false;
+                        }
+                    });
+                    cambiartexto.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (primero){
+                                mostrar.setText(texto2);
+                                cambiartexto.setImageResource(R.drawable.flecha_iz);
+                                primero=false;
+                            }else{
+                                mostrar.setText(texto1);
+                                cambiartexto.setImageResource(R.drawable.flecha_der);
+                                primero=true;
+                            }
                         }
                     });
                 }
@@ -793,9 +966,9 @@ public class TextoAudio0 extends AppCompatActivity {
                         @Override
                         public void run() {
                             //Reproducimos el audio
-                            audio = MediaPlayer.create(TextoAudio0.this, R.raw.aldezaharra);
+                            //audio = MediaPlayer.create(TextoAudio0.this, R.raw.andramari);
                             //audio3.setVolume(200,200);
-                            audio.seekTo(52000);
+                            //audio.seekTo(66600);
                             //La siguiente parte del audio es en el segundo 59 +-
                             audio.start();
                         }
@@ -810,7 +983,7 @@ public class TextoAudio0 extends AppCompatActivity {
                         public void run() {
                             siguiente.setVisibility(View.VISIBLE);
                         }
-                    }, 20000);
+                    }, 20500);
                     siguiente.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -847,7 +1020,22 @@ public class TextoAudio0 extends AppCompatActivity {
                 finish();
                 break;
             case REQ_JUEGO7:
-
+                returnValue = data.getStringExtra("index");
+                MDB = new Basededatos(getApplicationContext());
+                MDB.campiarposicion(parseInt(returnValue));
+                Intent intent7 = new Intent(getBaseContext(), MainActivity.class);
+                // intent.putExtra("index", parseInt(returnValue));
+                startActivity(intent7);
+                finish();
+                break;
+            case REQ_JUEGO8:
+                returnValue = data.getStringExtra("index");
+                MDB = new Basededatos(getApplicationContext());
+                MDB.campiarposicion(parseInt(returnValue));
+                Intent intent8 = new Intent(getBaseContext(), MainActivity.class);
+                // intent.putExtra("index", parseInt(returnValue));
+                startActivity(intent8);
+                finish();
                 break;
         }
     }

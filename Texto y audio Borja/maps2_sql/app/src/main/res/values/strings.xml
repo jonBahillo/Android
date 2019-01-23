@@ -39,9 +39,11 @@
     <string name="gunea1">
         Heldu gara bidaiaren lehenengo gune interesgarrira, Santa Anako arkuan gaude. Ezagutzen zenuten?
         Antzina Durango inguratzen zuen harresiaren 6 ateetatik gelditzen den ondare bakarra da Santa Anako arku hau. Santa Anako arkuari “Merkatuko portalea” esaten zioten lehen, izan ere,  XVII.mendean eraiki zuten eta garaipen arku itxura du baita barrokoa da ere.
-        Lehen aipatu dugun moduan, merkatuko portalea zen  beraz, denboran atzera eginez, garai horretara bidaiatuko dugu eta trueke jolas bat egingo dugu.
     </string>
     <string name="gunea1_2">
+        Lehen aipatu dugun moduan, merkatuko portalea zen  beraz, denboran atzera eginez, garai horretara bidaiatuko dugu eta trueke jolas bat egingo dugu.
+    </string>
+    <string name="gunea1_3">
         Ederto! Hurrengo gunera abiatuko gara! Animo!
     </string>
 
@@ -65,8 +67,11 @@
     <string name="gunea3_3">
         Kaixo lagunok! Mila esker nire lagun Kalebarriari laguntzeagatik eta ni aurkitzeagatik. Egia esanda… pixka bat galduta nengoen, Durangoko historian hainbeste murgildu naiz ezen ez nintzen gai Durangoko kaleetatik irtetzeko.
         Orain, zuen laguntzailea izango naiz gelditzen den ibilbidean. Prest?
+    </string>
+    <string name="gunea3_4">
         Alde Zaharreko kaleen izenak ezagutuko ditugu eta banan-banan begiztatuko ditugu. Lehenengoa Komentukale da, hurrengoa Kalebarria, gero Goienkale nire kalea!, ondoren Artekale eta azkenik Barrenkale dago. Goazen horiek ikustera!
     </string>
+
     <string name="gunea4_1_1">
         Ibilbidearen 4. gunera heldu gara, Andra Mariko Basilika.
         Irudikatu dezagun orain leku hau martxoaren 31 asteazken hartan. Elizkizunaz gain, egun horretan basilikako portikoan egin zen merkatua.Horregatik, eliza ez-ezik ingurua ere jendez beteta zegoen.
@@ -78,12 +83,16 @@
     <string name="gunea4_2">
         Beno, irteera honetan dena ez da izango informazioa barneratzea beraz, aurkitu portikoan dagoen laberintoa eta jolastu denon artean, taldekide guztiek heldu behar zarte jomugara, denok ez bazarete heltzen jolasa ez da burutua izango! Animo!
     </string>
+
     <string name="gunea5">
         Ezkurdi Plazan gaude orain, historian zehar durangarrek euren aisialdirako leku modura erabili izan dutelako ezaguna.
         Puntu honetan gerra hasierara bueltatuko gara. Izan ere, 1936ko irailean , Durangok lehen bonbardaketa bat jasan zuen.
+    </string>
+    <string name="gunea5_2">
         Aterpeen atariko horman aztarna bat dago eta antzinako frontoiaren ezker paretaren zati bat gogorarazten du. Horma honetan ere metraila aztarnak ikusi ditzakegu.
         Beraz, ea aurkitzen duzuen frontoi zati hori!
     </string>
+
     <string name="gunea6_1">
         Gure bidaia bukatzear dago, azkenengo gunera heldu gara eta gune honetan bi eraikin landuko ditugu. Lehenik eta behin San Agustin kultur gunea daukagu. Honetan zuzeneko ikuskizun ugari eskaintzen dira urtean zehar: antzerkia, musika, dantza eta hainbat kultura jarduera.
         Hala ere, beti ez du izan  eginkizun bera, aspaldian San Agustingo komentua izan zen XVII.mendean altxatu zuten.
@@ -95,12 +104,14 @@
     <string name="gunea6_3">
         Beno lagunak! Bidaia bukatzeko eta bisitatu ditugun gune guztiak gogoratzeko memoria jolas bat egingo dugu. Ezetz asmatu nolakoak ziren bisitatu ditugun eraikin eta guneak aitzinean!
     </string>
+
     <string name="gunea7_1">
         Eskerrik asko bidaian niri laguntzeagatik, azkenean nire maitalea topatu dugu eta orain, biak batera ikerketa gehiago egin ahal izango ditugu. Espero dugu gure hurrengo ikerketan zuek ere parte hartzea!
     </string>
     <string name="gunea7_2">
         Gure bidaia amaitu egin da, espero dugu gustatu izana eta garrantzitsuaena, Durangoren historia eta kultura ondareari buruz asko ikasi izana. Zuekin elkarlanean aritzean oso ondo sentitu gara eta ederto pasatu dugu. Hurrengora arte lagunak!
     </string>
+
     <string name="siguiente">Aurrera</string>
     <string name="pregunta1">
         Baina ez zarete ohartu zein den nire izenaren jatorria? Zeren izena dut?

@@ -44,6 +44,14 @@
         android:background="@color/azul">
 
         <ImageView
+            android:id="@+id/imgCambiartexto2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/flecha_iz" />
+
+        <ImageView
             android:id="@+id/imgCambiartexto"
             android:layout_width="50dp"
             android:layout_height="50dp"
