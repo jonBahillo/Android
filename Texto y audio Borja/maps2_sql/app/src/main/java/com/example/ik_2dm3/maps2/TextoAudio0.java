@@ -350,7 +350,6 @@ public class TextoAudio0 extends AppCompatActivity {
                         ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2,  pruebatexto3, 935, 1);
                     }
                 }, 4000);
-                //Log.d("mytag", "Disfruta del error:" + REQ_JUEGO3);
                 siguiente.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

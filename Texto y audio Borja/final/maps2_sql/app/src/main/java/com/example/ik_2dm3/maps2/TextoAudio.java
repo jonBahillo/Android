@@ -50,7 +50,6 @@ public class TextoAudio extends AppCompatActivity {
     final int REQ_JUEGO6 = 9;
     final int REQ_JUEGO7 = 10;
     final int REQ_JUEGO8 = 11;
-    int dialogos;
     int actividad;
     int vartexto = 3;
 
@@ -79,6 +78,11 @@ public class TextoAudio extends AppCompatActivity {
 
         BitmapDrawable drawable = new BitmapDrawable(getResources(), decodedByte);
 
+        //Aumentar el tamaño de la letra
+        //Cualquier numero que se ponga lo multiplica por 3
+        if (textomayor){
+            mostrar.setTextSize(18);
+        }
 
         linearlayout.setBackground(drawable);
         siguiente=findViewById(R.id.txtSig);
@@ -106,6 +110,7 @@ public class TextoAudio extends AppCompatActivity {
                 pruebatexto1=texto1.split(" ");
                 pruebatexto2=texto2.split(" ");
                 mostrar = findViewById(R.id.txtHistoria);
+                mostrar.setTextSize(18);
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -337,6 +342,7 @@ public class TextoAudio extends AppCompatActivity {
                            // Intent juego = new Intent(TextoAudio.this, MainActivity_camara.class);
                             Intent juego = new Intent(TextoAudio.this, MainActivity_camara.class);
                             juego.putExtra("index", index);
+                            juego.putExtra("popupcamara", false);
                             startActivityForResult(juego, REQ_JUEGO2_2);
                         }
                         if(finalizar){
@@ -467,6 +473,7 @@ public class TextoAudio extends AppCompatActivity {
                         Integer index = extras.getInt("index");
                         Intent juego = new Intent(TextoAudio.this, MainActivity_camara.class);
                         juego.putExtra("index", index);
+                        juego.putExtra("popupcamara", false);
                         startActivityForResult(juego, REQ_JUEGO4);
                         segundo = false;
                     }
