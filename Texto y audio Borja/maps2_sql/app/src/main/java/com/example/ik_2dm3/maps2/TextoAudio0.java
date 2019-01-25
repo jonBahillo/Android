@@ -37,6 +37,7 @@ public class TextoAudio0 extends AppCompatActivity {
     boolean primero = false;
     boolean segundo = true;
     boolean finalizar = false;
+    boolean textomayor = false;
     final int REQ_JUEGO0 = 1;
     final int REQ_JUEGO1 = 2;
     final int REQ_JUEGO2 = 3;
@@ -147,8 +148,9 @@ public class TextoAudio0 extends AppCompatActivity {
                             e.printStackTrace();
                         }*/
 
-                Intent juego = new Intent(TextoAudio0.this, pantallacarga.class);
-                startActivityForResult(juego, REQ_JUEGO0);
+                /*Intent juego = new Intent(TextoAudio0.this, pantallacarga.class);
+                startActivityForResult(juego, REQ_JUEGO0);*/
+                    finish();
                     }
                 });
                 break;
@@ -444,8 +446,6 @@ public class TextoAudio0 extends AppCompatActivity {
                 pruebatexto1 = texto1.split(" ");
                 pruebatexto2 = texto2.split(" ");
                 mostrar = findViewById(R.id.txtHistoria);
-
-                //hilo_bueno(mostrar, pruebatexto1, pruebatexto2, 600,dialogos, run);
                 ejecutar_hilo(mostrar, pruebatexto1, pruebatexto2,  pruebatexto3, 605, 2);
                 handler5_1.postDelayed(new Runnable() {
                     @Override
@@ -510,12 +510,6 @@ public class TextoAudio0 extends AppCompatActivity {
                 texto1 = getResources().getString(R.string.gunea6_1);
                 //Separamos las palabras
                 pruebatexto1=texto1.split(" ");
-                texto2 = getResources().getString(R.string.gunea6_2);
-                //Separamos las palabras
-                pruebatexto2=texto2.split(" ");
-                texto3 = getResources().getString(R.string.gunea6_3);
-                //Separamos las palabras
-                pruebatexto3=texto3.split(" ");
                 mostrar = findViewById(R.id.txtHistoria);
                 handler6.postDelayed(new Runnable() {
                     @Override
@@ -528,9 +522,9 @@ public class TextoAudio0 extends AppCompatActivity {
                     public void run() {
                         audio.pause();
                         siguiente.setVisibility(View.VISIBLE);
-                        cambiartexto.setVisibility(View.VISIBLE);
+                        //cambiartexto.setVisibility(View.VISIBLE);
                     }
-                }, 85100);
+                }, 34800);
                 siguiente.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -563,7 +557,7 @@ public class TextoAudio0 extends AppCompatActivity {
                     }
                 });
 
-                cambiartexto.setOnClickListener(new View.OnClickListener() {
+                /*cambiartexto.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         switch (vartexto){
@@ -609,7 +603,7 @@ public class TextoAudio0 extends AppCompatActivity {
                                 break;
                         }
                     }
-                });
+                });*/
                 break;
             case 7:
                 final Handler handler7 = new Handler();
@@ -646,7 +640,7 @@ public class TextoAudio0 extends AppCompatActivity {
                         siguiente.setVisibility(View.VISIBLE);
                         cambiartexto.setVisibility(View.VISIBLE);
                     }
-                }, 53000);
+                }, 52000);
                 cambiartexto.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -686,9 +680,9 @@ public class TextoAudio0 extends AppCompatActivity {
                         Integer index = extras.getInt("index");
                         Intent juego = new Intent(TextoAudio0.this, MainActivity_juegoimagenesdiferentes.class);
                         juego.putExtra("index", index);
-                        if (audio.isPlaying()){
+                        /*if (audio.isPlaying()){
                             audio.stop();
-                        }
+                        }*/
                         startActivityForResult(juego, REQ_JUEGO7);
                     }
                 });
@@ -756,14 +750,11 @@ public class TextoAudio0 extends AppCompatActivity {
                 if (resultCode==RESULT_OK){
                     mostrar.setText("");
                     //Reproducimos el audio
-                    audio = MediaPlayer.create(TextoAudio0.this, R.raw.kurutziaga);
+                    audio = MediaPlayer.create(TextoAudio0.this, R.raw.kurutziagados);
                     //audio2.setVolume(200,200);
-                    audio.seekTo(49600);
+                    audio.seekTo(49800);
                     //La siguiente parte del audio es en el segundo 49 +-
                     //Log.d("mytag", "Hola: " + audio2.getCurrentPosition());
-                    if (audio!= null) {
-                        audio.stop();
-                    }
                     audio.start();
                     //Sacamos el texto palabra a palabra
                     texto1 = getResources().getString(R.string.gunea2_2);
@@ -783,7 +774,7 @@ public class TextoAudio0 extends AppCompatActivity {
                             siguiente.setVisibility(View.VISIBLE);
                         }
                     }, 10800);
-                    /*siguiente.setOnClickListener(new View.OnClickListener() {
+                    siguiente.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Bundle extras = getIntent().getExtras();
@@ -796,7 +787,7 @@ public class TextoAudio0 extends AppCompatActivity {
                             startActivity(juego);
                             finish();
                         }
-                    });*/
+                    });
                     /*returnValue = data.getStringExtra("index");
                     MDB = new Basededatos(getApplicationContext());
                     MDB.campiarposicion(parseInt(returnValue));*/
@@ -848,7 +839,6 @@ public class TextoAudio0 extends AppCompatActivity {
                 }
                 break;
             case REQ_JUEGO3:
-
                 if (resultCode==RESULT_OK){
                     ////////////MIRAR PRUEBATEXTO2
                     siguiente.setVisibility(View.INVISIBLE);
@@ -894,7 +884,6 @@ public class TextoAudio0 extends AppCompatActivity {
                 }
                 break;
             case REQ_JUEGO3_2:
-                ///////////MIRAR TEXTOS Y PONER BOTON PARA CAMBIAR ENTRE ELLOS
                 if (resultCode==RESULT_OK){
                     ImageView imgsapo;
                     imgsapo = findViewById(R.id.sapo);
@@ -957,7 +946,6 @@ public class TextoAudio0 extends AppCompatActivity {
                 break;
             case REQ_JUEGO4:
                 if (resultCode==RESULT_OK){
-                    dialogos=1;
                     siguiente.setVisibility(View.INVISIBLE);
                     cambiartexto.setVisibility(View.INVISIBLE);
                     final Handler handler = new Handler();

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ik_2dm3.maps2.MainActivity">
+
+
+    <org.osmdroid.views.MapView
+        android:id="@+id/openmapview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clickable="true"
+        />
+
+</LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="300dp"
+        android:src="@drawable/settings"
+        android:onClick="settings" />
+
+    <ImageButton
+        android:id="@+id/imagencenter"
+        android:layout_width="100dp"
+        android:layout_height="85dp"
+        android:layout_marginLeft="260dp"
+        android:layout_marginTop="560dp"
+        android:background="@null"
+        app:srcCompat="@drawable/center"
+        android:onClick="imagencenter" />
+
+</FrameLayout>
