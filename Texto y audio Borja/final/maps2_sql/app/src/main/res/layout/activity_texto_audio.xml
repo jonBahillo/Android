@@ -49,13 +49,17 @@
         android:layout_height="match_parent"
         android:background="@color/azul">
 
-        <ImageView
-            android:id="@+id/imgCambiartexto2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+        <TextView
+            android:id="@+id/txtHistoria"
+            android:layout_width="0dp"
+            android:layout_height="167dp"
+            android:background="@drawable/recuadro_texto"
+            android:padding="10dp"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/flecha_iz" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imgCambiartexto"
@@ -65,16 +69,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/flecha_iz" />
 
-        <TextView
-            android:id="@+id/txtHistoria"
-            android:layout_width="0dp"
-            android:layout_height="167dp"
-            android:background="@drawable/recuadro_texto"
-            android:padding="10dp"
-            android:textAlignment="center"
+        <ImageView
+            android:id="@+id/imgCambiartexto2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:srcCompat="@drawable/flecha_iz" />
 
 
     </android.support.constraint.ConstraintLayout>

@@ -116,12 +116,12 @@ public class TextoAudio7 extends AppCompatActivity {
                 if (primero7){
                     mostrar7.setText(texto7_2);
                     cambiartexto7.setImageResource(R.drawable.flecha_iz);
-                    imagensapo.setImageResource(R.drawable.goienkale);
+                    //imagensapo.setImageResource(R.drawable.goienkale);
                     primero7=false;
                 }else{
                     mostrar7.setText(texto7_1);
                     cambiartexto7.setImageResource(R.drawable.flecha_der);
-                    imagensapo.setImageResource(R.drawable.kalebarria);
+                    //imagensapo.setImageResource(R.drawable.kalebarria);
                     primero7=true;
                 }
             }

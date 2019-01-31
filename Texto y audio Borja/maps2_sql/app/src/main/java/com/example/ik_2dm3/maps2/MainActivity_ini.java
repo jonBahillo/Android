@@ -1,7 +1,10 @@
 package com.example.ik_2dm3.maps2;
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
@@ -26,6 +29,16 @@ public class MainActivity_ini extends AppCompatActivity {
     private ImageView geo, fondo, logoDE, mapaDurango, tLogo, txLogo;
     private MediaPlayer mp;
     Dialog dialog;
+    BroadcastReceiver br = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)){
+                Log.d("mytag", "A");
+            } else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)){
+                mp.stop();
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +50,8 @@ public class MainActivity_ini extends AppCompatActivity {
         }
         dialog=new Dialog(this);
         setContentView(R.layout.activity_main_ini);
-
+        registerReceiver(br, new IntentFilter(Intent.ACTION_SCREEN_ON));
+        registerReceiver(br, new IntentFilter(Intent.ACTION_SCREEN_OFF));
         btnRutaPredef=(Button) findViewById(R.id.btnRutaPredef);
         btnRutaLibre=(Button) findViewById(R.id.btnRutaLibre);
         geo=(ImageView) findViewById(R.id.imgOcultar);

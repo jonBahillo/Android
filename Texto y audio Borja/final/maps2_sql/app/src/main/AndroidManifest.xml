@@ -67,6 +67,8 @@
 
         <activity android:name=".AlbumActivity"
             android:configChanges="orientation|screenSize"/>
+        <activity android:name=".TextoAudiofinal"
+            android:screenOrientation="portrait"></activity>
 
     </application>
 
